@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 
-public class PhysicsPointer :MonoBehaviour
+public class PhysicsPointer : MonoBehaviour
 {
-    [SerializeField] protected float defaultLength = 4.0f;
     [SerializeField] protected float maxLength = 9.0f;
     [SerializeField] protected float minLength = 2.0f;
-
-
+    [SerializeField] protected float defaultLength = 4.0f;
 
     Color c1 = Color.white;
     Color c2 = Color.red;
     Color c3 = Color.green;
+    public RaycastHit hit;
+
+
 
     private LineRenderer lineRenderer = null;
-
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startColor= c1;
+        lineRenderer.startColor = c1;
 
     }
 
@@ -39,9 +39,10 @@ public class PhysicsPointer :MonoBehaviour
     {
         RaycastHit hit = CreateForwardRaycast();
         Vector3 endposition = DefaultEnd(defaultLength);
-        if(hit.collider)
+        if (hit.collider)
         {
             endposition = hit.point;
+            this.hit = hit;
             lineRenderer.endColor = c3;
         }
         else
@@ -74,9 +75,9 @@ public class PhysicsPointer :MonoBehaviour
     private void changeLaserLength()
     {
 
-        if (Input.GetAxis("Mouse ScrollWheel") >0f)
-        {        
-            if(defaultLength >= maxLength)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (defaultLength >= maxLength)
             {
                 defaultLength = maxLength;
             }
@@ -87,7 +88,7 @@ public class PhysicsPointer :MonoBehaviour
         }
 
 
-        if(Input.GetAxis("Mouse ScrollWheel") <0f)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (defaultLength <= minLength)
             {

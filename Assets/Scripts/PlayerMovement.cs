@@ -15,15 +15,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+
         controller = GetComponent<CharacterController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         float x = Input.GetAxis("Horizontal");
         float Z = Input.GetAxis("Vertical");
-       
+                   
         Vector3 move = transform.right * x + transform.forward * Z;
 
         controller.Move(move*speed*Time.deltaTime);
