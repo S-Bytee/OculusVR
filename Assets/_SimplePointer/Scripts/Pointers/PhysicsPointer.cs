@@ -2,9 +2,16 @@
 
 public class PhysicsPointer : MonoBehaviour
 {
+
+
+    private static PhysicsPointer _instance;
+
+    public static PhysicsPointer Instance { get { return _instance; } }
+
+
     [SerializeField] protected float maxLength = 9.0f;
     [SerializeField] protected float minLength = 2.0f;
-    [SerializeField] protected float defaultLength = 4.0f;
+    public float defaultLength = 4.0f;
 
     Color c1 = Color.white;
     Color c2 = Color.red;
@@ -19,6 +26,16 @@ public class PhysicsPointer : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startColor = c1;
 
+
+
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
     private void Update()
@@ -64,7 +81,7 @@ public class PhysicsPointer : MonoBehaviour
         return hit;
     }
 
-    private Vector3 DefaultEnd(float length)
+    public Vector3 DefaultEnd(float length)
     {
 
         return transform.position + (transform.forward * length);
