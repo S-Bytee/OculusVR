@@ -274,7 +274,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 198275827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03510ea897333a3478c3615be62b832e, type: 3}
+  m_Script: {fileID: 11500000, guid: f8e700ae954bc0848bb5c73932bc4234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Transparency: 1
@@ -1343,8 +1343,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975978400}
-  - component: {fileID: 975978398}
   - component: {fileID: 975978399}
+  - component: {fileID: 975978398}
   - component: {fileID: 975978401}
   m_Layer: 8
   m_Name: ReadWriteEnabledImageToDrawOn
@@ -1362,14 +1362,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 975978397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571045d48cec88d48848f53bf379f673, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e6adb39c3e601c469b17cb235007f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Drawing_Layers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   Reset_Canvas_On_Play: 1
-  Reset_Colour: {r: 1, g: 1, b: 1, a: 1}
+  Reset_Colour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &975978399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1408,12 +1408,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a33b8a6cf583c534b83219b0504884d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f84f14f3ac3e0b4ab37ade6ff58b770, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.05, y: 8.67}
+  m_Size: {x: 5.12, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1451,7 +1451,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 10, y: 7.5}
-    newSize: {x: 16.05, y: 8.67}
+    newSize: {x: 5.12, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1514,7 +1514,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd45287623766574f8dbfe028ffa8b86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c26b860926c7a4449ac3173b0a82c85c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1521f797ddd944381a0ce312a3df76, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b7d88e596d325545935cad66e0bc79b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

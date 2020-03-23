@@ -4,8 +4,6 @@ public class ColorIndicator : MonoBehaviour {
 
 	HSBColor color;
 
-    
-
     void Start() {
 
         color = HSBColor.FromColor(GetComponent<Renderer>().sharedMaterial.GetColor("_Color"));
