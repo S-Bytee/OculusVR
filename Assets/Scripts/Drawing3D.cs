@@ -10,8 +10,14 @@ public class Drawing3D : MonoBehaviour
 
     public GameObject sphere;
     bool draw = false;
-
     // Start is called before the first frame update
+    public GameObject linePrefab = null;
+    public GameObject currentLine = null;
+    public LineRenderer lineRenderer;
+    Vector3 tempFingerPos;
+    public List<Vector3> fingerPositions;
+
+
     void Start()
     {
         
@@ -22,31 +28,68 @@ public class Drawing3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        drawing();
+    //    drawing();
     }
-
-
 
     public void drawing()
     {
 
+        if(Input.GetMouseButtonDown(0))
+        {
+            createLine();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            tempFingerPos = laserInstance.DefaultEnd(laserInstance.defaultLength);
+       
+             updateLine(laserInstance.DefaultEnd(laserInstance.defaultLength));
+
+        }
+
+        /*
+
         if (Input.GetButtonDown("Fire1"))
         {
-            draw = true;
-            
+
+        
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
+
             draw = false;
 
         }
 
         if (draw)
         {
-            Instantiate(sphere, this.laserInstance.DefaultEnd(this.laserInstance.defaultLength), Quaternion.identity);
-        }
-        
+
+         }
+         */
     }
+
+
+    public void createLine()
+    {
+        currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        lineRenderer = currentLine.GetComponent<LineRenderer>();
+        fingerPositions.Clear();
+        fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
+        fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
+        lineRenderer.SetPosition(0, fingerPositions[0]);
+        lineRenderer.SetPosition(1, fingerPositions[1]);
+
+    }
+
+    public void updateLine(Vector3 newPosition)
+    {
+        fingerPositions.Add(newPosition);
+        lineRenderer.positionCount++;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1,newPosition);
+
+    }
+
+   
+
 
 }

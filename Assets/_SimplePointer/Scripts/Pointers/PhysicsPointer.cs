@@ -18,7 +18,7 @@ public class PhysicsPointer : MonoBehaviour
     Color c3 = Color.green;
     public RaycastHit hit;
 
-
+    public Ray ray;
 
     private LineRenderer lineRenderer = null;
     private void Awake()
@@ -74,7 +74,7 @@ public class PhysicsPointer : MonoBehaviour
     private RaycastHit CreateForwardRaycast()
     {
         RaycastHit hit;
-        Ray ray = new Ray(transform.position, transform.forward);
+        ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit, defaultLength);
 
 
