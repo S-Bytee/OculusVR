@@ -9,6 +9,6 @@ public class ColorHuePicker : MonoBehaviour
 
     void OnDrag(Vector3 point)
     {
-		transform.parent.BroadcastMessage("SetHue", point.x);
+        GameObject.Find("ColorIndicator").GetComponent<ColorIndicator>().SetHue(point.x);
     }
 }

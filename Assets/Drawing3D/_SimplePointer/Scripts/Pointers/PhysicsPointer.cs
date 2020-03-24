@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 
 public class PhysicsPointer : MonoBehaviour
 {
@@ -23,11 +24,6 @@ public class PhysicsPointer : MonoBehaviour
     private LineRenderer lineRenderer = null;
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startColor = c1;
-
-
-
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -36,12 +32,28 @@ public class PhysicsPointer : MonoBehaviour
         {
             _instance = this;
         }
+
+        lineRenderer = GetComponent<LineRenderer>();
+
+        if (ColorIndicator.Instance== null)
+
+        {
+            lineRenderer.startColor = c1;
+        }
+        else
+        {
+            lineRenderer.startColor = ColorIndicator.Instance.color.ToColor();
+        }
+
+
+      
     }
 
     private void Update()
     {
         UpdateLength();
         changeLaserLength();
+        updateColor();
     }
 
     private void UpdateLength()
@@ -117,4 +129,12 @@ public class PhysicsPointer : MonoBehaviour
             }
         }
     }
+
+    public void updateColor()
+    {   
+        this.c1 = ColorIndicator.Instance.color.ToColor();
+        lineRenderer.startColor = this.c1;
+    }
+
+
 }

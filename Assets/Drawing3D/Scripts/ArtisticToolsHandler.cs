@@ -30,6 +30,7 @@ public class ArtisticToolsHandler : MonoBehaviour
 
     public void handleButton()
     {
+
         if(laserInstance.hit.collider )
         {
             selectedButton = laserInstance.hit.collider.gameObject;
@@ -38,11 +39,21 @@ public class ArtisticToolsHandler : MonoBehaviour
             {
 
                 GameObject.Find("Drawing").GetComponent<Drawing3D>().enabled = false;
+
                 selectedButton.GetComponent<Renderer>().material.color = selectedColor;
 
                 if (Input.GetMouseButtonDown(0) && selectedButton.name== "buttonCube")
                 {
                     createCube();
+                    
+                }
+
+                if (Input.GetMouseButtonDown(0) && selectedButton.name == "Next")
+                {
+
+                    transform.localEulerAngles = transform.localEulerAngles + Vector3.up * 90;
+
+
                 }
 
             }
@@ -71,5 +82,7 @@ public class ArtisticToolsHandler : MonoBehaviour
         Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
 
     }
+
+   
 
 }

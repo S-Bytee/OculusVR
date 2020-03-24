@@ -32,7 +32,9 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
     void OnDrag(Vector3 point)
     {
 
-		transform.parent.BroadcastMessage("SetSaturationBrightness", new Vector2(point.x, point.y));
+        //transform.parent.BroadcastMessage("SetSaturationBrightness", new Vector2(point.x, point.y));
+        GameObject.Find("ColorIndicator").GetComponent<ColorIndicator>().SetSaturationBrightness(new Vector2(point.x, point.y));
+
 
     }
 

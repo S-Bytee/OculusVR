@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Drawing3D : MonoBehaviour
 {
-
-
     PhysicsPointer laserInstance;
 
     public GameObject sphere;
@@ -13,9 +12,10 @@ public class Drawing3D : MonoBehaviour
     // Start is called before the first frame update
     public GameObject linePrefab = null;
     public GameObject currentLine = null;
-    public LineRenderer lineRenderer;
+    LineRenderer lineRenderer;
     Vector3 tempFingerPos;
     public List<Vector3> fingerPositions;
+    const string MATERIALS_TEMP_PATH = "Assets/Drawing3D/Materials/MaterialsTemp/";
 
 
     void Start()
@@ -28,7 +28,7 @@ public class Drawing3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //    drawing();
+        drawing();
     }
 
     public void drawing()
@@ -46,26 +46,6 @@ public class Drawing3D : MonoBehaviour
 
         }
 
-        /*
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-
-        
-        }
-
-        if (Input.GetButtonUp("Fire1"))
-        {
-
-            draw = false;
-
-        }
-
-        if (draw)
-        {
-
-         }
-         */
     }
 
 
@@ -73,6 +53,10 @@ public class Drawing3D : MonoBehaviour
     {
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
+        
+      
+       currentLine.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor(); 
+        
         fingerPositions.Clear();
         fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
         fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
@@ -89,7 +73,12 @@ public class Drawing3D : MonoBehaviour
 
     }
 
-   
+
+    public void assignColorToInstance()
+    {
+      
+    }
+
 
 
 }

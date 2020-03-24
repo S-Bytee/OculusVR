@@ -13,24 +13,32 @@ public class Draggable : MonoBehaviour
     {
         laserInstance = PhysicsPointer.Instance;
 
-    }
+	}
 
     void FixedUpdate()
 	{
 		if (Input.GetMouseButtonDown(0)) {
 			dragging = false;
-		
+
             if (GetComponent<Collider>().Raycast(laserInstance.ray, out laserInstance.hit, laserInstance.defaultLength)) {
 				dragging = true;
 			}
+
 		}
-		if (Input.GetMouseButtonUp(0)) dragging = false;
-		if (dragging && Input.GetMouseButton(0)) {
+        if (Input.GetMouseButtonUp(0))
+        {
+            dragging = false;
+
+        }
+        if (dragging && Input.GetMouseButton(0)) {
 			var point = laserInstance.DefaultEnd(laserInstance.defaultLength);
 			point = GetComponent<Collider>().ClosestPointOnBounds(point);
 			SetThumbPosition(point);
 			SendMessage("OnDrag", Vector3.one - (thumb.position - GetComponent<Collider>().bounds.min) / GetComponent<Collider>().bounds.size.x);
+        
 		}
+
+        
 	}
 
 	void SetDragPoint(Vector3 point)

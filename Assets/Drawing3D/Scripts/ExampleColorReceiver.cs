@@ -3,8 +3,22 @@ using UnityEngine;
 public class ExampleColorReceiver : MonoBehaviour {
 	
     Color color;
+    private static ExampleColorReceiver _instance;
+    public static ExampleColorReceiver Instance { get { return _instance; } }
 
-	void OnColorChange(HSBColor color) 
+    private void Awake()
+    {
+
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+   public void OnColorChange(HSBColor color) 
 	{
         this.color = color.ToColor();
 	}

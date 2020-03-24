@@ -2,25 +2,36 @@ using UnityEngine;
 
 public class ColorIndicator : MonoBehaviour {
 
-	HSBColor color;
+	public HSBColor color;
+    private static ColorIndicator _instance;
+    public static ColorIndicator Instance { get { return _instance; } }
 
     void Start() {
 
-        color = HSBColor.FromColor(GetComponent<Renderer>().sharedMaterial.GetColor("_Color"));
-		// transform.parent.BroadcastMessage("SetColor", color);
-        ColorSaturationBrightnessPicker.Instance.SetColor(color);
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        color = HSBColor.FromColor(GetComponent<Renderer>().material.GetColor("_Color"));
+		 GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
+        //ColorSaturationBrightnessPicker.Instance.SetColor(color);
         
     }   
 
 	void ApplyColor ()
 	{
 
-		GetComponent<Renderer>().sharedMaterial.SetColor("_Color", color.ToColor());
-		transform.parent.BroadcastMessage("OnColorChange", color, SendMessageOptions.DontRequireReceiver);
-
+		GetComponent<Renderer>().material.SetColor("_Color", color.ToColor());
+        //transform.parent.BroadcastMessage("OnColorChange", color, SendMessageOptions.DontRequireReceiver);
+        
+        
     }
 
-	void SetHue(float hue)
+	public void SetHue(float hue)
 	{
 
 		color.h = hue;
@@ -28,11 +39,14 @@ public class ColorIndicator : MonoBehaviour {
 
     }	
 
-	void SetSaturationBrightness(Vector2 sb) {
+	public void SetSaturationBrightness(Vector2 sb) {
 
         color.s = sb.x;
 		color.b = sb.y;
 		ApplyColor();
 
     }
+
+
+
 }
