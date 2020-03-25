@@ -16,9 +16,10 @@ public class ColorIndicator : MonoBehaviour {
         {
             _instance = this;
         }
-        color = HSBColor.FromColor(GetComponent<Renderer>().material.GetColor("_Color"));
-		 GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
+        color = HSBColor.FromColor(GetComponent<Renderer>().material.GetColor("_Color"));		
+        GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
         //ColorSaturationBrightnessPicker.Instance.SetColor(color);
+
         
     }   
 
@@ -27,7 +28,6 @@ public class ColorIndicator : MonoBehaviour {
 
 		GetComponent<Renderer>().material.SetColor("_Color", color.ToColor());
         //transform.parent.BroadcastMessage("OnColorChange", color, SendMessageOptions.DontRequireReceiver);
-        
         
     }
 

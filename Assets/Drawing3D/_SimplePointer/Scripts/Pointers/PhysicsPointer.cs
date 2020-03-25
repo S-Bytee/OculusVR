@@ -21,6 +21,8 @@ public class PhysicsPointer : MonoBehaviour
 
     public Ray ray;
 
+
+    private TrailRenderer trailRenderer;
     private LineRenderer lineRenderer = null;
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class PhysicsPointer : MonoBehaviour
         }
 
         lineRenderer = GetComponent<LineRenderer>();
-
+        trailRenderer = GameObject.Find("TrailLine").GetComponent<TrailRenderer>();
         if (ColorIndicator.Instance== null)
 
         {
@@ -77,6 +79,7 @@ public class PhysicsPointer : MonoBehaviour
         else
         {
             lineRenderer.endColor = c2;
+            trailFollow();
         }
 
         return endposition;
@@ -132,9 +135,20 @@ public class PhysicsPointer : MonoBehaviour
 
     public void updateColor()
     {   
+        
         this.c1 = ColorIndicator.Instance.color.ToColor();
         lineRenderer.startColor = this.c1;
+
     }
 
+
+    public void trailFollow()
+    {
+        if(trailRenderer !=null)
+        {
+            trailRenderer.transform.position = DefaultEnd(defaultLength);
+            trailRenderer.GetComponent<Renderer>().sharedMaterial.color = ColorIndicator.Instance.color.ToColor();
+        }
+    }
 
 }
