@@ -14,19 +14,26 @@ public class ArtisticToolsHandler : MonoBehaviour
     public GameObject newCube;
     Vector3 instanceOffset;
     GameObject player;
+    Vector3 offset;
+    GameObject currCubeInstance;
     void Start()
     {
+
         laserInstance = PhysicsPointer.Instance;
         buttons = GameObject.FindGameObjectsWithTag("Clickable");
         instanceOffset = new Vector3(0,0,10);
         player = GameObject.FindGameObjectWithTag("Player");
+        setPosition();
+        offset = new Vector3(0, 1.5f, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
+        setPosition();
         handleButton();
     }
+    
 
     public void handleButton()
     {
@@ -48,11 +55,10 @@ public class ArtisticToolsHandler : MonoBehaviour
                     
                 }
 
-                if (Input.GetMouseButtonDown(0) && selectedButton.name == "Next")
+                if (Input.GetMouseButtonDown(0) && selectedButton.name == "TeleportButton")
                 {
 
-                    transform.localEulerAngles = transform.localEulerAngles + Vector3.up * 90;
-
+                    teleportPlayer();
 
                 }
 
@@ -79,10 +85,24 @@ public class ArtisticToolsHandler : MonoBehaviour
     {
 
 
-        Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
+      currCubeInstance =  Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
+      currCubeInstance.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
 
     }
 
+    public void teleportPlayer()
+    {
+        
+        GameObject.Find("CapsuleToTeleport").SetActive(true);
+
+    }
+
+
+    public void setPosition()
+    {
+        transform.position = player.transform.position + offset;
+    }
    
 
 }

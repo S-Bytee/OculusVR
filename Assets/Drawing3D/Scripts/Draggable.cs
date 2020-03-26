@@ -31,7 +31,7 @@ public class Draggable : MonoBehaviour
 
         }
         if (dragging && Input.GetMouseButton(0)) {
-			var point = laserInstance.DefaultEnd(laserInstance.defaultLength);
+			var point = laserInstance.hit.point;
 			point = GetComponent<Collider>().ClosestPointOnBounds(point);
 			SetThumbPosition(point);
 			SendMessage("OnDrag", Vector3.one - (thumb.position - GetComponent<Collider>().bounds.min) / GetComponent<Collider>().bounds.size.x);

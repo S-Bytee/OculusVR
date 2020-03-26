@@ -27,15 +27,16 @@ public class ColorIndicator : MonoBehaviour {
 	{
 
 		GetComponent<Renderer>().material.SetColor("_Color", color.ToColor());
+      
         //transform.parent.BroadcastMessage("OnColorChange", color, SendMessageOptions.DontRequireReceiver);
-        
     }
 
-	public void SetHue(float hue)
+    public void SetHue(float hue)
 	{
 
 		color.h = hue;
 		ApplyColor();
+
 
     }	
 

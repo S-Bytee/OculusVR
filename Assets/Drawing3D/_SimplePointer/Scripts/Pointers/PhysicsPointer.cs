@@ -147,7 +147,7 @@ public class PhysicsPointer : MonoBehaviour
         if(trailRenderer !=null)
         {
             trailRenderer.transform.position = DefaultEnd(defaultLength);
-            trailRenderer.GetComponent<Renderer>().sharedMaterial.color = ColorIndicator.Instance.color.ToColor();
+            trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
         }
     }
 
