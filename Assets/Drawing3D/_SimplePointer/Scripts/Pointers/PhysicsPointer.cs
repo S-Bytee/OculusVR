@@ -135,9 +135,19 @@ public class PhysicsPointer : MonoBehaviour
 
     public void updateColor()
     {   
-        
-        this.c1 = ColorIndicator.Instance.color.ToColor();
-        lineRenderer.startColor = this.c1;
+        if(ColorIndicator.Instance == null)
+        {
+            this.c1 = Color.white;
+            lineRenderer.startColor = this.c1;
+
+        }
+        else
+        {
+            this.c1 = ColorIndicator.Instance.color.ToColor();
+            lineRenderer.startColor = this.c1;
+
+        }
+
 
     }
 
@@ -147,7 +157,16 @@ public class PhysicsPointer : MonoBehaviour
         if(trailRenderer !=null)
         {
             trailRenderer.transform.position = DefaultEnd(defaultLength);
-            trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                if(ColorIndicator.Instance == null)
+                {
+                trailRenderer.GetComponent<Renderer>().material.color = Color.white;
+                }
+                else
+                {
+                    trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
+                }
+
         }
     }
 

@@ -54,9 +54,21 @@ public class Drawing3D : MonoBehaviour
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
         
-      
-       currentLine.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor(); 
+     
         
+        if(ColorIndicator.Instance == null)
+        {
+        
+            currentLine.GetComponent<Renderer>().material.color = Color.white;
+        
+        }
+        else
+        {
+
+            currentLine.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
+        }
+
         fingerPositions.Clear();
         fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
         fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));

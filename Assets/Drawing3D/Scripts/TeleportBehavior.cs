@@ -7,10 +7,14 @@ public class TeleportBehavior : MonoBehaviour
 
     Transform player;
     Vector3 offset;
+    Transform triangle;
+    float translateValue;
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector3(1, 1, 1);
+        translateValue = 0f;
+        triangle = transform.GetChild(0);
+        offset = new Vector3(1, 4, 1);
         player = GameObject.FindGameObjectWithTag("Player").transform;
        // setPosition();
     }
@@ -18,6 +22,7 @@ public class TeleportBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animateTeleport();
         setPosition();
 
         if (Input.GetMouseButtonDown(0))
@@ -33,6 +38,20 @@ public class TeleportBehavior : MonoBehaviour
     public void setPosition()
     {
         transform.position = PhysicsPointer.Instance.DefaultEnd(PhysicsPointer.Instance.defaultLength) + offset;
+    }
+
+    public void animateTeleport()
+    {
+        
+        translateValue+=1;
+        
+        if(translateValue > 10f)
+        {
+           translateValue=-10f;
+        }
+
+        triangle.Translate(new Vector3(0f, translateValue * Time.deltaTime, 0f));
+
     }
 
 

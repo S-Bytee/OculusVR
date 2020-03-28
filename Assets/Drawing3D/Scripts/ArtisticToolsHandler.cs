@@ -16,6 +16,7 @@ public class ArtisticToolsHandler : MonoBehaviour
     GameObject player;
     Vector3 offset;
     GameObject currCubeInstance;
+    public GameObject teleportGO;
     void Start()
     {
 
@@ -93,8 +94,8 @@ public class ArtisticToolsHandler : MonoBehaviour
 
     public void teleportPlayer()
     {
-        
-        GameObject.Find("CapsuleToTeleport").SetActive(true);
+
+        Instantiate(teleportGO, laserInstance.DefaultEnd(laserInstance.defaultLength),Quaternion.identity);
 
     }
 

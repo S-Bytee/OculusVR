@@ -6,6 +6,8 @@ public class ColorIndicator : MonoBehaviour {
     private static ColorIndicator _instance;
     public static ColorIndicator Instance { get { return _instance; } }
 
+
+
     void Start() {
 
         if (_instance != null && _instance != this)
@@ -48,6 +50,6 @@ public class ColorIndicator : MonoBehaviour {
 
     }
 
-
+   
 
 }
