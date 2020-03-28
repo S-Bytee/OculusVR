@@ -87,7 +87,7 @@ public class ArtisticToolsHandler : MonoBehaviour
 
 
       currCubeInstance =  Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
-      currCubeInstance.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+      currCubeInstance.transform.GetChild(1).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
 
     }
@@ -104,6 +104,6 @@ public class ArtisticToolsHandler : MonoBehaviour
     {
         transform.position = player.transform.position + offset;
     }
-   
+  
 
 }

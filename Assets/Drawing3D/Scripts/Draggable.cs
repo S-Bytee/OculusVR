@@ -5,23 +5,43 @@ public class Draggable : MonoBehaviour
 	public bool fixX;
 	public bool fixY;
 	public Transform thumb;	
-	bool dragging;
+	public bool dragging;
 
     PhysicsPointer laserInstance;
+	private static Draggable _instance;
 
-    private void Start()
+	public static Draggable Instance { get { return _instance; } }
+
+	private void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			//Destroy(this.gameObject);
+		}
+		else
+		{
+			_instance = this;
+		}
+	}
+	private void Start()
     {
         laserInstance = PhysicsPointer.Instance;
+		
 
 	}
 
     void FixedUpdate()
 	{
+
+		Debug.Log(dragging);
+
 		if (Input.GetMouseButtonDown(0)) {
 			dragging = false;
 
             if (GetComponent<Collider>().Raycast(laserInstance.ray, out laserInstance.hit, laserInstance.defaultLength)) {
 				dragging = true;
+
+
 			}
 
 		}
@@ -35,10 +55,11 @@ public class Draggable : MonoBehaviour
 			point = GetComponent<Collider>().ClosestPointOnBounds(point);
 			SetThumbPosition(point);
 			SendMessage("OnDrag", Vector3.one - (thumb.position - GetComponent<Collider>().bounds.min) / GetComponent<Collider>().bounds.size.x);
-        
+			//GameObject.Find("BackgroundColor").GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
 		}
 
-        
+
 	}
 
 	void SetDragPoint(Vector3 point)

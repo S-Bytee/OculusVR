@@ -6,7 +6,7 @@ public class PhysicsPointer : MonoBehaviour
 
 
     private static PhysicsPointer _instance;
-
+   
     public static PhysicsPointer Instance { get { return _instance; } }
 
 
@@ -20,7 +20,7 @@ public class PhysicsPointer : MonoBehaviour
     public RaycastHit hit;
 
     public Ray ray;
-
+    public bool onCollison;
 
     private TrailRenderer trailRenderer;
     private LineRenderer lineRenderer = null;
@@ -75,11 +75,13 @@ public class PhysicsPointer : MonoBehaviour
             endposition = hit.point;
             this.hit = hit;
             lineRenderer.endColor = c3;
+            onCollison = true;
         }
         else
         {
             lineRenderer.endColor = c2;
             trailFollow();
+            onCollison = false;
         }
 
         return endposition;
@@ -99,7 +101,7 @@ public class PhysicsPointer : MonoBehaviour
     public Vector3 DefaultEnd(float length)
     {
 
-        return transform.position + (transform.forward * length);
+            return transform.position + (transform.forward * length);
 
     }
 
@@ -143,6 +145,7 @@ public class PhysicsPointer : MonoBehaviour
         }
         else
         {
+
             this.c1 = ColorIndicator.Instance.color.ToColor();
             lineRenderer.startColor = this.c1;
 
@@ -154,7 +157,7 @@ public class PhysicsPointer : MonoBehaviour
 
     public void trailFollow()
     {
-        if(trailRenderer !=null)
+        if (trailRenderer != null && hit.collider == false)
         {
             trailRenderer.transform.position = DefaultEnd(defaultLength);
                 if(ColorIndicator.Instance == null)

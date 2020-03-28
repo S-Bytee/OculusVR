@@ -28,12 +28,26 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
         SendMessage("SetDragPoint", new Vector3(color.s, color.b, 0));
 
     }
-
+    
     void OnDrag(Vector3 point)
     {
 
         //transform.parent.BroadcastMessage("SetSaturationBrightness", new Vector2(point.x, point.y));
         GameObject.Find("ColorIndicator").GetComponent<ColorIndicator>().SetSaturationBrightness(new Vector2(point.x, point.y));
+             
+
+        //Idhaa ken aamal selection aala objet donc badaalou couleur 
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("object"))
+        {
+
+            if (go.GetComponentInChildren<OnSelectObject>().isClicked )
+            {
+
+                go.transform.GetChild(1).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
+            }
+        }
+
 
 
     }
