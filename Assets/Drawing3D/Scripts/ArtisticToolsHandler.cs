@@ -12,11 +12,16 @@ public class ArtisticToolsHandler : MonoBehaviour
     GameObject selectedButton = null;
 
     public GameObject newCube;
+    public GameObject newSphere;
+    public GameObject newQuad;
     Vector3 instanceOffset;
     GameObject player;
     Vector3 offset;
     GameObject currCubeInstance;
+    GameObject currSphereInstance;
+    GameObject currQuadInstance;
     public GameObject teleportGO;
+
     void Start()
     {
 
@@ -56,6 +61,20 @@ public class ArtisticToolsHandler : MonoBehaviour
                     
                 }
 
+                if (Input.GetMouseButtonDown(0) && selectedButton.name == "buttonSphere")
+                {
+                
+                    createSphere();
+
+                }
+
+                if (Input.GetMouseButtonDown(0) && selectedButton.name == "buttonQuad")
+                {
+
+                    createQuad();
+
+                }
+
                 if (Input.GetMouseButtonDown(0) && selectedButton.name == "TeleportButton")
                 {
 
@@ -86,9 +105,25 @@ public class ArtisticToolsHandler : MonoBehaviour
     {
 
 
-      currCubeInstance =  Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
-      currCubeInstance.transform.GetChild(1).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+     currCubeInstance =  Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
+     currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
+
+    }
+
+    public void createSphere()
+    {
+
+     currSphereInstance = Instantiate(newSphere, player.transform.position + instanceOffset, Quaternion.identity);
+     currSphereInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+    
+    }
+
+    public void createQuad()
+    {
+
+        currQuadInstance = Instantiate(newQuad, player.transform.position + instanceOffset, Quaternion.identity);
+        currQuadInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
     }
 

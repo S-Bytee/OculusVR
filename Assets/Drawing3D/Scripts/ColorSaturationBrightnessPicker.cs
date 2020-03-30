@@ -43,7 +43,7 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
             if (go.GetComponentInChildren<OnSelectObject>().isClicked )
             {
 
-                go.transform.GetChild(1).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                go.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
             }
         }

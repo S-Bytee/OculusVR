@@ -28,6 +28,7 @@ public class Drawing3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!laserInstance.onCollison)
         drawing();
     }
 
@@ -40,9 +41,9 @@ public class Drawing3D : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            tempFingerPos = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            tempFingerPos = laserInstance.CalculateEnd();
        
-             updateLine(laserInstance.DefaultEnd(laserInstance.defaultLength));
+            updateLine(laserInstance.CalculateEnd());
 
         }
 
@@ -64,14 +65,14 @@ public class Drawing3D : MonoBehaviour
         }
         else
         {
-
+        
             currentLine.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
-
+        
         }
 
         fingerPositions.Clear();
-        fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
-        fingerPositions.Add(laserInstance.DefaultEnd(laserInstance.defaultLength));
+        fingerPositions.Add(laserInstance.CalculateEnd());
+        fingerPositions.Add(laserInstance.CalculateEnd());
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
 
@@ -79,9 +80,12 @@ public class Drawing3D : MonoBehaviour
 
     public void updateLine(Vector3 newPosition)
     {
+
+
         fingerPositions.Add(newPosition);
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1,newPosition);
+
 
     }
 

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnDragGizmoXNeg : MonoBehaviour
+public class OnDragGizmoYNeg : MonoBehaviour
 {
+
 
     PhysicsPointer lasetInstance;
     float x;
     bool onDrag = false;
     Transform parent;
+
     // Start is called before the first frame update
     void Start()
     {
-    
+
         lasetInstance = PhysicsPointer.Instance;
         parent = getSelectedObject();
 
-        //Debug.Log(parent.name);
- 
     }
 
     // Update is called once per frame
@@ -27,7 +27,6 @@ public class OnDragGizmoXNeg : MonoBehaviour
         scaleObject();
 
     }
-
 
     public void scaleObject()
     {
@@ -50,8 +49,8 @@ public class OnDragGizmoXNeg : MonoBehaviour
                 if (onDrag)
                 {
 
-                    x += 0.3f*Time.deltaTime;
-                    parent.localScale = new Vector3(-x + parent.localScale.x, parent.localScale.y, parent.localScale.z);
+                    x += 0.3f * Time.deltaTime;
+                    parent.localScale = new Vector3(parent.localScale.x, -x + parent.localScale.y, parent.localScale.z);
 
                 }
                 else
@@ -72,7 +71,7 @@ public class OnDragGizmoXNeg : MonoBehaviour
             if (go.GetComponentInChildren<OnSelectObject>().isClicked)
             {
 
-                selectedObject= go.transform.GetChild(0).gameObject;
+                selectedObject = go.transform.GetChild(0).gameObject;
 
             }
         }
@@ -80,6 +79,4 @@ public class OnDragGizmoXNeg : MonoBehaviour
         return selectedObject.transform.parent.transform;
 
     }
-
-
 }

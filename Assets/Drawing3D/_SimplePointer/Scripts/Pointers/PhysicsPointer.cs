@@ -56,6 +56,10 @@ public class PhysicsPointer : MonoBehaviour
         UpdateLength();
         changeLaserLength();
         updateColor();
+
+        if(!onCollison)
+        trailFollow();
+
     }
 
     private void UpdateLength()
@@ -66,7 +70,7 @@ public class PhysicsPointer : MonoBehaviour
 
 
 
-    protected Vector3 CalculateEnd()
+    public Vector3 CalculateEnd()
     {
         RaycastHit hit = CreateForwardRaycast();
         Vector3 endposition = DefaultEnd(defaultLength);
@@ -80,7 +84,6 @@ public class PhysicsPointer : MonoBehaviour
         else
         {
             lineRenderer.endColor = c2;
-            trailFollow();
             onCollison = false;
         }
 
@@ -157,18 +160,22 @@ public class PhysicsPointer : MonoBehaviour
 
     public void trailFollow()
     {
-        if (trailRenderer != null && hit.collider == false)
+
+
+        if (trailRenderer != null )
         {
-            trailRenderer.transform.position = DefaultEnd(defaultLength);
+            trailRenderer.transform.position = CalculateEnd();
                 if(ColorIndicator.Instance == null)
                 {
                 trailRenderer.GetComponent<Renderer>().material.color = Color.white;
                 }
                 else
                 {
+
                     trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
                 }
+
 
         }
     }

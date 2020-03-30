@@ -13,11 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
 
+
+    float altitude;
+
     private void Start()
     {
 
         controller = GetComponent<CharacterController>();
-
+        altitude = 0f;
     }
 
     // Update is called once per frame
@@ -26,14 +29,29 @@ public class PlayerMovement : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
         float Z = Input.GetAxis("Vertical");
-                   
-        Vector3 move = transform.right * x + transform.forward * Z;
+        float y = Input.GetAxis("fly");
+        if(y==1)
+        {
+            altitude += 0.5f;
+        }
+        else
+        {
+            altitude = 0;
+        }
+
+      //  Debug.Log(transform.up * y);
+
+        Vector3 move = transform.right * x + transform.forward * Z+ transform.up*y*5;
 
         controller.Move(move*speed*Time.deltaTime);
 
-        velocity.y += gravity * Time.deltaTime;
+        //transform.Translate(move);
 
-        controller.Move(velocity * Time.deltaTime);
+        //transform.Rotate(Vector3.up * Input.GetAxis("Mouse X")*80f);
+
+        //velocity.y += gravity * Time.deltaTime;
+//
+       // controller.Move(velocity * Time.deltaTime);
 
     }
 }

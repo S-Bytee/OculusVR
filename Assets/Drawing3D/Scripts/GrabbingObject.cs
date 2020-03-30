@@ -6,7 +6,7 @@ public class GrabbingObject : MonoBehaviour
 {
 
     PhysicsPointer laserInstance;
-   
+   GameObject objectToGrab;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +25,25 @@ public class GrabbingObject : MonoBehaviour
 
         if (laserInstance.hit.collider)
         {
-
+           
             if(Input.GetButtonDown("Jump"))
             {
+                objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
 
-                laserInstance.hit.collider.gameObject.transform.parent = laserInstance.gameObject.transform;
-                
+                if(objectToGrab.tag=="object")
+                {
+
+                  objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                }
+
+
             }
 
             if (Input.GetButtonUp("Jump"))
             {
-                laserInstance.hit.collider.gameObject.transform.parent = null;
+
+                objectToGrab.transform.parent = null;
 
             }
 

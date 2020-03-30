@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnSelectObject : MonoBehaviour
+public class OnSelectLine : MonoBehaviour
 {
-
     Shader sh1;
     Shader shStandard;
     PhysicsPointer laserPointer;
-    GameObject go=null;
+    GameObject go = null;
     GameObject artisticTools;
     public bool isClicked;
     List<GameObject> exceptions;
-    GameObject tempGizmo;
-    public GameObject gizmo;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,58 +23,44 @@ public class OnSelectObject : MonoBehaviour
 
         addToExcpetions("artisticTools");
         addToExcpetions("gizmo");
-    
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(laserPointer.onCollison)
+
+        if (laserPointer.onCollison)
         {
             if (laserPointer.hit.collider)
-            {
                 go = laserPointer.hit.collider.gameObject;
-            }
-
         }
         else
         {
-
             go = null;
-
         }
-
-
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(go == this.gameObject )
+            if (go == this.gameObject)
             {
                 isClicked = true;
-                showGizmo();
-                Debug.Log("Contains " + exceptions.Contains(go));
 
             }
             else
             {
                 //ken l go artistic tools ouala gizmo donc kh
                 if (!exceptions.Contains(go))
-                {
                     isClicked = false;
-
-                }
-
             }
         }
-        
+
+        Debug.Log(isClicked);
         mainBehavior();
-        destroyGizmo();
     }
 
     public void onSelectObject()
-    {       
-        //Debug.Log(laserPointer.onCollison);
+    {
+        Debug.Log(laserPointer.onCollison);
         if (laserPointer.onCollison)
         {
 
@@ -98,45 +81,45 @@ public class OnSelectObject : MonoBehaviour
         {
             GetComponent<Renderer>().material.shader = shStandard;
 
-
         }
     }
 
     public void onClickObject()
     {
-                  
-            if (go == this.gameObject)
-            {
+
+        if (go == this.gameObject)
+        {
 
             GetComponent<Renderer>().material.shader = sh1;
 
             //GameObject.Find("ArtisticTools").SetActive(true);
-                
-            }
-            else
+
+        }
+        else
+        {
+
+            if (Input.GetMouseButtonDown(0))
             {
-            
-                if (Input.GetMouseButtonDown(0))
-                {
-                {
-
                 GetComponent<Renderer>().material.shader = shStandard;
-
-                }
                 //  artisticTools.SetActive(false);
-                    
-               
             }
 
 
-        }  
-        
+        }
+
+
+
+
+
+
+
+
 
     }
 
     public void mainBehavior()
     {
-        if(isClicked)
+        if (isClicked)
         {
             onClickObject();
         }
@@ -145,33 +128,16 @@ public class OnSelectObject : MonoBehaviour
             onSelectObject();
         }
 
+
     }
 
     public void addToExcpetions(string tag)
     {
-        foreach(GameObject go in GameObject.FindGameObjectsWithTag(tag))
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag(tag))
         {
             exceptions.Add(go);
         }
     }
 
-    public void showGizmo()
-    {
-       if(tempGizmo == null)
-       tempGizmo= Instantiate(gizmo, transform.position + Vector3.up * 1, Quaternion.identity);
-
-    }
-
-    public void destroyGizmo()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-
-            if(!laserPointer.hit.collider)
-                Destroy(tempGizmo);
-
-        }
-
-    }
 
 }
