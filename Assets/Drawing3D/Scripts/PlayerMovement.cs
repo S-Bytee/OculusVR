@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
+using Photon.Pun;
+public class PlayerMovement : MonoBehaviourPunCallbacks
 {
 
     CharacterController controller;
@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if (!photonView.IsMine) return;
+   
         float x = Input.GetAxis("Horizontal");
         float Z = Input.GetAxis("Vertical");
         float y = Input.GetAxis("fly");
@@ -39,19 +41,11 @@ public class PlayerMovement : MonoBehaviour
             altitude = 0;
         }
 
-      //  Debug.Log(transform.up * y);
 
         Vector3 move = transform.right * x + transform.forward * Z+ transform.up*y*5;
 
         controller.Move(move*speed*Time.deltaTime);
 
-        //transform.Translate(move);
-
-        //transform.Rotate(Vector3.up * Input.GetAxis("Mouse X")*80f);
-
-        //velocity.y += gravity * Time.deltaTime;
-//
-       // controller.Move(velocity * Time.deltaTime);
 
     }
 }

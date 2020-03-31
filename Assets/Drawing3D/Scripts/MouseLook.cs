@@ -15,7 +15,7 @@ public class MouseLook : MonoBehaviour
     {
 
         playerBody = GameObject.FindGameObjectWithTag("Player").transform;
-        Cursor.lockState = CursorLockMode.Locked;
+     //   Cursor.lockState = CursorLockMode.Locked;
 
     }
 
