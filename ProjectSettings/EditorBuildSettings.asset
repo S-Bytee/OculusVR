@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Dessin2D/ExampleDrawingScene.unity
+    guid: 144085a815119df43965f5477bd23edd
+  - enabled: 1
     path: Assets/MainMenu.unity
     guid: 913285b14614c804aab9ac12b9f09d0d
   - enabled: 1
     path: Assets/Drawing3D/Drawing_3D.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/multiplayerScene.unity
+    path: 
     guid: 6550283a0e6d5494fb9025db4a8e9dad
   m_configObjects: {}
