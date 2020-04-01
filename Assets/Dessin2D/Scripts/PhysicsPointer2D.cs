@@ -1,15 +1,13 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PhysicsPointer : MonoBehaviour
+public class PhysicsPointer2D : MonoBehaviour
 {
 
-     
-    private static PhysicsPointer _instance;
-   
-    public static PhysicsPointer Instance { get { return _instance; } }
 
-
+    private static PhysicsPointer2D _instance;
+    public static PhysicsPointer2D Instance { get { return _instance; } }
     [SerializeField] protected float maxLength = 9.0f;
     [SerializeField] protected float minLength = 2.0f;
     public float defaultLength = 4.0f;
@@ -24,6 +22,7 @@ public class PhysicsPointer : MonoBehaviour
 
     private TrailRenderer trailRenderer;
     private LineRenderer lineRenderer = null;
+    // Start is called before the first frame update
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -37,7 +36,7 @@ public class PhysicsPointer : MonoBehaviour
 
         lineRenderer = GetComponent<LineRenderer>();
         trailRenderer = GameObject.Find("TrailLine").GetComponent<TrailRenderer>();
-        if (ColorIndicator.Instance== null)
+        if (ColorIndicator.Instance == null)
         {
             lineRenderer.startColor = c1;
         }
@@ -47,21 +46,22 @@ public class PhysicsPointer : MonoBehaviour
         }
 
 
-      
     }
 
-    private void Update()
+
+
+
+    // Update is called once per frame
+    void Update()
     {
         UpdateLength();
         changeLaserLength();
         updateColor();
         if (!onCollison)
             trailFollow();
-
-
     }
 
-  
+
 
     private void UpdateLength()
     {
@@ -105,7 +105,7 @@ public class PhysicsPointer : MonoBehaviour
     public Vector3 DefaultEnd(float length)
     {
 
-            return transform.position + (transform.forward * length);
+        return transform.position + (transform.forward * length);
 
     }
 
@@ -140,8 +140,8 @@ public class PhysicsPointer : MonoBehaviour
     }
 
     public void updateColor()
-    {   
-        if(ColorIndicator.Instance == null)
+    {
+        if (ColorIndicator.Instance == null)
         {
             this.c1 = Color.white;
             lineRenderer.startColor = this.c1;
@@ -158,11 +158,10 @@ public class PhysicsPointer : MonoBehaviour
 
     }
 
-
     public void trailFollow()
     {
 
-        if (trailRenderer != null )
+        if (trailRenderer != null)
         {
             trailRenderer.transform.position = CalculateEnd();
         }

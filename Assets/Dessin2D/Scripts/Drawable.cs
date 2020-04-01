@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 namespace FreeDraw
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    [RequireComponent(typeof(Collider2D))]  // REQUIRES A COLLIDER2D to function
+   // [RequireComponent(typeof(Collider2D))]  // REQUIRES A COLLIDER2D to function
     // 1. Attach this to a read/write enabled sprite image
     // 2. Set the drawing_layers  to use in the raycast
     // 3. Attach a 2D collider (like a Box Collider 2D) to this sprite
@@ -140,19 +140,20 @@ namespace FreeDraw
         {
             // Is the user holding down the left mouse button?
             bool mouse_held_down = Input.GetMouseButton(0);
-            if (mouse_held_down && !no_drawing_on_current_drag)
+            if (mouse_held_down )
             {
+                if (PhysicsPointer.Instance.hit.collider) { 
                 // Convert mouse coordinates to world coordinates
-                Vector2 mouse_world_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    if (PhysicsPointer.Instance.hit.collider.gameObject == this.gameObject)
+                    {
+                   
+                        Vector2 mouse_world_position = PhysicsPointer.Instance.hit.point;
+                        current_brush(mouse_world_position);                    
 
-                // Check if the current mouse position overlaps our image
-                Collider2D hit = Physics2D.OverlapPoint(mouse_world_position, Drawing_Layers.value);
-                if (hit != null && hit.transform != null)
-                {
-                    // We're over the texture we're drawing on!
-                    // Use whatever function the current brush is
-                    current_brush(mouse_world_position);
-                }
+                        // We're over the texture we're drawing on!
+                        // Use whatever function the current brush is
+                    }
+                    }
 
                 else
                 {
@@ -206,7 +207,6 @@ namespace FreeDraw
             int center_x = (int)center_pixel.x;
             int center_y = (int)center_pixel.y;
             //int extra_radius = Mathf.Min(0, pen_thickness - 2);
-
             for (int x = center_x - pen_thickness; x <= center_x + pen_thickness; x++)
             {
                 // Check if the X wraps around the image, so we don't draw pixels on the other side of the image
@@ -262,7 +262,7 @@ namespace FreeDraw
         public Vector2 WorldToPixelCoordinates(Vector2 world_position)
         {
             // Change coordinates to local coordinates of this image
-            Vector3 local_pos = transform.InverseTransformPoint(world_position);
+            Vector3 local_pos = transform.InverseTransformPoint(PhysicsPointer.Instance.hit.point);
 
             // Change these to coordinates of pixels
             float pixelWidth = drawable_sprite.rect.width;

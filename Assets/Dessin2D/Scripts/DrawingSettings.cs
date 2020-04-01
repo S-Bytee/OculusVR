@@ -23,14 +23,14 @@ namespace FreeDraw
         }
         public void SetMarkerWidth(float new_width)
         {
-            SetMarkerWidth((int)new_width);
+            SetMarkerWidth((int)new_width/10);
         }
 
         public void SetTransparency(float amount)
         {
-            Transparency = amount;
+            Transparency = amount/100;
             Color c = Drawable.Pen_Colour;
-            c.a = amount;
+            c.a = amount/100;
             Drawable.Pen_Colour = c;
         }
 
@@ -42,6 +42,7 @@ namespace FreeDraw
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
+            Debug.Log("Red clicked");
         }
         public void SetMarkerGreen()
         {
