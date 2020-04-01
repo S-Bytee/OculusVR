@@ -9,7 +9,7 @@ public class SliderHandler : MonoBehaviour
 
     // Variable hedhaa besh ihot fih l position mtaa awel matenzel bel lazer aal slider 
     Vector3 firstPosition;
-    //Variable  
+    //Variable hedhaa besh ihot fih l position mtaa laser tant que enty nezel  
     Vector3 updatedPosition;
     // l variable hedha fih ouakteli enty nezel aal souris 
     bool ondrag = false;
