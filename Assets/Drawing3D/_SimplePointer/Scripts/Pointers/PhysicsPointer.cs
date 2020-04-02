@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
-
-public class PhysicsPointer : MonoBehaviour
+using Photon.Pun;
+public class PhysicsPointer : MonoBehaviourPunCallbacks
 {
 
      
@@ -45,7 +45,6 @@ public class PhysicsPointer : MonoBehaviour
         {
             lineRenderer.startColor = ColorIndicator.Instance.color.ToColor();
         }
-
 
       
     }

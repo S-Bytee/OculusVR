@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
+public class ArtisticToolsHandlerMultiplayer : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     Color defaultColor = Color.green;

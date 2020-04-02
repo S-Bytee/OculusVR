@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class PlayerMovement : MonoBehaviourPunCallbacks
+public class PlayerMovementMultiplayer : MonoBehaviourPunCallbacks
 {
 
     CharacterController controller;
@@ -23,12 +23,15 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         altitude = 0f;
 
         // mainCamera.SetActive(photonView.IsMine);
+        mainCamera.SetActive(photonView.IsMine);
+        if (Camera.main) Camera.main.enabled = false;
     }
 
     // Update is called once per frame
 
     private void FixedUpdate()
     {
+        if (!photonView.IsMine) return;
         
         float x = Input.GetAxis("Horizontal");
         float Z = Input.GetAxis("Vertical");
