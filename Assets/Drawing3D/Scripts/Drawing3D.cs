@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class Drawing3D : MonoBehaviour
@@ -16,20 +17,28 @@ public class Drawing3D : MonoBehaviour
     Vector3 tempFingerPos;
     public List<Vector3> fingerPositions;
     const string MATERIALS_TEMP_PATH = "Assets/Drawing3D/Materials/MaterialsTemp/";
-
-
+    float defaultWidth=0.5f;
+    float middleWidth=0.5f;
     void Start()
     {
         
         laserInstance = PhysicsPointer.Instance;
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!laserInstance.onCollison)
-        drawing();
+     
+    }
+
+    private void FixedUpdate()
+    {
+        if (!laserInstance.onCollison)
+            drawing();
+
+
+
     }
 
     public void drawing()
@@ -52,12 +61,15 @@ public class Drawing3D : MonoBehaviour
 
     public void createLine()
     {
+
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
+
         
-     
-        
-        if(ColorIndicator.Instance == null)
+        if (lineRenderer) lineRenderer.widthCurve = new AnimationCurve(new Keyframe(0, defaultWidth), new Keyframe(0.5f, middleWidth), new Keyframe(1, defaultWidth));
+
+
+        if (ColorIndicator.Instance == null)
         {
         
             currentLine.GetComponent<Renderer>().material.color = Color.white;
@@ -81,18 +93,30 @@ public class Drawing3D : MonoBehaviour
     public void updateLine(Vector3 newPosition)
     {
 
-
         fingerPositions.Add(newPosition);
-        lineRenderer.positionCount++;
-        lineRenderer.SetPosition(lineRenderer.positionCount - 1,newPosition);
+        if(lineRenderer!=null)
+        {
+
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
+
+        }
 
 
     }
 
 
-    public void assignColorToInstance()
+    public void updateLineWidth(float value)
     {
-      
+
+        
+        defaultWidth = value / 100;
+        
+    }
+
+    public void updateMiddleWidth(float value)
+    {
+        middleWidth = value / 100;
     }
 
 

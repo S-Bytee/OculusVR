@@ -18,18 +18,25 @@ public class ColorIndicator : MonoBehaviour {
         {
             _instance = this;
         }
-        color = HSBColor.FromColor(GetComponent<Renderer>().material.GetColor("_Color"));		
-        GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
-        //ColorSaturationBrightnessPicker.Instance.SetColor(color);
+        color = HSBColor.FromColor(GetComponent<Renderer>().material.GetColor("_Color"));
+        //GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
+        if (ColorSaturationBrightnessPicker.Instance != null)
+            ColorSaturationBrightnessPicker.Instance.SetColor(color);
 
-        
-    }   
 
-	void ApplyColor ()
+
+
+    }
+
+    void ApplyColor ()
 	{
+
 
 		GetComponent<Renderer>().material.SetColor("_Color", color.ToColor());
       
+        if(ColorSaturationBrightnessPicker.Instance != null) 
+            ColorSaturationBrightnessPicker.Instance.SetColor(color);
+
         //transform.parent.BroadcastMessage("OnColorChange", color, SendMessageOptions.DontRequireReceiver);
     }
 

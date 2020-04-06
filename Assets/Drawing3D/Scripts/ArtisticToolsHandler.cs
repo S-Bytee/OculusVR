@@ -31,7 +31,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         instanceOffset = new Vector3(0,0,10);
         player = GameObject.FindGameObjectWithTag("Player");
         setPosition();
-        offset = new Vector3(0, 1.5f, 2);
+        offset = new Vector3(0, 1.5f, 6);
     }
 
     // Update is called once per frame
@@ -140,6 +140,14 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     public void setPosition()
     {
         transform.position = player.transform.position + offset;
+    }
+
+    public void onBackClick(int indexChild)
+    {
+
+        transform.GetChild(indexChild).gameObject.SetActive(false);
+        transform.GetChild(0).GetComponent<Animator>().SetTrigger("onBackClick");
+        Debug.Log(transform.GetChild(0).name);
     }
   
 

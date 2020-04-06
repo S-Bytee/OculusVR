@@ -11,8 +11,8 @@ public class DrawingSettings : MonoBehaviour
     void Start()
     {
 
-       artisticTools = GameObject.Find("ArtisticTools");
-        artisticTools.SetActive(false);
+       artisticTools = GameObject.Find("MainMenu");
+        //artisticTools.SetActive(false);
 
     }
 
@@ -26,11 +26,11 @@ public class DrawingSettings : MonoBehaviour
 
         if(x%2==0)
         {
-            artisticTools.SetActive(false);
+         artisticTools.SetActive(false);
         }
         else
         {
-            artisticTools.SetActive(true);
+           artisticTools.SetActive(true);
         }
         
     }

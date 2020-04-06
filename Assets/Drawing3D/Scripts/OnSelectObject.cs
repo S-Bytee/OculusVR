@@ -9,24 +9,21 @@ public class OnSelectObject : MonoBehaviour
     Shader shStandard;
     PhysicsPointer laserPointer;
     GameObject go=null;
-    GameObject artisticTools;
     public bool isClicked;
-    List<GameObject> exceptions;
+    List<string> exceptions;
     GameObject tempGizmo;
     public GameObject gizmo;
     // Start is called before the first frame update
     void Start()
     {
-        exceptions = new List<GameObject>();
+        exceptions = new List<string>();
 
         sh1 = Shader.Find("Outlined/Silhouetted Bumped Diffuse");
         shStandard = Shader.Find("Standard");
         laserPointer = PhysicsPointer.Instance;
-        artisticTools = GameObject.Find("ArtisticTools");
-
-        addToExcpetions("artisticTools");
-        addToExcpetions("gizmo");
-    
+        exceptions.Add("artisticTools");
+        exceptions.Add("gizmo");
+       
     }
 
     // Update is called once per frame
@@ -47,32 +44,78 @@ public class OnSelectObject : MonoBehaviour
             go = null;
 
         }
+        if(go)
+        Debug.Log(go.tag);
 
 
+        //Ki yenzel aala bouton souris
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Idha l laser aamel collision maa haja
+            if(go!=null)
+            {
+                //Idha laser aaamel collision maa l instance mtaa l objet li fih script hedha
+                if (go == this.gameObject)
+                {
 
+                    isClicked = true;
+
+                }
+                else
+                {
+                    //Idha laser aamel collision maa artisticTools ouala gizmo
+                    if (!exceptions.Contains(go.tag))
+                    {
+                        isClicked = false;
+                    }
+
+                }
+            }
+            else
+            {
+
+                isClicked = false;
+
+            }
+
+        }
+
+        
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             if(go == this.gameObject )
             {
                 isClicked = true;
                 showGizmo();
-                Debug.Log("Contains " + exceptions.Contains(go));
+
 
             }
             else
             {
-                //ken l go artistic tools ouala gizmo donc kh
-                if (!exceptions.Contains(go))
+                if(go == null)
                 {
                     isClicked = false;
-
+                    destroyGizmo();
                 }
+                else
+                {  
+                    //ken l go artistic tools ouala gizmo donc kh
+
+                    if (exceptions.Contains(go.tag))
+                    {
+                        isClicked = true;
+
+                    }
+                    else { isClicked = false; destroyGizmo(); }
+                }
+               
 
             }
         }
-        
+        */
         mainBehavior();
-        destroyGizmo();
     }
 
     public void onSelectObject()
@@ -118,11 +161,11 @@ public class OnSelectObject : MonoBehaviour
             
                 if (Input.GetMouseButtonDown(0))
                 {
-                {
+                
 
                 GetComponent<Renderer>().material.shader = shStandard;
 
-                }
+                destroyGizmo();
                 //  artisticTools.SetActive(false);
                     
                
@@ -136,23 +179,28 @@ public class OnSelectObject : MonoBehaviour
 
     public void mainBehavior()
     {
+        Debug.Log(isClicked);
         if(isClicked)
         {
             onClickObject();
+            showGizmo();
         }
         else
         {
             onSelectObject();
+            destroyGizmo();
         }
 
     }
 
     public void addToExcpetions(string tag)
     {
-        foreach(GameObject go in GameObject.FindGameObjectsWithTag(tag))
+        if (!exceptions.Contains(tag))
         {
-            exceptions.Add(go);
+
+            exceptions.Add(tag);
         }
+        
     }
 
     public void showGizmo()
@@ -164,14 +212,10 @@ public class OnSelectObject : MonoBehaviour
 
     public void destroyGizmo()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
 
-            if(!laserPointer.hit.collider)
                 Destroy(tempGizmo);
 
-        }
-
     }
+
 
 }

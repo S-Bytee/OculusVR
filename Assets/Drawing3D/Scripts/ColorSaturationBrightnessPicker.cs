@@ -31,14 +31,15 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
     
     void OnDrag(Vector3 point)
     {
-
+        
         //transform.parent.BroadcastMessage("SetSaturationBrightness", new Vector2(point.x, point.y));
         GameObject.Find("ColorIndicator").GetComponent<ColorIndicator>().SetSaturationBrightness(new Vector2(point.x, point.y));
-             
 
         //Idhaa ken aamal selection aala objet donc badaalou couleur 
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("object"))
         {
+
+            Debug.Log(go.GetComponentInChildren<OnSelectObject>().isClicked);
 
             if (go.GetComponentInChildren<OnSelectObject>().isClicked )
             {
@@ -47,7 +48,6 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
 
             }
         }
-
 
 
     }

@@ -26,7 +26,7 @@ public class CameraControlMultiplayer : MonoBehaviourPunCallbacks
     {
 
     }
-
+    
     private void FixedUpdate()
     {
 
