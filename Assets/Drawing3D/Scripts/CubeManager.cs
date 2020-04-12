@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MongoDB.Bson;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,18 +17,20 @@ public class CubeManager : MonoBehaviour
     List<GameObject> spheres;
     bool onDrag;
 
+    Mongo mongo;
     GameObject go;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-
+        /*
+        var document = new BsonDocument { { "student_id", 10000 } };
+        Mongo.getDatabase().GetCollection<BsonDocument>("projects").InsertOneAsync(document);
+        */
 
         spheres = new List<GameObject>();
         verts = new List<Vector3>();
         triangles = new List<int>();
-
-
 
         mesh = GetComponent<MeshFilter>().mesh;
         laserPointer = PhysicsPointer.Instance;

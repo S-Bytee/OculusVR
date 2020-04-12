@@ -19,9 +19,10 @@ public class Drawing3D : MonoBehaviour
     const string MATERIALS_TEMP_PATH = "Assets/Drawing3D/Materials/MaterialsTemp/";
     float defaultWidth=0.5f;
     float middleWidth=0.5f;
+
+
     void Start()
     {
-        
         laserInstance = PhysicsPointer.Instance;
         
     }
