@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MultiplayerDrawing/MultiplayerDrawing.unity
     guid: a2e78a5e5a01cd24bb49314b06cdc8ba
+  - enabled: 1
+    path: Assets/Dessin2D/ExampleDrawingScene.unity
+    guid: 144085a815119df43965f5477bd23edd
   m_configObjects: {}
