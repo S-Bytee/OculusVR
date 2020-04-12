@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Photon.Pun;
 
-public class Drawing3DMultiplayer : MonoBehaviour
+public class Drawing3DMultiplayer : MonoBehaviourPunCallbacks
 {
-    PhysicsPointer laserInstance;
+
+
+    PhysicsPointerMultiplayer laserInstance;
+
 
     public GameObject sphere;
     bool draw = false;
     // Start is called before the first frame update
-    public GameObject linePrefab = null;
+    public string linePrefab;
     public GameObject currentLine = null;
     LineRenderer lineRenderer;
     Vector3 tempFingerPos;
@@ -20,42 +24,76 @@ public class Drawing3DMultiplayer : MonoBehaviour
 
     void Start()
     {
-        
-        laserInstance = PhysicsPointer.Instance;
 
+       
+        if(!photonView.IsMine) return ;
+            laserInstance = GameObject.Find("PhysicsPointer").GetComponent<PhysicsPointerMultiplayer>();
+        
+        
+
+
+        /*   if(GameObject.FindGameObjectWithTag("player") != null)
+           {
+
+
+           }*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!laserInstance.onCollison)
-        drawing();
+
+        //if (!photonView.IsMine) return;
+          
+
+
+
+                drawing();
+
+ 
+
+
+
+        /*   if (GameObject.FindGameObjectWithTag("player")!=null)
+        {
+          
+            Debug.Log(laserInstance.hit.collider);
+        }*/
+
+
+        /* if(!laserInstance.hit.collider)
+         {
+             if (!laserInstance.onCollison) return;
+             drawing();
+         }*/
+
     }
 
+
+    [PunRPC]
     public void drawing()
     {
 
         if(Input.GetMouseButtonDown(0))
         {
-            createLine();
+            photonView.RPC("createLine", RpcTarget.AllBuffered);
+         //   createLine();
         }
         if (Input.GetMouseButton(0))
         {
-            tempFingerPos = laserInstance.CalculateEnd();
-       
-            updateLine(laserInstance.CalculateEnd());
 
+            photonView.RPC("updateLine", RpcTarget.AllBuffered,PhysicsPointerMultiplayer.Instance.CalculateEnd());
+            
         }
 
     }
 
-
+    [PunRPC]
     public void createLine()
     {
-        currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+
+        currentLine = PhotonNetwork.Instantiate(linePrefab, transform.position, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
-        
-     
         
         if(ColorIndicator.Instance == null)
         {
@@ -71,13 +109,15 @@ public class Drawing3DMultiplayer : MonoBehaviour
         }
 
         fingerPositions.Clear();
-        fingerPositions.Add(laserInstance.CalculateEnd());
-        fingerPositions.Add(laserInstance.CalculateEnd());
+        fingerPositions.Add(PhysicsPointerMultiplayer.Instance.CalculateEnd());
+        fingerPositions.Add(PhysicsPointerMultiplayer.Instance.CalculateEnd());
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
 
     }
 
+
+    [PunRPC]
     public void updateLine(Vector3 newPosition)
     {
 
@@ -86,14 +126,8 @@ public class Drawing3DMultiplayer : MonoBehaviour
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1,newPosition);
 
-
     }
 
-
-    public void assignColorToInstance()
-    {
-      
-    }
 
 
 

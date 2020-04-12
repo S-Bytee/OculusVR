@@ -24,6 +24,7 @@ public class PlayerMovementMultiplayer : MonoBehaviourPunCallbacks
 
         // mainCamera.SetActive(photonView.IsMine);
         mainCamera.SetActive(photonView.IsMine);
+        //transform.GetChild(0).transform.GetChild(0).transform.GetChild(1).transform.GetChild(2).gameObject.SetActive(photonView.IsMine);
         if (Camera.main) Camera.main.enabled = false;
     }
 
@@ -31,6 +32,7 @@ public class PlayerMovementMultiplayer : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
+
         if (!photonView.IsMine) return;
         
         float x = Input.GetAxis("Horizontal");
