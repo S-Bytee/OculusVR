@@ -10,9 +10,17 @@ namespace FreeDraw
     {
         public static bool isCursorOverUI = false;
         public float Transparency = 1f;
-        
-
+        public GameObject newQuad; 
+        public GameObject currNewQuad;
+        public bool onfollow = false;
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
+
+
+        public void Update()
+        {
+            releaseQuad();
+        }
+
         public void SetMarkerColour(Color new_color)
         {
             Drawable.Pen_Colour = new_color;
@@ -92,7 +100,28 @@ namespace FreeDraw
             SetMarkerColour(new Color(255f, 255f, 255f, 0.5f));
         }
 
+        public void createQuad()
+        {
+            //Instance lel Quad fel postion mtaa laser
+            currNewQuad=Instantiate(newQuad,PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            //Ya Quad Ebda tabaa l laser
+            onfollow = true;
+        }
 
+
+        public void releaseQuad()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if(onfollow) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+            currNewQuad.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y,GameObject.FindGameObjectWithTag("Plan").transform.position.z-0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollow)
+                { currNewQuad.transform.parent = null; onfollow = false; }
+                
+            }
+        }
 
 
 

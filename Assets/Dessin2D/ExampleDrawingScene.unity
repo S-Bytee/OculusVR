@@ -383,6 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transparency: 1
+  newQuad: {fileID: 7009407797433134504, guid: 3e4ade723be43a84582318821c9f9adb, type: 3}
+  currNewQuad: {fileID: 0}
+  onfollow: 0
 --- !u!4 &198275829
 Transform:
   m_ObjectHideFlags: 0
@@ -1957,7 +1960,7 @@ GameObject:
   - component: {fileID: 975978402}
   m_Layer: 8
   m_Name: ReadWriteEnabledImageToDrawOn
-  m_TagString: Untagged
+  m_TagString: Plan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2348,7 +2351,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 198275828}
-        m_MethodName: SetMarkerBlack
+        m_MethodName: createQuad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3246,7 +3249,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431460328}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1431460331
 Camera:
   m_ObjectHideFlags: 0
@@ -3254,7 +3257,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431460328}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
