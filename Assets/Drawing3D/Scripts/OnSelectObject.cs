@@ -179,7 +179,7 @@ public class OnSelectObject : MonoBehaviour
 
     public void mainBehavior()
     {
-        Debug.Log(isClicked);
+        //Debug.Log(isClicked);
         if(isClicked)
         {
             onClickObject();
