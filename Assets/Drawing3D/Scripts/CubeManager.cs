@@ -23,11 +23,7 @@ public class CubeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        var document = new BsonDocument { { "student_id", 10000 } };
-        Mongo.getDatabase().GetCollection<BsonDocument>("projects").InsertOneAsync(document);
-        */
-
+        
         spheres = new List<GameObject>();
         verts = new List<Vector3>();
         triangles = new List<int>();
@@ -47,7 +43,6 @@ public class CubeManager : MonoBehaviour
         triangles.Add(1);
         triangles.Add(2);
 
-
         triangles.Add(2);
         triangles.Add(1);
         triangles.Add(0);
@@ -61,6 +56,7 @@ public class CubeManager : MonoBehaviour
             spheres.Add(Instantiate(sphere, ver + transform.position, Quaternion.identity));
         }
    
+
     }
 
     // Update is called once per frame

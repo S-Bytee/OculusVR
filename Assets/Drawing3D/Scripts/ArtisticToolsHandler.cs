@@ -23,6 +23,27 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     GameObject currQuadInstance;
     public GameObject teleportGO;
 
+    
+   
+    //Prefab mtaa box example
+    public GameObject boxExample;
+    //L instance mtaa prefab li besh nasn3oha
+    GameObject currboxExample;
+    //Variable de test besh naarfou beha idha l box example mazel mawjoud ouala le
+    bool boxExampleFollow = false;
+    //l position mtaa l box l example une fois yenzel aal clique
+    Vector3 cubeInstancePos;
+
+
+
+
+   
+    public GameObject sphereExample;
+    GameObject currShpereExample;
+    bool sphereExampleFollow = false;
+    Vector3 sphereInstancePos;
+
+
     void Start()
     {
 
@@ -40,8 +61,15 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
        
         setPosition();
         handleButton();
+     
+        onBoxExampleFollow();
+        instanciateCube();
+
+        onSphereExampleFollow();
+        instanciateSphere();
+
     }
-    
+
 
     public void handleButton()
     {
@@ -57,19 +85,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
                 selectedButton.GetComponent<Renderer>().material.color = selectedColor;
 
-                if (Input.GetMouseButtonDown(0) && selectedButton.name== "buttonCube")
-                {
-                    createCube();
-                    
-                }
-
-                if (Input.GetMouseButtonDown(0) && selectedButton.name == "buttonSphere")
-                {
-                
-                    createSphere();
-
-                }
-
+       
                 if (Input.GetMouseButtonDown(0) && selectedButton.name == "buttonQuad")
                 {
 
@@ -105,20 +121,77 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
     public void createCube()
     {
+        
+        
+        if (!boxExampleFollow)
+        {
+            
+            currboxExample = Instantiate(boxExample, Vector3.zero, Quaternion.identity);
+            
+            boxExampleFollow = true;
 
-
-     currCubeInstance =  Instantiate(newCube, player.transform.position+instanceOffset, Quaternion.identity);
-     currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
-
+        }
+     
 
     }
+
+    public void instanciateCube()
+    {
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleCubeObject")
+                {
+                    currCubeInstance = Instantiate(newCube, cubeInstancePos, Quaternion.identity);
+                    currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    boxExampleFollow = false;
+                }
+
+            }
+
+
+        };
+    }
+
+    public void instanciateSphere()
+    {
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleSphereObject")
+                {
+                    currCubeInstance = Instantiate(newSphere, sphereInstancePos, Quaternion.identity);
+                    currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    sphereExampleFollow = false;
+                }
+
+            }
+
+
+        };
+    }
+
+
 
     public void createSphere()
     {
 
-     currSphereInstance = Instantiate(newSphere, player.transform.position + instanceOffset, Quaternion.identity);
-     currSphereInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
-    
+        if (!sphereExampleFollow)
+        {
+
+            currShpereExample = Instantiate(sphereExample, Vector3.zero, Quaternion.identity);
+
+            sphereExampleFollow = true;
+
+        }
     }
 
     public void createQuad()
@@ -140,6 +213,40 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     public void setPosition()
     {
         transform.position = player.transform.position + offset;
+    }
+
+
+
+    public void onBoxExampleFollow()
+    {
+
+        if (boxExampleFollow)
+        {
+            currboxExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            cubeInstancePos = currboxExample.transform.position;
+        }
+        else
+        {
+            Destroy(currboxExample);
+
+        }
+
+    }
+
+    public void onSphereExampleFollow()
+    {
+
+        if (sphereExampleFollow)
+        {
+            currShpereExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            sphereInstancePos = currShpereExample.transform.position;
+        }
+        else
+        {
+            Destroy(currShpereExample);
+
+        }
+
     }
 
     public void onBackClick(int indexChild)

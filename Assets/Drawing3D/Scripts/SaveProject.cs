@@ -26,7 +26,7 @@ public class SaveProject : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
         {
             //saveLines();
-            loadLines();
+            //loadLines();
 
         }
 
