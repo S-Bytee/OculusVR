@@ -3241,7 +3241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fd11896563d8e40b6dec291e106a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RTexture: {fileID: 0}
+  RTexture: {fileID: 8400000, guid: 8ffd571733a5f6b49b43eb36f458f6cb, type: 2}
 --- !u!81 &1431460330
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3257,7 +3257,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431460328}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
