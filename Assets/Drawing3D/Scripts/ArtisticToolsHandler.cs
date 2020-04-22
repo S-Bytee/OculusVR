@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Shapes2D;
 
 public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 {
@@ -14,7 +15,6 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
     public GameObject newCube;
     public GameObject newSphere;
-    public GameObject newQuad;
     Vector3 instanceOffset;
     GameObject player;
     Vector3 offset;
@@ -35,13 +35,20 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     Vector3 cubeInstancePos;
 
 
-
-
-   
     public GameObject sphereExample;
     GameObject currShpereExample;
     bool sphereExampleFollow = false;
     Vector3 sphereInstancePos;
+
+    public Material previewMaterial;
+    public Material defaultMaterial;
+
+    // 2D declaratives //
+
+    
+    
+    
+
 
 
     void Start()
@@ -60,7 +67,6 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
        
         setPosition();
-        handleButton();
      
         onBoxExampleFollow();
         instanciateCube();
@@ -68,47 +74,19 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         onSphereExampleFollow();
         instanciateSphere();
 
-    }
+
+        onRectanglePreviewFollow();
+        onCirclePreviewFollow();
+        onTrianglePreviewFollow();
+        onPolygonePreviewFollow();
 
 
-    public void handleButton()
-    {
 
-        if(laserInstance.hit.collider )
-        {
-            selectedButton = laserInstance.hit.collider.gameObject;
 
-            if (laserInstance.hit.collider.tag == "Clickable")
-            {
 
-                GameObject.Find("Drawing").GetComponent<Drawing3D>().enabled = false;
-
-                selectedButton.GetComponent<Renderer>().material.color = selectedColor;
-
-       
-                if (Input.GetMouseButtonDown(0) && selectedButton.name == "buttonQuad")
-                {
-
-                    createQuad();
-
-                }
-
-                if (Input.GetMouseButtonDown(0) && selectedButton.name == "TeleportButton")
-                {
-
-                    teleportPlayer();
-
-                }
-
-            }
-            else
-            {
-                GameObject.Find("Drawing").GetComponent<Drawing3D>().enabled = true;
-                backToDefaultColor();
-            }
-                            
         }
-    }
+
+
 
 
     public void backToDefaultColor()
@@ -118,6 +96,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
             btn.GetComponent<Renderer>().material.color = defaultColor;
         }
     }
+
 
     public void createCube()
     {
@@ -194,13 +173,6 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         }
     }
 
-    public void createQuad()
-    {
-
-        currQuadInstance = Instantiate(newQuad, player.transform.position + instanceOffset, Quaternion.identity);
-        currQuadInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
-
-    }
 
     public void teleportPlayer()
     {
@@ -214,6 +186,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
         transform.position = player.transform.position + offset;
     }
+
 
 
 
@@ -256,6 +229,132 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("onBackClick");
         Debug.Log(transform.GetChild(0).name);
     }
-  
+
+
+    //********************************* 2D Shapes *********************************//
+
+    
+    
+    
+    public GameObject rectangle;
+    GameObject currRectangle;
+    bool onPreviewFollow = false;
+
+    public void createRectangle()
+    {
+        currRectangle=  Instantiate(rectangle, player.transform.position + instanceOffset, Quaternion.identity);
+        onPreviewFollow = true;        
+            
+    }
+
+    public void onRectanglePreviewFollow()
+    {    
+     
+        if(onPreviewFollow)
+        {
+            currRectangle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            currRectangle.transform.GetChild(0).GetComponent<Renderer>().material = previewMaterial;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                currRectangle.transform.GetChild(0).GetComponent<Renderer>().material = defaultMaterial;
+                currRectangle.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+
+                onPreviewFollow = false;
+            
+            }
+        }
+        
+    }
+
+
+    public GameObject circle;
+    GameObject currCircle;
+    bool onPreviewCircleFollow = false;
+
+    public void createCircle()
+    {
+        currCircle = Instantiate(circle, player.transform.position + instanceOffset, Quaternion.identity);
+        onPreviewCircleFollow = true;
+
+    }
+
+    public void onCirclePreviewFollow()
+    {
+
+        if (onPreviewCircleFollow)
+        {
+            currCircle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+           
+            if (Input.GetMouseButtonDown(0))
+            {
+                currCircle.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
+                
+                onPreviewCircleFollow = false;
+
+            }
+        }
+
+    }
+
+
+    public GameObject triangle;
+    GameObject currTriangle;
+    bool onPreviewTriangleFollow = false;
+
+    public void createTriangle()
+    {
+        currTriangle = Instantiate(triangle, player.transform.position + instanceOffset, Quaternion.identity);
+        onPreviewTriangleFollow = true;
+
+    }
+
+    public void onTrianglePreviewFollow()
+    {
+
+        if (onPreviewTriangleFollow)
+        {
+            currTriangle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                currTriangle.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
+
+                onPreviewTriangleFollow = false;
+
+            }
+        }
+
+    }
+
+    public GameObject polygone;
+    GameObject currPolygone;
+    bool onPreviewPolygoneFollow = false;
+
+    public void createPolygone()
+    {
+        currPolygone = Instantiate(polygone, player.transform.position + instanceOffset, Quaternion.identity);
+        onPreviewPolygoneFollow = true;
+
+    }
+
+    public void onPolygonePreviewFollow()
+    {
+
+        if (onPreviewPolygoneFollow)
+        {
+            currPolygone.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                currPolygone.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
+
+                onPreviewPolygoneFollow = false;
+
+            }
+        }
+
+    }
+
 
 }
