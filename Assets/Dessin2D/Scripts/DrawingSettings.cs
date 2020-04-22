@@ -12,13 +12,18 @@ namespace FreeDraw
         public float Transparency = 1f;
         public GameObject newQuad; 
         public GameObject currNewQuad;
+        public GameObject newTriangle;
+        public GameObject currNewTriangle;
         public bool onfollow = false;
+        public bool onfollowT = false;
+        public Color c  = Color.black;
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
 
 
         public void Update()
         {
             releaseQuad();
+            releaseTriangle();
         }
 
         public void SetMarkerColour(Color new_color)
@@ -47,7 +52,7 @@ namespace FreeDraw
         // Call these these to change the pen settings
         public void SetMarkerRed()
         {
-            Color c = Color.red;
+             c = Color.red;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
@@ -55,35 +60,35 @@ namespace FreeDraw
         }
         public void SetMarkerGreen()
         {
-            Color c = Color.green;
+             c = Color.green;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerBlue()
         {
-            Color c = Color.blue;
+             c = Color.blue;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerMagenta()
         {
-            Color c = Color.magenta;
+             c = Color.magenta;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerBlack()
         {
-            Color c = Color.black;
+             c = Color.black;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
         }
         public void SetMarkerYellow()
         {
-            Color c = Color.yellow;
+             c = Color.yellow;
             c.a = Transparency;
             SetMarkerColour(c);
             Drawable.drawable.SetPenBrush();
@@ -102,10 +107,13 @@ namespace FreeDraw
 
         public void createQuad()
         {
+            
             //Instance lel Quad fel postion mtaa laser
-            currNewQuad=Instantiate(newQuad,PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewQuad =Instantiate(newQuad,PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewQuad.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
             //Ya Quad Ebda tabaa l laser
             onfollow = true;
+           
         }
 
 
@@ -120,6 +128,34 @@ namespace FreeDraw
                 if (Input.GetMouseButtonDown(0) && onfollow)
                 { currNewQuad.transform.parent = null; onfollow = false; }
                 
+            }
+        }
+
+
+
+        public void createTriangle()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewTriangle = Instantiate(newTriangle, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewTriangle.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowT = true;
+
+        }
+
+
+        public void releaseTriangle()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowT) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewTriangle.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowT)
+                { currNewTriangle.transform.parent = null; onfollowT = false; }
+
             }
         }
 
