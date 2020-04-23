@@ -44,6 +44,9 @@ GameObject:
   - component: {fileID: 2998386838711344351}
   - component: {fileID: 634636518326000405}
   - component: {fileID: 4562005497126412813}
+  - component: {fileID: 7851120900677212117}
+  - component: {fileID: 4007588599585322914}
+  - component: {fileID: 4801795968419833409}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -198,3 +201,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
+--- !u!114 &7851120900677212117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129660427262215699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e296fafdfa878c645861e3c6b1f1a7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activation: 3
+  activated: 0
+--- !u!114 &4007588599585322914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129660427262215699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9986da839a92d2d42975bac1e96cd24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  otherRenderers: []
+  activated: 0
+--- !u!114 &4801795968419833409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129660427262215699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6329a951f597a0488f4e1158c8f8c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot:
+    Index: 0
+    Name: _MainTex
+  channel: 0
+  group:
+    index: 0
+  stateLimit: 0
+  saveName: 
+  shaderKeyword: 
+  format: 0
+  width: 512
+  height: 512
+  inheritSize: 1
+  baseScale: {x: 0, y: 0, z: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  texture: {fileID: 0}
+  activated: 0
+  current: {fileID: 0}
+  preview: {fileID: 0}
+  previewSet: 0

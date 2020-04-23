@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 2096044715915490586}
   - component: {fileID: 8238434246004394071}
   - component: {fileID: 1952658838835912896}
+  - component: {fileID: 9205043399254440854}
+  - component: {fileID: 8405071996121560839}
+  - component: {fileID: 6337719513452922175}
   m_Layer: 0
   m_Name: cube
   m_TagString: Untagged
@@ -106,7 +109,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
-  gizmo: {fileID: 873592887159292688, guid: 30c448822dbb2ad4494e89fa6a51af50, type: 3}
+--- !u!114 &9205043399254440854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705580838572135110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e296fafdfa878c645861e3c6b1f1a7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activation: 3
+  activated: 0
+--- !u!114 &8405071996121560839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705580838572135110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6329a951f597a0488f4e1158c8f8c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot:
+    Index: 0
+    Name: _MainTex
+  channel: 0
+  group:
+    index: 0
+  stateLimit: 0
+  saveName: 
+  shaderKeyword: 
+  format: 0
+  width: 512
+  height: 512
+  inheritSize: 1
+  baseScale: {x: 0, y: 0, z: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  texture: {fileID: 0}
+  activated: 0
+  current: {fileID: 0}
+  preview: {fileID: 0}
+  previewSet: 0
+--- !u!114 &6337719513452922175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705580838572135110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9986da839a92d2d42975bac1e96cd24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  otherRenderers: []
+  activated: 0
 --- !u!1 &8178406813588104217
 GameObject:
   m_ObjectHideFlags: 0

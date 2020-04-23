@@ -44,6 +44,9 @@ GameObject:
   - component: {fileID: 995892656919212851}
   - component: {fileID: 9220014556163343723}
   - component: {fileID: 6073172363018297728}
+  - component: {fileID: 2820042589935125051}
+  - component: {fileID: 4784143174541902941}
+  - component: {fileID: 7279244940318502737}
   m_Layer: 0
   m_Name: Polygone
   m_TagString: Untagged
@@ -198,3 +201,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
+--- !u!114 &2820042589935125051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090080542965213695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e296fafdfa878c645861e3c6b1f1a7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activation: 3
+  activated: 0
+--- !u!114 &4784143174541902941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090080542965213695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6329a951f597a0488f4e1158c8f8c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot:
+    Index: 0
+    Name: _MainTex
+  channel: 0
+  group:
+    index: 0
+  stateLimit: 0
+  saveName: 
+  shaderKeyword: 
+  format: 0
+  width: 512
+  height: 512
+  inheritSize: 1
+  baseScale: {x: 0, y: 0, z: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  texture: {fileID: 0}
+  activated: 0
+  current: {fileID: 0}
+  preview: {fileID: 0}
+  previewSet: 0
+--- !u!114 &7279244940318502737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090080542965213695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9986da839a92d2d42975bac1e96cd24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  otherRenderers: []
+  activated: 0
