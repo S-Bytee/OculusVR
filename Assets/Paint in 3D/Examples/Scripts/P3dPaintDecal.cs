@@ -89,6 +89,11 @@ namespace PaintIn3D
 			RandomColor
 		}
 
+
+		public void Update()
+		{
+			this.Color = ColorIndicator.Instance.color.ToColor();
+		}
 		/// <summary>The layers you want this paint to apply to.</summary>
 		public LayerMask Layers { set { layers = value; } get { return layers; } } [SerializeField] private LayerMask layers = -1;
 

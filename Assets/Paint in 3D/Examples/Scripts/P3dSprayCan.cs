@@ -71,6 +71,8 @@ namespace PaintIn3D
 
 				this.transform.position = PhysicsPointer.Instance.CalculateEnd();
 				this.gameObject.transform.GetChild(0).GetComponent<P3dPaintSphere>().Color = ColorIndicator.Instance.color.ToColor();
+				this.gameObject.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+				
 			}
 		}
 	}

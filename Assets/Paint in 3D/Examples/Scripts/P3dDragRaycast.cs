@@ -174,10 +174,10 @@ namespace PaintIn3D
 		{
 			var camera = P3dHelper.GetCamera();
 
-			if (camera != null)
+			if (camera != null && PhysicsPointer.Instance.hit.collider)
 			{
-				var hit = default(RaycastHit);
-				var ray = camera.ScreenPointToRay(screenPosition);
+				var hit = PhysicsPointer.Instance.hit;
+				var ray = PhysicsPointer.Instance._ray;
 
 				if (Physics.Raycast(ray, out hit, float.PositiveInfinity, layers) == true)
 				{
