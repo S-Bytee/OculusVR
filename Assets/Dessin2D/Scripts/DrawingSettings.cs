@@ -14,8 +14,11 @@ namespace FreeDraw
         public GameObject currNewQuad;
         public GameObject newTriangle;
         public GameObject currNewTriangle;
+        public GameObject newCercle;
+        public GameObject currNewCercle;
         public bool onfollow = false;
         public bool onfollowT = false;
+        public bool onfollowC = false;
         public Color c  = Color.black;
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
 
@@ -159,6 +162,31 @@ namespace FreeDraw
             }
         }
 
+        public void createCercle()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewCercle = Instantiate(newCercle, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewCercle.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowC = true;
+
+        }
+
+
+        public void releaseCercle()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowC) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewCercle.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowC)
+                { currNewCercle.transform.parent = null; onfollowC = false; }
+
+            }
+        }
 
 
 
