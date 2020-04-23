@@ -28,9 +28,13 @@ public class GrabbingObject : MonoBehaviour
            
             if(Input.GetButtonDown("Jump"))
             {
-                
-                if(laserInstance.hit.collider.gameObject.tag=="object")
+
+                Debug.Log(laserInstance.hit.collider.gameObject);
+
+                if (laserInstance.hit.collider.gameObject.transform.parent.tag=="object")
                 {
+
+                    
                     objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
 
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;

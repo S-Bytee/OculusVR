@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Shapes2D;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,10 +15,11 @@ public class WheelCanvasNavigator : MonoBehaviour
     [SerializeField] int color_picker_index = 4;
     [SerializeField] int pointer_mode_index = 5;
     [SerializeField] int pointer_child_count = 5;
+    [SerializeField] int center_wheel_indew = 8;
     
     List<Sprite> spriteWheelList ;
     List<Sprite> spriteOnSelectWheelList;
-
+    bool showGZIMO = false;
 
     int x = 0;
     Transform centerWheel;
@@ -32,7 +34,7 @@ public class WheelCanvasNavigator : MonoBehaviour
 
     void Update()
     {
-        
+        showGizmo();
     }
 
 
@@ -86,16 +88,18 @@ public class WheelCanvasNavigator : MonoBehaviour
     public void showBushSettings()
     {
 
+        hideAllCenterWheelChildren();
         x++;
         centerWheel = transform.parent.GetChild(1).GetChild(0).GetChild(8);
         
         if(x%2==0)
         {
-            this.centerWheel.GetComponent<Image>().enabled = true;
             centerWheel.GetChild(0).gameObject.SetActive(false);
+           
         }
         else
         {
+            
             this.centerWheel.GetComponent<Image>().enabled = false;
             centerWheel.GetChild(0).gameObject.SetActive(true);
 
@@ -152,6 +156,52 @@ public class WheelCanvasNavigator : MonoBehaviour
         //Debug.Log(this.spriteOnSelectWheelList.Count);
     }
 
+    public void hideAllCenterWheelChildren()
+    {
+        for(int i =0;i< transform.parent.GetChild(1).GetChild(0).GetChild(center_wheel_indew).childCount; i++)
+        {
+            
+            if (transform.parent.GetChild(1).GetChild(0).GetChild(center_wheel_indew).GetChild(i).gameObject.tag !="gizmo")
+            transform.parent.GetChild(1).GetChild(0).GetChild(center_wheel_indew).GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
+    public void showGizmo()
+    {
+        showGZIMO = false;          
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("object"))
+        {
+         
+         
+            
+            if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked)
+                {
+                    showGZIMO = true;
+                }
+            
+
+            
+
+        }
+
+        if(showGZIMO)
+        {
+        
+            hideAllCenterWheelChildren();
+            transform.parent.GetChild(1).GetChild(0).GetChild(8).GetComponent<Image>().enabled = false;
+            transform.parent.GetChild(1).GetChild(0).GetChild(8).GetChild(1).gameObject.SetActive(true);
+        
+        }
+        else
+        {
+            
+            transform.parent.GetChild(1).GetChild(0).GetChild(8).GetChild(1).gameObject.SetActive(false);
+            if(x%2==0) // Ki yebda gizmo moush active o l brush settings zeda mahich active lazem nraj3ou l Logo
+            transform.parent.GetChild(1).GetChild(0).GetChild(8).GetComponent<Image>().enabled = true;
+
+        }
+
+
+    }
 
 }

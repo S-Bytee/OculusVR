@@ -70,7 +70,7 @@ namespace PaintIn3D
 
 		public void Update()
 		{
-			transform.position = PhysicsPointer.Instance.CalculateEnd();
+
 		}
 	}
 }

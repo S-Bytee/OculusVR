@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6103675692897103784}
   - component: {fileID: 6138313034424472876}
-  - component: {fileID: 6218210678017907476}
+  - component: {fileID: 6402768219927557701}
+  - component: {fileID: 2436737652878495334}
+  - component: {fileID: 7154938181112182488}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6104951214239842776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -89,8 +91,8 @@ MonoBehaviour:
     _triangleOffset: 0.5
     _usePolygonMap: 0
   wasConverted: 0
-  preConvertedScale: {x: 0, y: 0, z: 0}
---- !u!212 &6218210678017907476
+  preConvertedScale: {x: 1, y: 1, z: 1}
+--- !u!212 &6402768219927557701
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,8 +104,8 @@ SpriteRenderer:
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -139,6 +141,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2436737652878495334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104951214239842776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7154938181112182488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104951214239842776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c5f76001f30fa429e59e655383a3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClicked: 0
+  gizmo: {fileID: 0}
 --- !u!1 &6283204363048753395
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +179,7 @@ GameObject:
   - component: {fileID: 6283204363048753392}
   m_Layer: 0
   m_Name: newTriangle
-  m_TagString: Untagged
+  m_TagString: object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

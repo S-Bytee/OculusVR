@@ -89,7 +89,7 @@ MonoBehaviour:
     _triangleOffset: 0.5
     _usePolygonMap: 0
   wasConverted: 0
-  preConvertedScale: {x: 0, y: 0, z: 0}
+  preConvertedScale: {x: 2, y: 2, z: 1}
 --- !u!212 &212000013105708300
 SpriteRenderer:
   m_ObjectHideFlags: 0

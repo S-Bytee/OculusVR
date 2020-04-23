@@ -85,7 +85,7 @@ MonoBehaviour:
     _roundnessTopLeft: 1
     _roundnessTopRight: 1
     _shapeType: 0
-    _startAngle: 90
+    _startAngle: 93
     _triangleOffset: 0.5
     _usePolygonMap: 0
   wasConverted: 0
