@@ -67,6 +67,9 @@ namespace PaintIn3D
 				var aimY        = (Input.mousePosition.x - Screen.height * 0.5f) * sensitivity;
 
 				transform.localRotation = Quaternion.Euler(-aimX, aimY, 0.0f);
+
+
+				this.transform.position = PhysicsPointer.Instance.CalculateEnd();
 			}
 		}
 	}
