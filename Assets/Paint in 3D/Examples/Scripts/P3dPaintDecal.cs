@@ -83,6 +83,7 @@ namespace PaintIn3D
 	[AddComponentMenu(P3dHelper.ComponentMenuPrefix + "Paint Decal")]
 	public class P3dPaintDecal : MonoBehaviour, IHitHandler
 	{
+
 		public enum ColorStyles
 		{
 			SingleColor,
@@ -93,6 +94,7 @@ namespace PaintIn3D
 		public void Update()
 		{
 			this.Color = ColorIndicator.Instance.color.ToColor();
+			
 		}
 		/// <summary>The layers you want this paint to apply to.</summary>
 		public LayerMask Layers { set { layers = value; } get { return layers; } } [SerializeField] private LayerMask layers = -1;
@@ -200,5 +202,15 @@ namespace PaintIn3D
 			P3dPainter.Decal.SetMaterial(blendMode, texture, finalHardness, oneSided, finalColor, finalOpacity, shape);
 			P3dPainter.Decal.SubmitAll(preview, layers, groups);
 		}
+
+		public void updateRadius(float r)
+		{
+			this.radius = r/20;		
+		}
+
+
 	}
+
+
+	
 }

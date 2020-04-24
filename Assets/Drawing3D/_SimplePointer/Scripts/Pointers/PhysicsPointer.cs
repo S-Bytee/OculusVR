@@ -166,6 +166,7 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
         if (trailRenderer != null )
         {
             trailRenderer.transform.position = CalculateEnd();
+            trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
         }
     }
 
