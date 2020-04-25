@@ -13,6 +13,7 @@ public class PointerModeBehavior : MonoBehaviour
     public int drawing_index=0;
     public int grabbing_index=1;
     public int spray_index=2;
+    public int spatter_index=3;
     
 
     // Start is called before the first frame update
@@ -69,6 +70,15 @@ public class PointerModeBehavior : MonoBehaviour
 
         disableAll();
         mode.GetChild(spray_index).gameObject.SetActive(true);
+        updateOnHoverBtn();
+    }
+
+
+    public void enableSpatter()
+    {
+
+        disableAll();
+        mode.GetChild(spatter_index).gameObject.SetActive(true);
         updateOnHoverBtn();
     }
 

@@ -24,6 +24,8 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
 
     private TrailRenderer trailRenderer;
     private LineRenderer lineRenderer = null;
+    public Ray _ray;
+        
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -96,7 +98,7 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
         RaycastHit hit;
         ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit, defaultLength);
-
+        _ray = ray;
 
         return hit;
     }
@@ -164,6 +166,7 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
         if (trailRenderer != null )
         {
             trailRenderer.transform.position = CalculateEnd();
+            trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
         }
     }
 
