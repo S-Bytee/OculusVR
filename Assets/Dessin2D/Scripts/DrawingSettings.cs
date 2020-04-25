@@ -20,6 +20,7 @@ namespace FreeDraw
         public bool onfollowT = false;
         public bool onfollowC = false;
         public Color c  = Color.black;
+        public GameObject Panel;
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
 
 
@@ -27,6 +28,7 @@ namespace FreeDraw
         {
             releaseQuad();
             releaseTriangle();
+            releaseCercle();
         }
 
         public void SetMarkerColour(Color new_color)
@@ -186,6 +188,20 @@ namespace FreeDraw
                 { currNewCercle.transform.parent = null; onfollowC = false; }
 
             }
+        }
+        public void openPanel()
+        {
+
+            if (Panel != null)
+            {
+                bool isActif = Panel.activeSelf;
+                Panel.SetActive(!isActif);
+
+            }
+
+
+
+
         }
 
 
