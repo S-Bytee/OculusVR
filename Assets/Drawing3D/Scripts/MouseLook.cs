@@ -36,7 +36,7 @@ public class MouseLook : MonoBehaviour
         xRotation += mouseY;
         yRotation += mouseX;
         
-        if(xRotation>-30f && xRotation<30f  && yRotation>-50f && yRotation<50f)
+        //if(xRotation>-30f && xRotation<30f  && yRotation>-50f && yRotation<50f)
         transform.localRotation = Quaternion.Euler(-xRotation, yRotation, 0f);
 
     }
