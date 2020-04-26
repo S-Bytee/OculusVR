@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class ProjectManager : MonoBehaviour
 {
@@ -19,16 +20,27 @@ public class ProjectManager : MonoBehaviour
     public GameObject triangleLoaded;
     public GameObject circleLoaded;
     public GameObject polygoneLoaded;
+
+
+
+    public GameObject player;
+    public GameObject WheelCanvas;
+    public String project_name;
+    public String new_project_name;
     // Start is called before the first frame update
     void Start()
     {
         pointsList = new List<Vector3>();
         loadedPoints = new List<Vector3>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        WheelCanvas= GameObject.Find("WheelCanvas");
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if(Input.GetMouseButtonDown(1))
         {
             //saveLines();
@@ -404,4 +416,69 @@ public class ProjectManager : MonoBehaviour
         }
     }
 
+
+
+    public void newProjectName(string newProj)
+    {
+        new_project_name = newProj;
+        
+        PlayerPrefs.SetInt("ProjectCreationError", 0);
+        PlayerPrefs.Save();
+
+
+    }
+
+    public  void createNewProject()
+    {
+
+        if (new_project_name.Length > 0 )
+        {
+            
+            if (!collectionExist(new_project_name))
+            {
+                Mongo.getConnection().GetDatabase("SpatterProjects").CreateCollection(new_project_name);
+                project_name = new_project_name;
+                PlayerPrefs.SetString("ProjectName", new_project_name);
+                PlayerPrefs.Save();
+                startNewProject();
+            }
+            else
+            {
+                
+                PlayerPrefs.SetInt("ProjectCreationError", 2);
+                PlayerPrefs.Save();
+
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ProjectCreationError", 1);
+            PlayerPrefs.Save();
+        }
+
+    }
+
+     public bool collectionExist(string collection_name)
+    {
+        var filter = new BsonDocument("name", collection_name);
+        var options = new ListCollectionNamesOptions { Filter = filter };
+        return Mongo.getConnection().GetDatabase("SpatterProjects").ListCollectionNames(options).Any();
+    }
+
+
+    public String currentProjectName()
+    {
+        return PlayerPrefs.GetString("ProjectName", "test");
+    }
+
+
+
+    public void startNewProject()
+    {
+        player.transform.position = new Vector3(0, 5, 0);
+        WheelCanvas.transform.GetChild(6).gameObject.SetActive(false);
+        WheelCanvas.transform.GetChild(1).gameObject.SetActive(true);
+
+    }
 }
