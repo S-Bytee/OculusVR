@@ -28,6 +28,15 @@ public class ProjectManager : MonoBehaviour
     public String project_name;
     public String new_project_name;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        PlayerPrefs.SetString("ProjectName", "");
+        PlayerPrefs.Save();
+
+    }
+
+
+
     void Start()
     {
         pointsList = new List<Vector3>();
@@ -43,8 +52,6 @@ public class ProjectManager : MonoBehaviour
         
         if(Input.GetMouseButtonDown(1))
         {
-            //saveLines();
-            //saveObjects();
             //loadLines();
             //loadObjects();
         }
@@ -88,7 +95,7 @@ public class ProjectManager : MonoBehaviour
         foreach(BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
 
@@ -256,7 +263,7 @@ public class ProjectManager : MonoBehaviour
         foreach (BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
     }
@@ -266,7 +273,7 @@ public class ProjectManager : MonoBehaviour
     {
 
         var filter = Builders<BsonDocument>.Filter.Eq("type", "LineRenderer");
-        var document = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(filter);
+        var document = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(filter);
 
             
         foreach (var doc in document.ToCursor().ToEnumerable())
@@ -303,7 +310,7 @@ public class ProjectManager : MonoBehaviour
         //Loading cubes
 
         var cubesFilter = Builders<BsonDocument>.Filter.Eq("Type", "Cube");
-        var cubeDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(cubesFilter);
+        var cubeDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(cubesFilter);
         foreach (var doc in cubeDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -321,7 +328,7 @@ public class ProjectManager : MonoBehaviour
         //Loading shperes
 
         var shpereFilter = Builders<BsonDocument>.Filter.Eq("type", "Sphere");
-        var shpereDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(shpereFilter);
+        var shpereDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(shpereFilter);
         foreach (var doc in shpereDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -341,7 +348,7 @@ public class ProjectManager : MonoBehaviour
         //Loading rectangles
 
         var rectangleFilter = Builders<BsonDocument>.Filter.Eq("type", "Rectangle");
-        var rectangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(rectangleFilter);
+        var rectangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(rectangleFilter);
         foreach (var doc in rectangleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -360,7 +367,7 @@ public class ProjectManager : MonoBehaviour
         //Loading circle
 
         var circleFilter = Builders<BsonDocument>.Filter.Eq("type", "Circle");
-        var circleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(circleFilter);
+        var circleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(circleFilter);
         foreach (var doc in circleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -377,11 +384,10 @@ public class ProjectManager : MonoBehaviour
         }
 
 
-
         //Loading triangle
 
         var triangleFilter = Builders<BsonDocument>.Filter.Eq("type", "Triangle");
-        var triangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(triangleFilter);
+        var triangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(triangleFilter);
         foreach (var doc in triangleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -400,7 +406,7 @@ public class ProjectManager : MonoBehaviour
         //Loading polygone
 
         var polygoneFilter = Builders<BsonDocument>.Filter.Eq("type", "Polygone");
-        var polygoneDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>("test").Find(polygoneFilter);
+        var polygoneDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(polygoneFilter);
         foreach (var doc in polygoneDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -469,16 +475,36 @@ public class ProjectManager : MonoBehaviour
 
     public String currentProjectName()
     {
-        return PlayerPrefs.GetString("ProjectName", "test");
+        return PlayerPrefs.GetString("ProjectName");
     }
 
 
 
     public void startNewProject()
     {
+     
         player.transform.position = new Vector3(0, 5, 0);
         WheelCanvas.transform.GetChild(6).gameObject.SetActive(false);
         WheelCanvas.transform.GetChild(1).gameObject.SetActive(true);
 
     }
+
+    public void saveProject()
+    {
+
+        saveLines();
+        saveObjects();
+
+    }
+
+
+    public void loadProjects()
+    {
+        loadLines();
+        loadObjects();
+
+    }
+
+
+
 }
