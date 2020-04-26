@@ -21,6 +21,13 @@ namespace FreeDraw
         public bool onfollowC = false;
         public Color c  = Color.black;
         public GameObject Panel;
+        public GameObject Panel2;
+        public GameObject newA;
+        public GameObject currNewA;
+        public bool onfollowA = false;
+        public GameObject newB;
+        public GameObject currNewB;
+        public bool onfollowB = false;
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
 
 
@@ -29,6 +36,7 @@ namespace FreeDraw
             releaseQuad();
             releaseTriangle();
             releaseCercle();
+            releaseA();
         }
 
         public void SetMarkerColour(Color new_color)
@@ -202,6 +210,46 @@ namespace FreeDraw
 
 
 
+        }
+        public void openPanel2()
+        {
+
+            if (Panel2 != null)
+            {
+                bool isActif = Panel2.activeSelf;
+                Panel2.SetActive(!isActif);
+
+            }
+
+
+
+
+        }
+
+        public void createA()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewA = Instantiate(newA, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewA.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowA = true;
+
+        }
+
+
+        public void releaseA()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowA) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewA.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowA)
+                { currNewA.transform.parent = null; onfollowA = false; }
+
+            }
         }
 
 
