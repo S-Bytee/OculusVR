@@ -173,14 +173,18 @@ public class WheelCanvasNavigator : MonoBehaviour
         {
          
          
-            
-            if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked)
+            if(go.transform.childCount>0)
+            {
+
+                if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked)
                 {
                     showGZIMO = true;
                 }
-            
 
-            
+            }
+
+
+
 
         }
 

@@ -1,12 +1,10 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "Outlined/Silhouetted Bumped Diffuse" {
-	
 	Properties {
-
 		_Color ("Main Color", Color) = (.5,.5,.5,1)
-		_OutlineColor ("Outline Color", Color) = (255,200,0,1)
-		_Outline ("Outline width", Range (0.0, 5)) = 0.1
+		_OutlineColor ("Outline Color", Color) = (255,255,0,1)
+		_Outline ("Outline width", Range (0.0, 0.03)) = 0.08
 		_MainTex ("Base (RGB)", 2D) = "white" { }
 		_BumpMap ("Bumpmap", 2D) = "bump" {}
 	}
@@ -15,10 +13,8 @@ CGINCLUDE
 #include "UnityCG.cginc"
  
 struct appdata {
-
 	float4 vertex : POSITION;
 	float3 normal : NORMAL;
-
 };
  
 struct v2f {

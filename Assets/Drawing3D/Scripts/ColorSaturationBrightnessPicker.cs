@@ -39,14 +39,16 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("object"))
         {
 
-            Debug.Log(go.GetComponentInChildren<OnSelectObject>().isClicked);
-
-            if (go.GetComponentInChildren<OnSelectObject>().isClicked )
+            if(go.transform.childCount>0)
             {
+                if (go.GetComponentInChildren<OnSelectObject>().isClicked)
+                {
 
-                go.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    go.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
 
+                }
             }
+            
         }
 
 
