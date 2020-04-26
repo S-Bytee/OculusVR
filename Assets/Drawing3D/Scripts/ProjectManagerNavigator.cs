@@ -16,11 +16,11 @@ public class ProjectManagerNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetString("ProjectName") != "")
+      /*  if (PlayerPrefs.GetString("ProjectName") != "")
         {
             showCenterText();
         }
-
+        */
     }
 
 
@@ -55,7 +55,8 @@ public class ProjectManagerNavigator : MonoBehaviour
 
     public void showLoadProjects()
     {
-       disableAll();
+
+        disableAll();
         project_center_wheel.transform.GetChild(1).gameObject.SetActive(true);
 
     }
