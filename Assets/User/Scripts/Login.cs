@@ -46,6 +46,7 @@ public class Login : MonoBehaviour
                 PlayerPrefs.SetString("email",email);
                 PlayerPrefs.SetString("username",d.GetValue(d.IndexOfName("user_username")).ToString());
                 PlayerPrefs.SetString("createdAt",d.GetValue(d.IndexOfName("createdAt")).ToString());
+                PlayerPrefs.SetString("last_login",d.GetValue(d.IndexOfName("last_login")).ToString());
                 PlayerPrefs.SetString("scene","room_user");
                 SceneManager.LoadScene("loading_screen");
             }
