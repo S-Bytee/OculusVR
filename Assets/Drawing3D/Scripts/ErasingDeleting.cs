@@ -15,15 +15,16 @@ public class ErasingDeleting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (laserPointer.onCollison)
-        {
+     
             if (laserPointer.hit.collider)
             {
                 if(laserPointer.hit.collider.gameObject.transform.childCount>0)
                 {
+                    Debug.Log(laserPointer.hit.collider.transform.parent.tag);
+
                     if (laserPointer.hit.collider.transform.parent.tag == "object")
                     {
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButtonDown(0)) 
                         {
                             Destroy(laserPointer.hit.collider.gameObject);
                         }
@@ -44,7 +45,7 @@ public class ErasingDeleting : MonoBehaviour
                 
 
             }
-        }
+        
         
 
 
