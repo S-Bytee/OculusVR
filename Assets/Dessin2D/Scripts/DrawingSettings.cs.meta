@@ -3,7 +3,16 @@ guid: f8e700ae954bc0848bb5c73932bc4234
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - newQuad: {fileID: 7009407797433134504, guid: 3e4ade723be43a84582318821c9f9adb,
+      type: 3}
+  - currNewQuad: {instanceID: 0}
+  - newTriangle: {fileID: 7009407797433134504, guid: 7313bd14d56af0a4db0ac154a095fcfe,
+      type: 3}
+  - currNewTriangle: {instanceID: 0}
+  - newCercle: {fileID: 7009407797433134504, guid: 816bdbfa8d9236c40bcfed970a290594,
+      type: 3}
+  - currNewCercle: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

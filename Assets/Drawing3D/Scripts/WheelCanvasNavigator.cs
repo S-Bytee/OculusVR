@@ -16,6 +16,7 @@ public class WheelCanvasNavigator : MonoBehaviour
     [SerializeField] int pointer_mode_index = 5;
     [SerializeField] int pointer_child_count = 5;
     [SerializeField] int center_wheel_indew = 8;
+    [SerializeField] int project_wheel_index = 6;
     
     List<Sprite> spriteWheelList ;
     List<Sprite> spriteOnSelectWheelList;
@@ -112,9 +113,24 @@ public class WheelCanvasNavigator : MonoBehaviour
     {
         transform.parent.GetChild(pointer_mode_index).gameObject.SetActive(true);
     }
+
+
     public void hidePointerModeMenu()
     {
         transform.parent.GetChild(pointer_mode_index).gameObject.SetActive(false);
+    }
+
+
+    public void showProjects()
+    {
+        transform.parent.GetChild(project_wheel_index).gameObject.SetActive(true);
+
+    }
+
+    public void hideProjects()
+    {
+        transform.parent.GetChild(project_wheel_index).gameObject.SetActive(false);
+
     }
 
     public void colorChangeWheelPointer(int wheel_index)
@@ -173,14 +189,16 @@ public class WheelCanvasNavigator : MonoBehaviour
         {
          
          
-            
-            if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked)
+            if(go.transform.childCount>0)
+            {
+
+                if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked)
                 {
                     showGZIMO = true;
                 }
-            
 
-            
+            }
+
 
         }
 

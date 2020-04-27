@@ -19,12 +19,12 @@ public class Drawing3D : MonoBehaviour
     const string MATERIALS_TEMP_PATH = "Assets/Drawing3D/Materials/MaterialsTemp/";
     float defaultWidth=0.5f;
     float middleWidth=0.5f;
-
-
+    Mesh mesh;
+    MeshCollider meshCollider;
     void Start()
     {
         laserInstance = PhysicsPointer.Instance;
-        
+
     }
 
     // Update is called once per frame
@@ -35,10 +35,9 @@ public class Drawing3D : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (!laserInstance.onCollison)
             drawing();
-
-
 
     }
 
@@ -48,12 +47,30 @@ public class Drawing3D : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             createLine();
+           
         }
+        
         if (Input.GetMouseButton(0))
         {
             tempFingerPos = laserInstance.CalculateEnd();
        
             updateLine(laserInstance.CalculateEnd());
+
+        }
+        
+        if(Input.GetMouseButtonUp(0))
+        {
+
+            if(lineRenderer!=null)
+            {
+
+                mesh = new Mesh();
+                lineRenderer.BakeMesh(mesh, true);
+                MeshCollider meshCollider = lineRenderer.gameObject.AddComponent<MeshCollider>();
+                meshCollider.sharedMesh = mesh;
+                lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+
+            }
 
         }
 
@@ -73,13 +90,13 @@ public class Drawing3D : MonoBehaviour
         if (ColorIndicator.Instance == null)
         {
         
-            currentLine.GetComponent<Renderer>().material.color = Color.white;
+            currentLine.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(250, 65, 204));
         
         }
         else
         {
         
-            currentLine.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+            currentLine.GetComponent<Renderer>().material.SetColor("_TintColor",ColorIndicator.Instance.color.ToColor());
         
         }
 
@@ -88,7 +105,6 @@ public class Drawing3D : MonoBehaviour
         fingerPositions.Add(laserInstance.CalculateEnd());
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
-
     }
 
     public void updateLine(Vector3 newPosition)
@@ -98,6 +114,7 @@ public class Drawing3D : MonoBehaviour
         if(lineRenderer!=null)
         {
 
+            
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
 

@@ -14,6 +14,7 @@ public class PointerModeBehavior : MonoBehaviour
     public int grabbing_index=1;
     public int spray_index=2;
     public int spatter_index=3;
+    public int erasing_index=4;
     
 
     // Start is called before the first frame update
@@ -81,6 +82,13 @@ public class PointerModeBehavior : MonoBehaviour
         mode.GetChild(spatter_index).gameObject.SetActive(true);
         updateOnHoverBtn();
     }
+    public void enableErasing()
+    {
 
+        disableAll();
+        mode.GetChild(erasing_index).gameObject.SetActive(true);
+        updateOnHoverBtn();
+
+    }
 
 }

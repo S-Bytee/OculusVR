@@ -55,7 +55,6 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
 
         laserInstance = PhysicsPointer.Instance;
-        buttons = GameObject.FindGameObjectsWithTag("Clickable");
         instanceOffset = new Vector3(0,0,10);
         player = GameObject.FindGameObjectWithTag("Player");
         setPosition();

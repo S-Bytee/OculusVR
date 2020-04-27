@@ -183,13 +183,16 @@ public class GizmoDragger : MonoBehaviour
 
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("object"))
         {
-
-            if (go.GetComponentInChildren<OnSelectObject>().isClicked)
+            if(go.GetComponentInChildren<OnSelectObject>())
             {
+                if (go.GetComponentInChildren<OnSelectObject>().isClicked)
+                {
 
-                selectedObject = go.gameObject;
+                    selectedObject = go.gameObject;
 
+                }
             }
+            
         }
 
         return selectedObject;
