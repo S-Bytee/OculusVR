@@ -502,6 +502,9 @@ public class ProjectManager : MonoBehaviour
     {
         loadLines();
         loadObjects();
+        player.transform.position = new Vector3(0, 5, 0);
+        WheelCanvas.transform.GetChild(6).gameObject.SetActive(false);
+        WheelCanvas.transform.GetChild(1).gameObject.SetActive(true);
 
     }
 
