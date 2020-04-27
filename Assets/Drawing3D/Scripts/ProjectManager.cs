@@ -288,17 +288,20 @@ public class ProjectManager : MonoBehaviour
             {
 
                 loadedPoints.Add(new Vector3(Convert.ToSingle(doc["Points"][i.ToString()]["x"].AsDouble), Convert.ToSingle(doc["Points"][i.ToString()]["y"].AsDouble), Convert.ToSingle(doc["Points"][i.ToString()]["z"].AsDouble)));
-                
             }
-
-            go.GetComponent<LineRenderer>().SetPosition(0, loadedPoints.ToArray()[0]);
-            go.GetComponent<LineRenderer>().SetPosition(1, loadedPoints.ToArray()[1]);
-            
-            for (int i =2; i<loadedPoints.ToArray().Length;i++)
+           
+            if(loadedPoints.ToArray().Length>=2)
             {
-                go.GetComponent<LineRenderer>().positionCount++;
-                go.GetComponent<LineRenderer>().SetPosition(i, loadedPoints.ToArray()[i]);
+                go.GetComponent<LineRenderer>().SetPosition(0, loadedPoints.ToArray()[0]);
+                go.GetComponent<LineRenderer>().SetPosition(1, loadedPoints.ToArray()[1]);
+
+                for (int i = 2; i < loadedPoints.ToArray().Length; i++)
+                {
+                    go.GetComponent<LineRenderer>().positionCount++;
+                    go.GetComponent<LineRenderer>().SetPosition(i, loadedPoints.ToArray()[i]);
+                }
             }
+            
 
         }
 

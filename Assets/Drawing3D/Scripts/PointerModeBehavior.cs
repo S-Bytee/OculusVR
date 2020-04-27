@@ -91,4 +91,15 @@ public class PointerModeBehavior : MonoBehaviour
 
     }
 
+
+
+    public void enableStylized()
+    {
+
+        disableAll();
+        mode.GetChild(5).gameObject.SetActive(true);
+        updateOnHoverBtn();
+
+    }
+
 }
