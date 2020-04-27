@@ -8,9 +8,15 @@ public class MainMenuNew : MonoBehaviour {
 
 	Animator CameraObject;
 
+
+
+	[Header("Welcome user text")]
+	public GameObject user_header;
+
 	[Header("Loaded Scene")]
 	[Tooltip("The name of the scene in the build settings that will load")]
 	public string sceneName = ""; 
+
 
 	[Header("Panels")]
 	[Tooltip("The UI Panel parenting all sub menus")]
@@ -71,6 +77,7 @@ public class MainMenuNew : MonoBehaviour {
 
 	void Start(){
 		CameraObject = transform.GetComponent<Animator>();
+		user_header.GetComponent<Text>().text = "Welcome to Spatter dear , "+PlayerPrefs.GetString("username");
 	}
 
 	public void  PlayCampaign (){
@@ -213,7 +220,8 @@ public class MainMenuNew : MonoBehaviour {
 	}
 
 	public void  Yes (){
-		Application.Quit();
+		PlayerPrefs.SetString("scene","room_user");
+        SceneManager.LoadScene("loading_screen");
 	}
 
 	IEnumerator LoadAsynchronously (string sceneName){ // scene name is just the name of the current scene being loaded

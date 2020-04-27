@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -20,6 +21,7 @@ public class Login : MonoBehaviour
     void Start()
     {
         
+         
     }
 
     // Update is called once per frame
@@ -32,8 +34,31 @@ public class Login : MonoBehaviour
         
     }
 
-    void singin(){
+    public void singin(){
+        print(email);
+        var filter = Builders<BsonDocument>.Filter.Eq("user_email", email);
+        var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(filter).ToList();
+        foreach(var d in docu )
+        {
+            if(d.GetValue(d.IndexOfName("user_password")) == password )
+            {
+                print("success");
+                PlayerPrefs.SetString("email",email);
+                PlayerPrefs.SetString("username",d.GetValue(d.IndexOfName("user_username")).ToString());
+                PlayerPrefs.SetString("createdAt",d.GetValue(d.IndexOfName("createdAt")).ToString());
+                PlayerPrefs.SetString("scene","room_user");
+                SceneManager.LoadScene("loading_screen");
+            }
+            else
+            print("failure");
+        }
+        
+    }
 
+    void UpdateLogin()
+    {
+        PlayerPrefs.SetString("last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute);
+        
     }
 
     public void changeInput()

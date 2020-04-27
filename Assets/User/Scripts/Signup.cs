@@ -52,6 +52,11 @@ public class Signup : MonoBehaviour
             user.Add(new BsonDocument{{"user_username", username}});
             user.Add(new BsonDocument{{"user_phonenumber", phone_number}});
             user.Add(new BsonDocument{{"user_password", password}});
+            user.Add(new BsonDocument{{"createdAt",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year}});
+            user.Add(new BsonDocument{{"last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute}});
+            user.AddRange(new BsonDocument{{"2D_projects",""}});
+            user.AddRange(new BsonDocument{{"3D_projects",""}});
+            user.AddRange(new BsonDocument{{"friends",""}});
 
             Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").InsertOneAsync(user);
             print("success");
@@ -60,7 +65,21 @@ public class Signup : MonoBehaviour
 
     public bool verif()
     {
+        // Password RegEx & Validation
+        var hasNumber = new Regex(@"[0-9]+");
+        var hasUpperChar = new Regex(@"[A-Z]+");
+        var hasMinimum8Chars = new Regex(@".{8,}");
+        var isValidated = hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMinimum8Chars.IsMatch(password);
+        // Email Regex && Validation
+        var email_regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+
         if(password!="" && email!="" && phone_number!="" && username != ""){
+            if(!isValidated)
+            return false;
+
+            if(email_regex.IsMatch(email))
+            return false;
+            
             return true;
         }
         return false;
