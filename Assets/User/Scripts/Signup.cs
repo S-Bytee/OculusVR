@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -28,7 +29,7 @@ public class Signup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     // Update is called once per frame
@@ -52,7 +53,17 @@ public class Signup : MonoBehaviour
             user.Add(new BsonDocument{{"user_username", username}});
             user.Add(new BsonDocument{{"user_phonenumber", phone_number}});
             user.Add(new BsonDocument{{"user_password", password}});
-
+            user.Add(new BsonDocument{{"createdAt",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year}});
+            user.Add(new BsonDocument{{"last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute}});
+            user.AddRange(new BsonDocument{{"2D_projects",""}});
+            user.AddRange(new BsonDocument{{"3D_projects",""}});
+            user.AddRange(new BsonDocument{{"friends",""}});
+            PlayerPrefs.SetString("email",email);
+            PlayerPrefs.SetString("username",username);
+            PlayerPrefs.SetString("createdAt",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year);
+            PlayerPrefs.SetString("last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute);
+            PlayerPrefs.SetString("scene","room_user");
+            SceneManager.LoadScene("loading_screen");
             Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").InsertOneAsync(user);
             print("success");
         }
@@ -60,7 +71,22 @@ public class Signup : MonoBehaviour
 
     public bool verif()
     {
+        // Password RegEx & Validation
+        var hasNumber = new Regex(@"[0-9]+");
+        var hasUpperChar = new Regex(@"[A-Z]+");
+        var hasMinimum8Chars = new Regex(@".{8,}");
+        var isValidated = hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMinimum8Chars.IsMatch(password);
+        print("passworld is "+isValidated);
+        // Email Regex && Validation
+        var email_regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+        print("email is"+email_regex.IsMatch(email));
         if(password!="" && email!="" && phone_number!="" && username != ""){
+            if(!isValidated)
+            return false;
+
+            if(!email_regex.IsMatch(email))
+            return false;
+            
             return true;
         }
         return false;
