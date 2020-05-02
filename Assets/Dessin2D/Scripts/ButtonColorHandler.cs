@@ -43,6 +43,7 @@ public class ButtonColorHandler : MonoBehaviour
                 {
                     //Aaamel invoke lel bouton yaani rod l bouton tnezleet
                     this.gameObject.GetComponent<Button>().onClick.Invoke();
+                   // this.gameObject.GetComponent<FlexibleColorPicker>().;
 
                 }
             }

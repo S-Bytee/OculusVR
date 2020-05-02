@@ -51,6 +51,9 @@ namespace FreeDraw
         public GameObject currNewI;
         public bool onfollowI = false;
 
+
+        public FlexibleColorPicker fcp;
+
         // Changing pen settings is easy as changing the static properties Drawable.Pen_Colour and Drawable.Pen_Width
 
 
@@ -68,6 +71,8 @@ namespace FreeDraw
             releaseG();
             releaseH();
             releaseI();
+            c = ColorIndicator.Instance.color.ToColor();
+            SetMarkerColour(c);
         }
 
         public void SetMarkerColour(Color new_color)
@@ -92,7 +97,15 @@ namespace FreeDraw
             Drawable.Pen_Colour = c;
         }
 
+        public void fcpChange()
+        {
+            c = fcp.color;
+            SetMarkerColour(c);
+            Drawable.drawable.SetPenBrush();
+            Debug.Log("fcp work!!");
 
+
+        }
         // Call these these to change the pen settings
         public void SetMarkerRed()
         {
