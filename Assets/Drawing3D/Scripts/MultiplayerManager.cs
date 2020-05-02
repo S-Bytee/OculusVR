@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class MultiplayerManager : MonoBehaviour
+public class MultiplayerManager : MonoBehaviourPunCallbacks
 {
 
     public string player_prefab;
@@ -20,5 +20,19 @@ public class MultiplayerManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    public void leaveRoom()
+    {
+
+        if(photonView.IsMine)
+        {
+            PhotonNetwork.LoadLevel(0);
+            PhotonNetwork.LeaveRoom();
+
+        }
+
+
     }
 }

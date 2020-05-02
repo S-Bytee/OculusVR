@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WheelBehavior : MonoBehaviour
+public class WheelBehaviorMultiplayer : MonoBehaviour
 {
     public Sprite default_sprite;
     public Sprite select_sprite;
 
-    PhysicsPointer laserPointer;
+    PhysicsPointerMultiplayer laserPointer;
 
     
     // Start is called before the first frame update
     void Start()
     {
 
-        laserPointer = PhysicsPointer.Instance;        
+        laserPointer = PhysicsPointerMultiplayer.Instance;        
 
     }
 
@@ -25,9 +25,8 @@ public class WheelBehavior : MonoBehaviour
 
         if(laserPointer.hit.collider)
         {
-            if(laserPointer.onCollison)
-            {
-                Debug.Log("onselecteeeeed");
+            
+
 
                 if (laserPointer.hit.collider.gameObject == this.gameObject)
                 {
@@ -42,16 +41,17 @@ public class WheelBehavior : MonoBehaviour
                 {
                     GetComponent<Image>().sprite = default_sprite;
                 }
-            }
-            else
-            {
-
-                GetComponent<Image>().sprite = default_sprite;
-
-            }
+            
+            
 
         }
-       
+        else
+            {
+
+            GetComponent<Image>().sprite = default_sprite;
+
+        }
+
 
 
     }
