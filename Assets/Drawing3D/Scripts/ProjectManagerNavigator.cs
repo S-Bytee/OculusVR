@@ -16,6 +16,7 @@ public class ProjectManagerNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
       /*  if (PlayerPrefs.GetString("ProjectName") != "")
         {
             showCenterText();
@@ -58,6 +59,16 @@ public class ProjectManagerNavigator : MonoBehaviour
 
         disableAll();
         project_center_wheel.transform.GetChild(1).gameObject.SetActive(true);
+
+    }
+
+    public void showMultiplayer()
+    {
+
+        GameObject project_manager = transform.parent.gameObject;
+        GameObject wheel_cancvas = transform.parent.parent.gameObject;
+        wheel_cancvas.transform.GetChild(7).gameObject.SetActive(true);
+        project_manager.SetActive(false);
 
     }
 

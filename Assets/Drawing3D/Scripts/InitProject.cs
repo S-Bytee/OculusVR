@@ -16,12 +16,12 @@ public class InitProject : MonoBehaviour
     {
         if(PlayerPrefs.GetString("ProjectName") == "")
         {
-
             GetComponent<BoxCollider>().enabled = false;
+            gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = new Color32(144, 142, 140,255);
         }
         else
         {
-
+            gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
             GetComponent<BoxCollider>().enabled = true;
 
         }

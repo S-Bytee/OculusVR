@@ -222,4 +222,15 @@ public class WheelCanvasNavigator : MonoBehaviour
 
     }
 
+    public void showProject()
+    {
+        transform.parent.GetChild(6).gameObject.SetActive(true);
+    }
+
+    public void hideMultiplayer()
+    {
+        transform.parent.GetChild(7).gameObject.SetActive(false);
+
+    }
+
 }
