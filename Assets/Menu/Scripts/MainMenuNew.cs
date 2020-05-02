@@ -99,25 +99,33 @@ public class MainMenuNew : MonoBehaviour {
 
 	public void NewGame(){
 		if(sceneName != ""){
+
 			StartCoroutine(LoadAsynchronously(sceneName));
 			//SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
 		}
 	}
 
 	public void  DisablePlayCampaign (){
+
 		playMenu.gameObject.SetActive(false);
+	
 	}
 
 	public void  Position2 (){
+	
 		DisablePlayCampaign();
 		CameraObject.SetFloat("Animate",1);
+	
 	}
 
 	public void  Position1 (){
+		
 		CameraObject.SetFloat("Animate",0);
+	
 	}
 
 	public void  GamePanel (){
+	
 		PanelControls.gameObject.SetActive(false);
 		PanelVideo.gameObject.SetActive(false);
 		PanelGame.gameObject.SetActive(true);
@@ -130,6 +138,7 @@ public class MainMenuNew : MonoBehaviour {
 	}
 
 	public void  VideoPanel (){
+		
 		PanelControls.gameObject.SetActive(false);
 		PanelVideo.gameObject.SetActive(true);
 		PanelGame.gameObject.SetActive(false);
@@ -139,9 +148,11 @@ public class MainMenuNew : MonoBehaviour {
 		lineControls.gameObject.SetActive(false);
 		lineVideo.gameObject.SetActive(true);
 		lineKeyBindings.gameObject.SetActive(false);
+	
 	}
 
 	public void  ControlsPanel (){
+	
 		PanelControls.gameObject.SetActive(true);
 		PanelVideo.gameObject.SetActive(false);
 		PanelGame.gameObject.SetActive(false);
@@ -151,9 +162,12 @@ public class MainMenuNew : MonoBehaviour {
 		lineControls.gameObject.SetActive(true);
 		lineVideo.gameObject.SetActive(false);
 		lineKeyBindings.gameObject.SetActive(false);
+	
 	}
 
+
 	public void  KeyBindingsPanel (){
+	
 		PanelControls.gameObject.SetActive(false);
 		PanelVideo.gameObject.SetActive(false);
 		PanelGame.gameObject.SetActive(false);
@@ -163,6 +177,7 @@ public class MainMenuNew : MonoBehaviour {
 		lineControls.gameObject.SetActive(false);
 		lineVideo.gameObject.SetActive(true);
 		lineKeyBindings.gameObject.SetActive(true);
+	
 	}
 
 	public void  MovementPanel (){
@@ -222,6 +237,12 @@ public class MainMenuNew : MonoBehaviour {
 	public void  Yes (){
 		PlayerPrefs.SetString("scene","room_user");
         SceneManager.LoadScene("loading_screen");
+	}
+
+	public void MoveTo3DScene()
+	{
+		PlayerPrefs.SetString("scene", "Drawing_3D");
+		SceneManager.LoadScene("loading_screen");
 	}
 
 	IEnumerator LoadAsynchronously (string sceneName){ // scene name is just the name of the current scene being loaded
