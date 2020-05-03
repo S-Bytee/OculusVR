@@ -28,7 +28,7 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
         if(photonView.IsMine)
         {
-            PhotonNetwork.LoadLevel("Drawing_3D");
+            PhotonNetwork.LoadLevel(0);
             PhotonNetwork.LeaveRoom();
 
         }

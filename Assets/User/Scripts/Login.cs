@@ -26,13 +26,10 @@ public class Login : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
          email = input_email.GetComponent<InputField>().text;
          password = input_password.GetComponent<InputField>().text;
          if(Input.GetKeyDown(KeyCode.Tab)){changeInput();}
          if(Input.GetKeyDown(KeyCode.Return)){singin();}
-         
         
     }
 
@@ -51,7 +48,6 @@ public class Login : MonoBehaviour
                 PlayerPrefs.SetString("last_login",d.GetValue(d.IndexOfName("last_login")).ToString());
                 PlayerPrefs.SetString("scene","room_user");
                 SceneManager.LoadScene("loading_screen");
-                
             }
             else
             print("failure");
@@ -61,7 +57,6 @@ public class Login : MonoBehaviour
 
     void UpdateLogin()
     {
-
         PlayerPrefs.SetString("last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute);
         
     }

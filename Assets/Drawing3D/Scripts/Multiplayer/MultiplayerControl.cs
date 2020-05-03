@@ -98,7 +98,7 @@ public class MultiplayerControl : MonoBehaviourPunCallbacks
 
        if(PhotonNetwork.CurrentRoom.PlayerCount == 1)
        {
-           PhotonNetwork.LoadLevel("MultiplayerDrawing");
+           PhotonNetwork.LoadLevel(1);
            Debug.Log("Name ======> "+PhotonNetwork.CurrentRoom.Name);
        }
 

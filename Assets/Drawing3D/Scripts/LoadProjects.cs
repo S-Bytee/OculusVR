@@ -12,13 +12,14 @@ public class LoadProjects : MonoBehaviour
 
      public GameObject project;
      GameObject currProject;
-     List<string> collectionNames = new List<string>();
-    string username;
+     List<string> collectionNames = new List<string>();   
+
     // Start is called before the first frame update
     void Start()
     {
-        username = PlayerPrefs.GetString("username");
+
         instanciateProject();
+
 
     }
 
@@ -54,9 +55,8 @@ public class LoadProjects : MonoBehaviour
 
     public void getAllProjects()
     {
-        foreach (var item in Mongo.getConnection().GetDatabase(username).ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
+        foreach (var item in Mongo.getConnection().GetDatabase("SpatterProjects").ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
         {
-            if(!item["name"].ToString().Equals("Default"))
             collectionNames.Add(item["name"].ToString());
         }
 

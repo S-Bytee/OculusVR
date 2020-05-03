@@ -29,7 +29,7 @@ public class Signup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
+        GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     // Update is called once per frame
@@ -64,8 +64,6 @@ public class Signup : MonoBehaviour
             PlayerPrefs.SetString("last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute);
             PlayerPrefs.SetString("scene","room_user");
             SceneManager.LoadScene("loading_screen");
-
-            Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>("Default").InsertOneAsync(new BsonDocument { });
             Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").InsertOneAsync(user);
             print("success");
         }

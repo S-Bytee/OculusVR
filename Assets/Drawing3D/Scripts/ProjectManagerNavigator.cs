@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ProjectManagerNavigator : MonoBehaviour
 {
@@ -73,23 +72,6 @@ public class ProjectManagerNavigator : MonoBehaviour
 
     }
 
-
-    public void disconnect()
-    {
-
-        Cursor.lockState = CursorLockMode.None;
-
-        PlayerPrefs.SetString("username","");
-        SceneManager.LoadScene("authentification");
-
-    }
-
-    public void moveToHome()
-    {
-        Cursor.lockState = CursorLockMode.None;
-
-        SceneManager.LoadScene("Menu_Scene");
-    }
 
 
 }
