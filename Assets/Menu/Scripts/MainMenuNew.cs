@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class MainMenuNew : MonoBehaviour {
 
 	Animator CameraObject;
-
-
+	[SerializeField]
+	string museum_scene_name = "";
 
 	[Header("Welcome user text")]
 	public GameObject user_header;
@@ -253,7 +253,7 @@ public class MainMenuNew : MonoBehaviour {
 
 	public void MoveToMuseum()
 	{
-		PlayerPrefs.SetString("scene", "ExampleDrawingScene");
+		PlayerPrefs.SetString("scene", museum_scene_name);
 		SceneManager.LoadScene("loading_screen");
 	}
 
