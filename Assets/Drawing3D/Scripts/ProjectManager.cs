@@ -27,10 +27,12 @@ public class ProjectManager : MonoBehaviour
     public GameObject WheelCanvas;
     public String project_name;
     public String new_project_name;
+    public string username;
     // Start is called before the first frame update
     private void Awake()
     {
         PlayerPrefs.SetString("ProjectName", "");
+        username = PlayerPrefs.GetString("username");
         PlayerPrefs.Save();
 
     }
@@ -95,7 +97,7 @@ public class ProjectManager : MonoBehaviour
         foreach(BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
 
@@ -263,7 +265,7 @@ public class ProjectManager : MonoBehaviour
         foreach (BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
     }
@@ -273,7 +275,7 @@ public class ProjectManager : MonoBehaviour
     {
 
         var filter = Builders<BsonDocument>.Filter.Eq("type", "LineRenderer");
-        var document = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(filter);
+        var document = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(filter);
 
             
         foreach (var doc in document.ToCursor().ToEnumerable())
@@ -313,7 +315,7 @@ public class ProjectManager : MonoBehaviour
         //Loading cubes
 
         var cubesFilter = Builders<BsonDocument>.Filter.Eq("Type", "Cube");
-        var cubeDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(cubesFilter);
+        var cubeDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(cubesFilter);
         foreach (var doc in cubeDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -331,7 +333,7 @@ public class ProjectManager : MonoBehaviour
         //Loading shperes
 
         var shpereFilter = Builders<BsonDocument>.Filter.Eq("type", "Sphere");
-        var shpereDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(shpereFilter);
+        var shpereDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(shpereFilter);
         foreach (var doc in shpereDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -351,7 +353,7 @@ public class ProjectManager : MonoBehaviour
         //Loading rectangles
 
         var rectangleFilter = Builders<BsonDocument>.Filter.Eq("type", "Rectangle");
-        var rectangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(rectangleFilter);
+        var rectangleDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(rectangleFilter);
         foreach (var doc in rectangleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -370,7 +372,7 @@ public class ProjectManager : MonoBehaviour
         //Loading circle
 
         var circleFilter = Builders<BsonDocument>.Filter.Eq("type", "Circle");
-        var circleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(circleFilter);
+        var circleDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(circleFilter);
         foreach (var doc in circleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -390,7 +392,7 @@ public class ProjectManager : MonoBehaviour
         //Loading triangle
 
         var triangleFilter = Builders<BsonDocument>.Filter.Eq("type", "Triangle");
-        var triangleDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(triangleFilter);
+        var triangleDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(triangleFilter);
         foreach (var doc in triangleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -409,7 +411,7 @@ public class ProjectManager : MonoBehaviour
         //Loading polygone
 
         var polygoneFilter = Builders<BsonDocument>.Filter.Eq("type", "Polygone");
-        var polygoneDocuments = Mongo.getConnection().GetDatabase("SpatterProjects").GetCollection<BsonDocument>(currentProjectName()).Find(polygoneFilter);
+        var polygoneDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(polygoneFilter);
         foreach (var doc in polygoneDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -445,7 +447,7 @@ public class ProjectManager : MonoBehaviour
             
             if (!collectionExist(new_project_name))
             {
-                Mongo.getConnection().GetDatabase("SpatterProjects").CreateCollection(new_project_name);
+                Mongo.getConnection().GetDatabase(username).CreateCollection(new_project_name);
                 project_name = new_project_name;
                 PlayerPrefs.SetString("ProjectName", new_project_name);
                 PlayerPrefs.Save();
@@ -472,7 +474,7 @@ public class ProjectManager : MonoBehaviour
     {
         var filter = new BsonDocument("name", collection_name);
         var options = new ListCollectionNamesOptions { Filter = filter };
-        return Mongo.getConnection().GetDatabase("SpatterProjects").ListCollectionNames(options).Any();
+        return Mongo.getConnection().GetDatabase(username).ListCollectionNames(options).Any();
     }
 
 
