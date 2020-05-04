@@ -257,7 +257,7 @@ public class MainMenuNew : MonoBehaviour {
 		SceneManager.LoadScene("loading_screen");
 	}
 
-	IEnumerator LoadAsynchronously (string sceneName){ // scene name is just the name of the current scene being loaded
+	IEnumerator LoadAsynchronously (string sceneName) { // scene name is just the name of the current scene being loaded
 			AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 			operation.allowSceneActivation = false;
 			mainCanvas.SetActive(false);
