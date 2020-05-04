@@ -11,7 +11,7 @@ public class DrawingSettings : MonoBehaviour
     void Start()
     {
 
-       artisticTools = GameObject.Find("WheelCanvas");
+       artisticTools = GameObject.Find("MainMenu");
         //artisticTools.SetActive(false);
 
     }
