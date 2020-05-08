@@ -447,7 +447,7 @@ public class ProjectManager : MonoBehaviour
             
             if (!collectionExist(new_project_name))
             {
-                Mongo.getConnection().GetDatabase(username).CreateCollection(new_project_name);
+                Mongo.getConnection().GetDatabase(username).CreateCollection(new_project_name+"_3D");
                 project_name = new_project_name;
                 PlayerPrefs.SetString("ProjectName", new_project_name);
                 PlayerPrefs.Save();

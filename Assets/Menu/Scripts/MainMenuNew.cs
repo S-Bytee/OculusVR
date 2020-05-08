@@ -78,6 +78,9 @@ public class MainMenuNew : MonoBehaviour {
 	void Start(){
 		CameraObject = transform.GetComponent<Animator>();
 		user_header.GetComponent<Text>().text = "Welcome to Spatter dear , "+PlayerPrefs.GetString("username");
+
+		Cursor.lockState = CursorLockMode.None;
+
 	}
 
 	public void  PlayCampaign (){
