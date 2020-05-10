@@ -13,6 +13,8 @@ using MongoDB;
 public class Signup : MonoBehaviour
 {
 
+    public Component[] hingeJoints;
+    public GameObject popup;
     public GameObject input_email;
     public GameObject input_username;
     public GameObject input_password;
@@ -83,14 +85,23 @@ public class Signup : MonoBehaviour
         var email_regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
         print("email is"+email_regex.IsMatch(email));
         if(password!="" && email!="" && phone_number!="" && username != ""){
-            if(!isValidated)
-            return false;
 
+            
             if(!email_regex.IsMatch(email))
-            return false;
+            {
+                openPopup(2);
+                return false;
+            }
+            if(!isValidated)
+            {
+                openPopup(1);
+                return false;
+            }
+
             
             return true;
         }
+        openPopup(3);
         return false;
     }
 
@@ -105,6 +116,31 @@ public class Signup : MonoBehaviour
             if(input_phonenumber.GetComponent<InputField>().isFocused){
                 input_password.GetComponent<InputField>().Select();
             }
+    }
+
+
+    public void openPopup(int i)
+    {
+        String body ="";
+        switch(i)
+        {
+            case 1 : body = "password minimum length must be 8 characters,have at least 1 number and an Uppercase.";
+            break;
+            case 2 : body = "you typed a wrong email, please respect its structure 'test@spatter.com' ";
+            break;
+            case 3 : body = "Please fill the input with your credentials/informations.";
+            break;
+        }
+            hingeJoints = popup.GetComponentsInChildren<Component>();
+            foreach (Component joint in hingeJoints)
+            {
+                if(joint.name.Equals("body_popup"))
+                    joint.GetComponent<Text>().text = body;
+            }
+            popup.SetActive(true);
+    }
+    public void closePopup(){
+        popup.SetActive(false);
     }
 }
 

@@ -33,12 +33,13 @@ public class LoadProjects : MonoBehaviour
     {
         getAllProjects();
 
-        for (int i =0;i<collectionNames.Count;i++)
+        for (int i = 0; i < collectionNames.Count; i++)
         {
-            
-            currProject= Instantiate(project, Vector3.zero, Quaternion.identity);
-            currProject.GetComponent<Button>().name = collectionNames.ElementAt(i);           
-            currProject.transform.GetChild(0).GetComponent<Text>().text = collectionNames.ElementAt(i);
+            string collectionName = collectionNames.ElementAt(i).ToString().Split('_')[0];
+
+            currProject = Instantiate(project, Vector3.zero, Quaternion.identity);
+            currProject.GetComponent<Button>().name = collectionName;            
+            currProject.transform.GetChild(0).GetComponent<Text>().text = collectionName;
             currProject.transform.SetParent(transform.GetChild(0).GetChild(0).GetComponent<VerticalLayoutGroup>().transform, false);
             
         }

@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-
-public class DrawingSettingsMultiplayer : MonoBehaviourPunCallbacks
+public class DrawingSettingsMultiplayer : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -13,18 +11,14 @@ public class DrawingSettingsMultiplayer : MonoBehaviourPunCallbacks
     void Start()
     {
 
-
-        //artisticTools = GameObject.Find("ArtisticTools");
-        //artisticTools.SetActive(false);
+       artisticTools = GameObject.Find("ArtisticTools");
+        artisticTools.SetActive(false);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (!photonView.IsMine) return;
-
         if(Input.GetMouseButtonDown(1))
         {
             x++;
@@ -32,11 +26,11 @@ public class DrawingSettingsMultiplayer : MonoBehaviourPunCallbacks
 
         if(x%2==0)
         {
-     //       artisticTools.SetActive(false);
+            artisticTools.SetActive(false);
         }
         else
         {
-       //     artisticTools.SetActive(true);
+            artisticTools.SetActive(true);
         }
         
     }

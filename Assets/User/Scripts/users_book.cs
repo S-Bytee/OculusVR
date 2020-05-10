@@ -10,6 +10,7 @@ public class users_book : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject itemTemplate;
+    public GameObject project_content;
     public GameObject content;
     public GameObject text;
     public Component[] hingeJoints;

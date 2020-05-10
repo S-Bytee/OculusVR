@@ -34,7 +34,6 @@ public class LoadProjectInButton : MonoBehaviour
                     this.gameObject.GetComponent<Button>().onClick.Invoke();
                 }
 
-
             }
 
 
