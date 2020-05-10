@@ -51,6 +51,10 @@ namespace FreeDraw
         public GameObject currNewI;
         public bool onfollowI = false;
 
+        public GameObject wallDraw;
+        public Material mat;
+       
+
 
         public FlexibleColorPicker fcp;
 
@@ -178,7 +182,7 @@ namespace FreeDraw
         {
             //Idha ken l quad saretlou l instanciation o onfollow true
             if(onfollow) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
-            currNewQuad.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y,GameObject.FindGameObjectWithTag("Plan").transform.position.z-0.65f);
+            currNewQuad.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y,GameObject.FindGameObjectWithTag("Plan").transform.position.z-0.6f);
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
@@ -513,5 +517,11 @@ namespace FreeDraw
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
+        public void changeBackgroundColor()
+        {
+            wallDraw.GetComponent<MeshRenderer>().material = mat;
+        }
+        
+
     }
 }

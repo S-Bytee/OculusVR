@@ -34,6 +34,7 @@ public class ProjectManager : MonoBehaviour
         PlayerPrefs.SetString("ProjectName", "");
         username = PlayerPrefs.GetString("username");
         PlayerPrefs.Save();
+        
 
     }
 
