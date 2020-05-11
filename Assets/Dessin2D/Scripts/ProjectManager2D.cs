@@ -32,8 +32,7 @@ public class ProjectManager2D : MonoBehaviour
 
 
 
-   public String collectionName;
-    public String DatabaseName;
+  
 
     // Start is called before the first frame update
     private void Awake()
@@ -51,8 +50,7 @@ public class ProjectManager2D : MonoBehaviour
     {
         pointsList = new List<Vector3>();
         loadedPoints = new List<Vector3>();
-        collectionName = "test";
-        DatabaseName = "SpatterProjects";
+        
        
 
     }
@@ -106,7 +104,7 @@ public class ProjectManager2D : MonoBehaviour
         foreach (BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
 
@@ -206,7 +204,7 @@ public class ProjectManager2D : MonoBehaviour
         foreach (BsonDocument d in docs)
         {
 
-            Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).InsertOneAsync(d);
+            Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).InsertOneAsync(d);
 
         }
     }
@@ -216,7 +214,7 @@ public class ProjectManager2D : MonoBehaviour
     {
 
         var filter = Builders<BsonDocument>.Filter.Eq("type", "LineRenderer");
-        var document = Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).Find(filter);
+        var document = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(filter);
 
 
         foreach (var doc in document.ToCursor().ToEnumerable())
@@ -256,7 +254,7 @@ public class ProjectManager2D : MonoBehaviour
         //Loading cubes
 
         var cubesFilter = Builders<BsonDocument>.Filter.Eq("Type", "Cube");
-        var cubeDocuments = Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).Find(cubesFilter);
+        var cubeDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(cubesFilter);
         foreach (var doc in cubeDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -274,7 +272,7 @@ public class ProjectManager2D : MonoBehaviour
         //Loading shperes
 
         var shpereFilter = Builders<BsonDocument>.Filter.Eq("type", "Sphere");
-        var shpereDocuments = Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).Find(shpereFilter);
+        var shpereDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(shpereFilter);
         foreach (var doc in shpereDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -294,7 +292,7 @@ public class ProjectManager2D : MonoBehaviour
         //Loading triangle
 
         var triangleFilter = Builders<BsonDocument>.Filter.Eq("type", "Triangle");
-        var triangleDocuments = Mongo.getConnection().GetDatabase(DatabaseName).GetCollection<BsonDocument>(collectionName).Find(triangleFilter);
+        var triangleDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(triangleFilter);
         foreach (var doc in triangleDocuments.ToCursor().ToEnumerable())
         {
             GameObject go;
@@ -325,6 +323,87 @@ public class ProjectManager2D : MonoBehaviour
 
     }
 
-  
+
+
+
+
+
+
+
+
+
+
+    public void createNewProject()
+    {
+
+        if (new_project_name.Length > 0)
+        {
+
+            if (!collectionExist(new_project_name))
+            {
+                new_project_name = new_project_name + "_2D";
+                Mongo.getConnection().GetDatabase(username).CreateCollection(new_project_name);
+                project_name = new_project_name;
+                PlayerPrefs.SetString("ProjectName", new_project_name);
+                PlayerPrefs.Save();
+                startNewProject();
+            }
+            else
+            {
+
+                PlayerPrefs.SetInt("ProjectCreationError", 2);
+                PlayerPrefs.Save();
+
+            }
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ProjectCreationError", 1);
+            PlayerPrefs.Save();
+        }
+
+    }
+
+    public bool collectionExist(string collection_name)
+    {
+        var filter = new BsonDocument("name", collection_name);
+        var options = new ListCollectionNamesOptions { Filter = filter };
+        return Mongo.getConnection().GetDatabase(username).ListCollectionNames(options).Any();
+    }
+
+
+    public String currentProjectName()
+    {
+        return PlayerPrefs.GetString("ProjectName");
+    }
+
+
+
+    public void startNewProject()
+    {
+
+       
+
+    }
+
+    public void saveProject()
+    {
+
+        saveLines();
+        saveObjects();
+
+    }
+
+
+    public void loadProjects()
+    {
+        loadLines();
+        loadObjects();
+    }
+
+   
+
+
 
 }
