@@ -50,6 +50,60 @@ namespace FreeDraw
         public GameObject newI;
         public GameObject currNewI;
         public bool onfollowI = false;
+        
+        
+        public GameObject newJ;
+        public GameObject currNewJ;
+        public bool onfollowJ = false;
+        public GameObject newK;
+        public GameObject currNewK;
+        public bool onfollowK = false;
+        public GameObject newL;
+        public GameObject currNewL;
+        public bool onfollowL = false;
+        public GameObject newM;
+        public GameObject currNewM;
+        public bool onfollowM = false;
+        public GameObject newN;
+        public GameObject currNewN;
+        public bool onfollowN = false;
+        public GameObject newO;
+        public GameObject currNewO;
+        public bool onfollowO = false;
+        public GameObject newP;
+        public GameObject currNewP;
+        public bool onfollowP = false;
+        public GameObject newQ;
+        public GameObject currNewQ;
+        public bool onfollowQ = false;
+        public GameObject newR;
+        public GameObject currNewR;
+        public bool onfollowR = false;
+        public GameObject newS;
+        public GameObject currNewS;
+        public bool onfollowS = false;
+        public GameObject newT;
+        public GameObject currNewT;
+        public bool onfollowTT = false;
+        public GameObject newU;
+        public GameObject currNewU;
+        public bool onfollowU = false;
+        public GameObject newV;
+        public GameObject currNewV;
+        public bool onfollowV = false;
+        public GameObject newW;
+        public GameObject currNewW;
+        public bool onfollowW = false;
+        public GameObject newX;
+        public GameObject currNewX;
+        public bool onfollowX = false;
+        public GameObject newY;
+        public GameObject currNewY;
+        public bool onfollowY = false;
+        public GameObject newZ;
+        public GameObject currNewZ;
+        public bool onfollowZ = false;
+
 
         public GameObject wallDraw;
         public Material mat;
@@ -75,6 +129,24 @@ namespace FreeDraw
             releaseG();
             releaseH();
             releaseI();
+            releaseJ();
+            releaseK();
+            releaseL();
+            releaseM();
+            releaseN();
+            releaseO();
+            releaseP();
+            releaseQ();
+            releaseR();
+            releaseS();
+            releaseT();
+            releaseU();
+            releaseV();
+            releaseW();
+            releaseX();
+            releaseY();
+            releaseZ();
+
             c = ColorIndicator.Instance.color.ToColor();
             SetMarkerColour(c);
         }
@@ -505,6 +577,448 @@ namespace FreeDraw
 
             }
         }
+
+
+
+
+
+        public void createJ()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewJ = Instantiate(newJ, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewJ.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowJ = true;
+
+        }
+
+
+        public void releaseJ()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowJ) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewJ.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowJ)
+                { currNewJ.transform.parent = null; onfollowJ = false; }
+
+            }
+        }
+        public void createK()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewK = Instantiate(newK, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewK.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowK = true;
+
+        }
+
+
+        public void releaseK()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowK) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewK.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowK)
+                { currNewK.transform.parent = null; onfollowK = false; }
+
+            }
+        }
+        public void createL()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewL = Instantiate(newL, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewL.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowL = true;
+
+        }
+
+
+        public void releaseL()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowL) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewL.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowL)
+                { currNewL.transform.parent = null; onfollowL = false; }
+
+            }
+        }
+        public void createM()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewM = Instantiate(newM, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewM.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowM = true;
+
+        }
+
+
+        public void releaseM()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowM) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewM.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowM)
+                { currNewM.transform.parent = null; onfollowM = false; }
+
+            }
+        }
+        public void createN()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewN = Instantiate(newN, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewN.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowN = true;
+
+        }
+
+
+        public void releaseN()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowN) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewN.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowN)
+                { currNewN.transform.parent = null; onfollowN = false; }
+
+            }
+        }
+        public void createO()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewO = Instantiate(newO, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewO.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowO = true;
+
+        }
+
+
+        public void releaseO()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowO) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewO.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowO)
+                { currNewO.transform.parent = null; onfollowO = false; }
+
+            }
+        }
+        public void createP()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewP = Instantiate(newP, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewP.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowP = true;
+
+        }
+
+
+        public void releaseP()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowP) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewP.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowP)
+                { currNewP.transform.parent = null; onfollowP = false; }
+
+            }
+        }
+        public void createQ()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewQ = Instantiate(newQ, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewQ.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowQ = true;
+
+        }
+
+
+        public void releaseQ()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowQ) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewQ.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowQ)
+                { currNewQ.transform.parent = null; onfollowQ = false; }
+
+            }
+        }
+        public void createR()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewR = Instantiate(newR, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewR.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowR = true;
+
+        }
+
+
+        public void releaseR()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowR) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewR.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowR)
+                { currNewR.transform.parent = null; onfollowR = false; }
+
+            }
+        }
+        public void createS()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewS = Instantiate(newS, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewS.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowS = true;
+
+        }
+
+
+        public void releaseS()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowS) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewS.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowS)
+                { currNewS.transform.parent = null; onfollowS = false; }
+
+            }
+        }
+        public void createT()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewT = Instantiate(newT, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewT.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowTT = true;
+
+        }
+
+
+        public void releaseT()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowTT) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewT.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowT)
+                { currNewT.transform.parent = null; onfollowTT = false; }
+
+            }
+        }
+        public void createU()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewU = Instantiate(newU, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewU.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowU = true;
+
+        }
+
+
+        public void releaseU()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowU) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewU.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowU)
+                { currNewU.transform.parent = null; onfollowU = false; }
+
+            }
+        }
+        public void createV()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewV = Instantiate(newV, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewV.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowV = true;
+
+        }
+
+
+        public void releaseV()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowV) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewV.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowV)
+                { currNewV.transform.parent = null; onfollowV = false; }
+
+            }
+        }
+        public void createW()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewW = Instantiate(newW, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewW.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowW = true;
+
+        }
+
+
+        public void releaseW()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowW) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewW.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowW)
+                { currNewW.transform.parent = null; onfollowW = false; }
+
+            }
+        }
+        public void createX()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewX = Instantiate(newX, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewX.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowX = true;
+
+        }
+
+
+        public void releaseX()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowX) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewX.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowX)
+                { currNewX.transform.parent = null; onfollowX = false; }
+
+            }
+        }
+        public void createY()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewY = Instantiate(newY, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewY.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowY = true;
+
+        }
+
+
+        public void releaseY()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowY) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewY.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowY)
+                { currNewY.transform.parent = null; onfollowY = false; }
+
+            }
+        }
+        public void createZ()
+        {
+
+            //Instance lel Quad fel postion mtaa laser
+            currNewZ = Instantiate(newZ, PhysicsPointer.Instance.CalculateEnd(), Quaternion.identity);
+            currNewZ.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+            //Ya Quad Ebda tabaa l laser
+            onfollowZ = true;
+
+        }
+
+
+        public void releaseZ()
+        {
+            //Idha ken l quad saretlou l instanciation o onfollow true
+            if (onfollowZ) // Donc l x o y mteeeou besh itaab3ou l laser o z mteeou besh itaaba l plan li tsaawer aalih bech akeka mayfoutech l plan o mayodhhorsh
+                currNewZ.transform.position = new Vector3(PhysicsPointer.Instance.CalculateEnd().x, PhysicsPointer.Instance.CalculateEnd().y, GameObject.FindGameObjectWithTag("Plan").transform.position.z - 0.65f);
+            if (PhysicsPointer.Instance.hit.collider)
+            {
+                //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
+                if (Input.GetMouseButtonDown(0) && onfollowZ)
+                { currNewZ.transform.parent = null; onfollowZ = false; }
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void BackToMainMenu()
         {
