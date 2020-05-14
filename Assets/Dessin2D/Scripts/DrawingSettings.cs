@@ -107,7 +107,8 @@ namespace FreeDraw
 
         public GameObject wallDraw;
         public Material mat;
-       
+        public Material mat2;
+
 
 
         public FlexibleColorPicker fcp;
@@ -146,7 +147,7 @@ namespace FreeDraw
             releaseX();
             releaseY();
             releaseZ();
-
+            
             c = ColorIndicator.Instance.color.ToColor();
             SetMarkerColour(c);
         }
@@ -1033,9 +1034,19 @@ namespace FreeDraw
         }
         public void changeBackgroundColor()
         {
-            wallDraw.GetComponent<MeshRenderer>().material = mat;
+            wallDraw.GetComponent<MeshRenderer>().material = mat2;
+
+           
         }
-        
+        public void changeBackgroundColorWhite()
+        {
+            //wallDraw.GetComponent<MeshRenderer>().material = mat;
+
+            wallDraw.GetComponent<MeshRenderer>().material = mat;
+           
+        }
+
+
 
     }
 }
