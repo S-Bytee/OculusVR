@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadProject2D : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class LoadProject2D : MonoBehaviour
     List<string> collectionNames = new List<string>();
     string username;
 
-
     void Start()
     {
+
         username = PlayerPrefs.GetString("username");
         instanciateProject();
 
@@ -26,17 +27,18 @@ public class LoadProject2D : MonoBehaviour
         for (int i = 0; i < collectionNames.Count; i++)
         {
             string collectionName = collectionNames.ElementAt(i).ToString().Split('_')[0];
-            if (collectionNames.ElementAt(i).ToString().Split('_')[1].ToString()=="2D")
+
+        if(collectionNames.ElementAt(i).ToString().Split('_')[1].ToString() == "2D")
             {
-                Debug.Log(collectionName);
+                currProject = Instantiate(project, Vector3.zero, Quaternion.identity);
+
+                currProject.GetComponent<Button>().name = collectionName;
+
+                currProject.transform.GetChild(0).GetComponent<Text>().text = collectionName;
+
+                currProject.transform.SetParent(transform.GetChild(0).GetChild(0).GetComponent<VerticalLayoutGroup>().transform, false);
 
             }
-
-            //currProject = Instantiate(project, Vector3.zero, Quaternion.identity);
-           // currProject.GetComponent<Button>().name = collectionName;
-           // currProject.transform.GetChild(0).GetComponent<Text>().text = collectionName;
-           // currProject.transform.SetParent(transform.GetChild(0).GetChild(0).GetComponent<VerticalLayoutGroup>().transform, false);
-
         }
 
 

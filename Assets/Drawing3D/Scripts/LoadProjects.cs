@@ -31,10 +31,12 @@ public class LoadProjects : MonoBehaviour
 
     public void instanciateProject()
     {
+        
         getAllProjects();
 
         for (int i = 0; i < collectionNames.Count; i++)
         {
+        
             string collectionName = collectionNames.ElementAt(i).ToString().Split('_')[0];
 
             currProject = Instantiate(project, Vector3.zero, Quaternion.identity);
@@ -43,7 +45,6 @@ public class LoadProjects : MonoBehaviour
             currProject.transform.SetParent(transform.GetChild(0).GetChild(0).GetComponent<VerticalLayoutGroup>().transform, false);
             
         }
-
 
     }
 
@@ -57,8 +58,10 @@ public class LoadProjects : MonoBehaviour
     {
         foreach (var item in Mongo.getConnection().GetDatabase(username).ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
         {
+        
             if(!item["name"].ToString().Equals("Default"))
             collectionNames.Add(item["name"].ToString());
+        
         }
 
     }
