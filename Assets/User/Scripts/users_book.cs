@@ -11,10 +11,11 @@ public class users_book : MonoBehaviour
     // Start is called before the first frame update
     public GameObject itemTemplate;
     public GameObject project_content;
+    public GameObject project_template;
     public GameObject content;
     public GameObject text;
     public Component[] hingeJoints;
-
+    List<string> collectionNames = new List<string>();
         
     private void Start() {
          var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(_ => true).ToList();
@@ -39,9 +40,49 @@ public class users_book : MonoBehaviour
     }
 
     private void Update() {
-            
+            if (Input.GetMouseButtonDown (0)) {    
+             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+             RaycastHit hit;
+            print("no");
+             if (Physics.Raycast(ray, out hit)) {
+                 // whatever tag you are looking for on your game object
+                 print(hit.transform.name);
+                 if(hit.collider.name == "Content") {                           
+                    hingeJoints =  hit.collider.GetComponentsInChildren<Component>();
+                     foreach (Component joint in hingeJoints)
+                    {
+                     if(joint.name.Equals("user_username")){
+                         getProjects(joint.GetComponent<Text>().text);
+                         foreach(var u in collectionNames)
+                         {  
+                             print(u);
+                            var copy = Instantiate(project_template);
+                            hingeJoints = copy.GetComponentsInChildren<Component>();
+                            foreach (Component j in hingeJoints)
+                            {
+                                j.GetComponent<Text>().text = u;
+                            }
+                            copy.transform.parent=project_content.transform;
+                         }
+                     }
+                        
+                    }            
+                 }
+                 
+             }    
+         }
     }
 
+
+    public void getProjects(String username)
+    {
+
+        foreach (var item in Mongo.getConnection().GetDatabase(username).ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
+        {
+            if(!item["name"].ToString().Equals("Default"))
+            collectionNames.Add(item["name"].ToString());
+        }
+    }
     public void AddButtonClick(){
 
         
