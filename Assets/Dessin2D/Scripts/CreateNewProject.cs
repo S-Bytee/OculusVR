@@ -7,6 +7,7 @@ public class CreateNewProject : MonoBehaviour
     public GameObject canvasHome;
     public GameObject canvasDraw;
     public GameObject canvasNewProject;
+    public GameObject canvasLoadProject;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class CreateNewProject : MonoBehaviour
         canvasDraw.SetActive(true);
         canvasHome.SetActive(false);
         canvasNewProject.SetActive(false);
+        canvasLoadProject.SetActive(false);
 
 
     }

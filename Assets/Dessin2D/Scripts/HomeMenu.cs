@@ -7,12 +7,12 @@ public class HomeMenu : MonoBehaviour
     public GameObject canvasHome;
     public GameObject canvasDraw;
     public GameObject canvasCreateNewProject;
-    public GameObject ScrollBar;
+    public GameObject CanvasUpload;
     // Start is called before the first frame update
     void Start()
     {
         canvasDraw.SetActive(false);
-        ScrollBar.SetActive(false);
+        CanvasUpload.SetActive(false);
         canvasCreateNewProject.SetActive(false);
     }
 
@@ -40,11 +40,11 @@ public class HomeMenu : MonoBehaviour
         //canvasDraw.SetActive(true);
         //canvasHome.SetActive(false);
        // ScrollBar.SetActive(true);
-        if (ScrollBar != null)
+        if (CanvasUpload != null)
         {
 
-            bool isActive = ScrollBar.activeSelf;
-            ScrollBar.SetActive(!isActive);
+            bool isActive = CanvasUpload.activeSelf;
+            CanvasUpload.SetActive(!isActive);
         }
 
     }
