@@ -12,7 +12,7 @@ public class users_book : MonoBehaviour
     public GameObject itemTemplate;
     public GameObject project_content;
     public GameObject project_template;
-    public GameObject content;
+    public GameObject user_content;
     public GameObject text;
     public Component[] hingeJoints;
     List<string> collectionNames = new List<string>();
@@ -29,13 +29,13 @@ public class users_book : MonoBehaviour
             foreach (Component joint in hingeJoints)
             {
                 if(joint.name.Equals("user_username") && !doc.GetValue(2).Equals(""))
-                    joint.GetComponent<Text>().text = "Username : "+ doc.GetValue(2);
+                    joint.GetComponent<Text>().text = doc.GetValue(2)+"'s artist card";
                 if(joint.name.Equals("user_email") && !doc.GetValue(1).Equals(""))
                     joint.GetComponent<Text>().text = "email : "+ doc.GetValue(1);  
                 if(joint.name.Equals("last_login") && !doc.GetValue(6).Equals(""))
                     joint.GetComponent<Text>().text = "Last Login : "+ doc.GetValue(6);  
             }
-            copy.transform.parent=content.transform;
+            copy.transform.parent=user_content.transform;
         }
     }
 
@@ -44,10 +44,10 @@ public class users_book : MonoBehaviour
              var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
              RaycastHit hit;
             print("no");
-             if (Physics.Raycast(ray, out hit)) {
+             if (Physics.Raycast(ray, out hit,100)) {
                  // whatever tag you are looking for on your game object
                  print(hit.transform.name);
-                 if(hit.collider.name == "Content") {                           
+                 if(hit.collider.name == "user_content") {                           
                     hingeJoints =  hit.collider.GetComponentsInChildren<Component>();
                      foreach (Component joint in hingeJoints)
                     {
