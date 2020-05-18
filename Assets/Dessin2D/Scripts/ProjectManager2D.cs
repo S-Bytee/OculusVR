@@ -20,6 +20,9 @@ public class ProjectManager2D : MonoBehaviour
     public GameObject circleLoaded;
     public GameObject polygoneLoaded;
 
+    public GameObject CanvasDraw;
+    public GameObject CanvasHome;
+
 
 
     public GameObject player;
@@ -392,7 +395,8 @@ public class ProjectManager2D : MonoBehaviour
     {
 
         saveLines();
-        saveObjects();
+       
+      //  saveObjects();
 
     }
 
@@ -400,7 +404,10 @@ public class ProjectManager2D : MonoBehaviour
     public void loadProjects()
     {
         loadLines();
-        loadObjects();
+        CanvasDraw.SetActive(true);
+        CanvasHome.SetActive(false);
+        Debug.Log("ok");
+        //loadObjects();
     }
 
    
