@@ -853,7 +853,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowT)
+                if (Input.GetMouseButtonDown(0) && onfollowTT)
                 { currNewT.transform.parent = null; onfollowTT = false; }
 
             }

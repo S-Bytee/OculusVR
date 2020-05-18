@@ -215,7 +215,7 @@ public class ProjectManager2D : MonoBehaviour
 
         var filter = Builders<BsonDocument>.Filter.Eq("type", "LineRenderer");
         var document = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(filter);
-
+        Debug.Log("LoadedLines1");
 
         foreach (var doc in document.ToCursor().ToEnumerable())
         {
@@ -240,6 +240,7 @@ public class ProjectManager2D : MonoBehaviour
                 {
                     go.GetComponent<LineRenderer>().positionCount++;
                     go.GetComponent<LineRenderer>().SetPosition(i, loadedPoints.ToArray()[i]);
+                    Debug.Log("LoadedLines2");
                 }
             }
 

@@ -7,6 +7,7 @@ public class Grabing2DObject : MonoBehaviour
 
     PhysicsPointer laserInstance;
     GameObject objectToGrab;
+    public Color c = Color.black;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,9 @@ public class Grabing2DObject : MonoBehaviour
     void Update()
     {
         grabObject();
+        c = ColorIndicator.Instance.color.ToColor();
+
+
     }
 
 
@@ -38,6 +42,7 @@ public class Grabing2DObject : MonoBehaviour
                     objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
 
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;
+                    objectToGrab.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
 
                 }
                

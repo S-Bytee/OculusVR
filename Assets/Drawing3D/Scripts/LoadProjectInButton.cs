@@ -27,13 +27,14 @@ public class LoadProjectInButton : MonoBehaviour
 
             if(laserPointer.hit.collider.gameObject == this.gameObject)
             {
-                Debug.Log("ProjectClicked");
 
                 if (Input.GetMouseButtonDown(0))
                 {
                     PlayerPrefs.SetString("ProjectName", GetComponent<Button>().name);
                     PlayerPrefs.Save();
                     this.gameObject.GetComponent<Button>().onClick.Invoke();
+                    Debug.Log("ProjectClicked");
+
 
                 }
 
