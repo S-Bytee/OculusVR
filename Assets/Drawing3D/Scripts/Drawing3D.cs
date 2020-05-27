@@ -46,7 +46,9 @@ public class Drawing3D : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+
             createLine();
+
            
         }
         
@@ -70,6 +72,8 @@ public class Drawing3D : MonoBehaviour
                 meshCollider.sharedMesh = mesh;
                 lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
 
+                UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
+             
             }
 
         }

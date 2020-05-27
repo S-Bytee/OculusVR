@@ -36,9 +36,12 @@ public class ErasingDeleting : MonoBehaviour
                     {
                         if (Input.GetMouseButtonDown(0))
                         {
+                        GameObject go = laserPointer.hit.collider.gameObject;
+
+                        UndoRedo.Instance.AddChangementToUndo(new Changement(go.GetInstanceID(), go,go.GetComponent<Renderer>().material.GetColor("_TintColor"),ChangementType.DESTROYED_LINERENDERER));
 
                             Destroy(laserPointer.hit.collider.gameObject);
-
+                      
                         }
                     }
                 }
