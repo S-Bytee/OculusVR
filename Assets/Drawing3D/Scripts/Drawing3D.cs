@@ -85,6 +85,7 @@ public class Drawing3D : MonoBehaviour
     {
 
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        currentLine.name = currentLine.GetInstanceID().ToString();
         lineRenderer = currentLine.GetComponent<LineRenderer>();
 
         

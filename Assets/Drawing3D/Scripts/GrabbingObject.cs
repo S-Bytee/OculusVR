@@ -29,7 +29,6 @@ public class GrabbingObject : MonoBehaviour
             if(Input.GetButtonDown("Jump"))
             {
 
-                Debug.Log(laserInstance.hit.collider.gameObject);
 
                 if (laserInstance.hit.collider.gameObject.transform.parent.tag=="object")
                 {
@@ -40,6 +39,14 @@ public class GrabbingObject : MonoBehaviour
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;
 
                 }
+
+                /*if(laserInstance.hit.collider.gameObject.tag == "lineRenderer")
+                {
+                    objectToGrab = laserInstance.hit.collider.transform.gameObject;
+
+                    objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                }*/
 
 
             }

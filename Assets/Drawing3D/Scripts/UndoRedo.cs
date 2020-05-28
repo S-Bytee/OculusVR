@@ -36,14 +36,14 @@ public class Changement
     }
     public Changement(long instanceID, ChangementType changementType)
     {
-        this.InstanceID = instanceID;
+            this.InstanceID = instanceID;
         this.Changementtype = changementType;
 
     }
 
     public Changement(long instanceID, Color LineColor, ChangementType changementType)
     {
-        this.InstanceID = instanceID;
+            this.InstanceID = instanceID;
         this.Changementtype = changementType;
         this.LineColor = LineColor;
 
@@ -60,30 +60,13 @@ public class Changement
 
     public Changement(long instanceID, Color NewColor,Color PreviousColor, ChangementType changementType)
     {
-
-        this.InstanceID = instanceID;
+            this.InstanceID = instanceID;
         this.Changementtype = changementType;
         this.NewColor = NewColor;
         this.PreviousColor = PreviousColor;
 
     }
 
-    public override bool Equals(object obj)
-    {
-        return obj is Changement changement &&
-               NewColor.Equals(changement.NewColor) &&
-               PreviousColor.Equals(changement.PreviousColor) &&
-               Changementtype == changement.Changementtype;
-    }
-
-    public override int GetHashCode()
-    {
-        int hashCode = -1941313032;
-        hashCode = hashCode * -1521134295 + NewColor.GetHashCode();
-        hashCode = hashCode * -1521134295 + PreviousColor.GetHashCode();
-        hashCode = hashCode * -1521134295 + Changementtype.GetHashCode();
-        return hashCode;
-    }
 }
 
 
@@ -148,7 +131,9 @@ public class UndoRedo : MonoBehaviour
         {
             case ChangementType.DESTROYED_LINERENDERER:
                 {
-                    SaveGameObjectInPrefab(changement.NewInstance, ChangementType.DESTROYED_LINERENDERER);
+                    SaveGameObjectInPrefab(changement);
+                    UndoStack.Push(changement);
+
 
                     break;
                 }
@@ -191,74 +176,86 @@ public class UndoRedo : MonoBehaviour
     
     public void Undo()
     {
-        //Nekhdhou ekher changement tzeed
-        Changement changement = UndoStack.Pop();
-        //Selon type mtaa changement besh naamlou traitement
-        switch(changement.Changementtype)
+        if(UndoStack.Count>1)
         {
-        
-            //Ken changement sar fel LineRenderer
-            case ChangementType.INSTANCIATE_LINERENDERER:
+            //Nekhdhou ekher changement tzeed
+            Changement changement = UndoStack.Pop();
+            if(changement != null)
+            {
+                //Selon type mtaa changement besh naamlou traitement
+                switch (changement.Changementtype)
                 {
+                    //Ken changement sar fel LineRenderer
+                    case ChangementType.INSTANCIATE_LINERENDERER:
+                        {
 
-                    DestroyLineRendererAndSaveToPrefab(changement);
+                            DestroyLineRendererAndSaveToPrefab(changement);
 
-                    break;
+                            break;
 
+                        }
+                    case ChangementType.DESTROYED_LINERENDERER:
+                        {
+                            UndoErasedLineRenderer(changement);
+
+                            break;
+                        }
+                    case ChangementType.COLOR_CHANGE_LINERENDERER:
+                        {
+
+                            UndoColorChangedLineRenderer(changement);
+
+                            break;
+                        }
                 }
-            case ChangementType.DESTROYED_LINERENDERER:
-                {
-
-                    UndoErasedLineRenderer(changement);
-
-                    break;
-                }
-            case ChangementType.COLOR_CHANGE_LINERENDERER:
-                {
-
-                    UndoColorChangedLineRenderer(changement);
-
-                    break;
-                }
-
+            }
 
         }
+
     }
 
 
     public void Redo()
     {
-
-        Changement changement = RedoStack.Pop();
-     
-        switch (changement.Changementtype)
+        if(RedoStack.Count>1)
         {
-            case ChangementType.INSTANCIATE_LINERENDERER:
+            Changement changement = RedoStack.Pop();
+
+            if (changement!= null)
+            {
+                switch (changement.Changementtype)
                 {
-
-                    ReturnDestroyedLineRendererFromPrefab(changement);
-
-                    break;
-                
+                    case ChangementType.INSTANCIATE_LINERENDERER:
+                        {
+                            RedoDestroyedLineRendererFromPrefab(changement);
+                            break;
+                        }
+                    case ChangementType.DESTROYED_LINERENDERER:
+                        {
+                            RedoErasedLineRenderer(changement);
+                            break;
+                        }
+                    case ChangementType.COLOR_CHANGE_LINERENDERER:
+                        {
+                            RedoColorChangedLineRenderer(changement);
+                            break;
+                        }
                 }
-            case ChangementType.DESTROYED_LINERENDERER:
-                {
-                    RedoErasedLineRenderer(changement);
-
-                    break;
-                }
+            }
         }
         
     }
 
     void DestroyLineRendererAndSaveToPrefab(Changement changement)
     {
+
+
         // l gameobject en question (li howa ekher changement taamal) on va le sauvegarder fi dossier "redo"
         SaveGameObjectInPrefab(changement);
         // o nzidou l changement hedha fel stack Redo, khater ki yaamel undo o baadha yaamel redo laazem yaarjaa ouin ken 
         AddChangementToRedo(new Changement(changement.InstanceID, changement.LineColor, ChangementType.INSTANCIATE_LINERENDERER));
         // aprés qu'on a sauvegarder l gameobject en question naamelou destroy aaleha khater l gameobject khabineh fel dossier "redo"
-        Destroy(GetInstanceById(changement.InstanceID));
+        Destroy(GameObject.Find(changement.InstanceID.ToString()));
 
 
     }
@@ -266,39 +263,61 @@ public class UndoRedo : MonoBehaviour
 
     void RedoErasedLineRenderer(Changement changement)
     {
-
+        Debug.Log(changement.InstanceID);
         UndoStack.Push(changement);
         SaveGameObjectInPrefab(changement);
-        Destroy(GetInstanceById(changement.InstanceID));
+        Destroy(GameObject.Find(changement.InstanceID.ToString()));
 
     }
 
     void UndoColorChangedLineRenderer(Changement changement)
     {
+
+        AddChangementToRedo(changement);
+
         GameObject go;
-        
-        go = GetInstanceById(changement.InstanceID);
-        Debug.Log(go.GetComponent<Renderer>().material.GetColor("_TintColor"));
-        go.GetComponent<Renderer>().material.SetColor("_TintColor", changement.PreviousColor);
+
+        go = GameObject.Find(changement.InstanceID.ToString());
+
+        go.GetComponent<Renderer>().material.SetColor("_TintColor", changement.PreviousColor);   
 
     }
 
-    void ReturnDestroyedLineRendererFromPrefab(Changement changement)
-    {
+    void RedoColorChangedLineRenderer(Changement changement)
+    {       
+        
+        UndoStack.Push(changement);
+     
         GameObject go;
+
+        go = GameObject.Find(changement.InstanceID.ToString());
+
+
+        go.GetComponent<Renderer>().material.SetColor("_TintColor", changement.NewColor);
+       
+    }
+
+    void RedoDestroyedLineRendererFromPrefab(Changement changement)
+    {
+
+        GameObject go;
+
         GameObject currGo;
 
         // nloadiw l prefab mel dossier "redo" o nhotouh fi variable go
+        // LINE RENDERER L NAME MTEOU KHABINA FIH ID ORIGINALE MTEEEOU (KHATER KI NAAAMLOU DESTROY O MBAAD INSTANCIATE L ID BESH YETBADEL DONC AWEL ID NKHALIWEEH FEL NAME)
         go = PrefabUtility.LoadPrefabContents(GetUndoRedoPathFor(changement.Changementtype) + changement.InstanceID + ".prefab");
-
+        go.name = changement.InstanceID.ToString();
         // Naamelou instance aal go besh yerjaa ouin ken
         currGo = Instantiate(go, Vector3.zero, Quaternion.identity);
 
+        currGo.name = changement.InstanceID.ToString();
         // Probleme houni: ki terjaa l instance, li heya kenet stocké fel dossier "redo" 
         // terjaa maghir mesh o maghir material 
 
         // donc narj3oulhom l mesh o material
         ReturnMeshToLineRenderer(currGo.GetComponent<LineRenderer>());
+        
         ReturnMaterialToLineRenderer(currGo, changement.LineColor);
 
         // benesba lel cas mtaa nzelt undo o baad redo lazem ki taawed tenzel undo mara okhra  
@@ -325,26 +344,17 @@ public class UndoRedo : MonoBehaviour
         return false;
     }
 
-    void UndoInstanciatedObjects()
-    {
-
-    }
-
-    void RedoInstanciatedObjects()
-    {
-
-    }
-
+   
     void UndoErasedLineRenderer(Changement changement)
     {
         GameObject go;
         GameObject currGo;
-
         // nloadiw l prefab mel dossier "redo" o nhotouh fi variable go
         go = PrefabUtility.LoadPrefabContents(GetUndoRedoPathFor(changement.Changementtype) + changement.InstanceID + ".prefab");
 
         // Naamelou instance aal go besh yerjaa ouin ken
         currGo = Instantiate(go, Vector3.zero, Quaternion.identity);
+        currGo.name = changement.InstanceID.ToString();
 
         // Probleme houni: ki terjaa l instance, li heya kenet stocké fel dossier "redo" 
         // terjaa maghir mesh o maghir material 
@@ -355,7 +365,7 @@ public class UndoRedo : MonoBehaviour
 
         // benesba lel cas mtaa nzelt undo o baad redo lazem ki taawed tenzel undo mara okhra  
         // l gameobject iwaaed isirlou undo (donc yetkhaba fel dossier "redo" mara okhra)
-        AddChangementToRedo(new Changement(currGo.GetInstanceID(), currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.DESTROYED_LINERENDERER));
+        AddChangementToRedo(new Changement(changement.InstanceID, currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.DESTROYED_LINERENDERER));
         //nfaskhou l prefab lekdim
         File.Delete(GetUndoRedoPathFor(ChangementType.INSTANCIATE_LINERENDERER) + changement.InstanceID + ".prefab");
 
@@ -382,9 +392,10 @@ public class UndoRedo : MonoBehaviour
 
      void ResaveToUndo(GameObject currGo)
     {
-        AddChangementToUndo(new Changement(currGo.GetInstanceID(), currGo, currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
+        // LINE RENDERER L NAME MTEOU KHABINA FIH ID ORIGINALE MTEEEOU (KHATER KI NAAAMLOU DESTROY O MBAAD INSTANCIATE L ID BESH YETBADEL DONC AWEL ID NKHALIWEEH FEL NAME)
+        AddChangementToUndo(new Changement(long.Parse(currGo.name), currGo, currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
 
-        SaveGameObjectInPrefab(new Changement(currGo.GetInstanceID(),ChangementType.INSTANCIATE_LINERENDERER));
+        SaveGameObjectInPrefab(new Changement(long.Parse(currGo.name), ChangementType.INSTANCIATE_LINERENDERER));
 
     }
 
@@ -443,18 +454,11 @@ public class UndoRedo : MonoBehaviour
 
 
 
-      void SaveGameObjectInPrefab(Changement changement)
+     void SaveGameObjectInPrefab(Changement changement)
     {
 
-        PrefabUtility.SaveAsPrefabAsset(GetInstanceById(changement.InstanceID), "Assets/Drawing3D/Prefabs/UndoRedo/"+changement.Changementtype+"/" + changement.InstanceID+".prefab");
+        PrefabUtility.SaveAsPrefabAsset(GameObject.Find(changement.InstanceID.ToString()), "Assets/Drawing3D/Prefabs/UndoRedo/"+changement.Changementtype+"/" + changement.InstanceID+".prefab");
         
-    }
-
-     void SaveGameObjectInPrefab(GameObject go,ChangementType changementType)
-    {
-
-        PrefabUtility.SaveAsPrefabAsset(go, "Assets/Drawing3D/Prefabs/UndoRedo/"+changementType+"/" + go.GetInstanceID() + ".prefab");
-
     }
 
      GameObject GetInstanceById(long id)
