@@ -19,7 +19,6 @@ public class GrabbingObject : MonoBehaviour
         grabObject();
     }
 
-
     public void grabObject()
     {
 
@@ -29,25 +28,23 @@ public class GrabbingObject : MonoBehaviour
             if(Input.GetButtonDown("Jump"))
             {
 
-
-                if (laserInstance.hit.collider.gameObject.transform.parent.tag=="object")
+                if (laserInstance.hit.collider.gameObject.tag == "lineRenderer")
                 {
-
-                    
-                    objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
+             
+                    objectToGrab = laserInstance.hit.collider.transform.gameObject;
 
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;
 
                 }
 
-                /*if(laserInstance.hit.collider.gameObject.tag == "lineRenderer")
+                if (laserInstance.hit.collider.gameObject.transform.parent.tag=="object")
                 {
-                    objectToGrab = laserInstance.hit.collider.transform.gameObject;
+
+                    objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
 
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;
 
-                }*/
-
+                }
 
             }
 
@@ -58,11 +55,7 @@ public class GrabbingObject : MonoBehaviour
 
             }
 
-
         }
-
-
-
 
     }
 

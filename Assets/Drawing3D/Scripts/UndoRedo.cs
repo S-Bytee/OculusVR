@@ -6,8 +6,6 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-
-
 public enum ChangementType
 {
     INSTANCIATE_LINERENDERER,DESTROYED_LINERENDERER,COLOR_CHANGE_LINERENDERER
@@ -69,7 +67,6 @@ public class Changement
 
 }
 
-
 public class UndoRedo : MonoBehaviour
 {
 
@@ -94,7 +91,6 @@ public class UndoRedo : MonoBehaviour
     {
         UndoRedoPath = Application.dataPath + "/Drawing3D/Prefabs/UndoRedo/";
         ClearRedoFolder();
-
 
         if (_instance != null && _instance != this)
         {
@@ -142,10 +138,10 @@ public class UndoRedo : MonoBehaviour
 
                     if (!ChangementColorExist(changement))
                     {
-
                         //Pour eviter le cas ouin ki taamel undo aala couleur iaawed izid changement aal couleur lekdim o hakeka on boucle fel feragh 
                         if (changement.PreviousColor != GetInstanceById(changement.InstanceID).GetComponent<Renderer>().material.GetColor("_TintColor"))
                         {
+                     
                             UndoStack.Push(changement);
 
                         }

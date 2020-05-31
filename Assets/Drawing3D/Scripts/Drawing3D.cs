@@ -23,6 +23,7 @@ public class Drawing3D : MonoBehaviour
     MeshCollider meshCollider;
     void Start()
     {
+
         laserInstance = PhysicsPointer.Instance;
 
     }
@@ -48,12 +49,12 @@ public class Drawing3D : MonoBehaviour
         {
 
             createLine();
-
            
         }
         
         if (Input.GetMouseButton(0))
         {
+     
             tempFingerPos = laserInstance.CalculateEnd();
        
             updateLine(laserInstance.CalculateEnd());
@@ -80,17 +81,15 @@ public class Drawing3D : MonoBehaviour
 
     }
 
-
     public void createLine()
     {
 
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         currentLine.name = currentLine.GetInstanceID().ToString();
         lineRenderer = currentLine.GetComponent<LineRenderer>();
-
+        lineRenderer.useWorldSpace = false;
         
         if (lineRenderer) lineRenderer.widthCurve = new AnimationCurve(new Keyframe(0, defaultWidth), new Keyframe(0.5f, middleWidth), new Keyframe(1, defaultWidth));
-
 
         if (ColorIndicator.Instance == null)
         {
@@ -119,7 +118,6 @@ public class Drawing3D : MonoBehaviour
         if(lineRenderer!=null)
         {
 
-            
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
 
@@ -131,7 +129,6 @@ public class Drawing3D : MonoBehaviour
 
     public void updateLineWidth(float value)
     {
-
         
         defaultWidth = value / 100;
         
