@@ -175,6 +175,14 @@ namespace PaintIn3D
 		[System.NonSerialized]
 		private static List<P3dPaintableTexture> tempPaintableTextures = new List<P3dPaintableTexture>();
 
+
+
+		private void Update()
+		{
+			if(gameObject.tag == "object")
+			this.color = GetComponent<Renderer>().material.GetColor("_Color");
+		}
+
 		/// <summary>This will get the current texture.</summary>
 		public RenderTexture Current
 		{

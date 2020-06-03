@@ -259,7 +259,6 @@ public class UndoRedo : MonoBehaviour
 
     void RedoErasedLineRenderer(Changement changement)
     {
-        Debug.Log(changement.InstanceID);
         UndoStack.Push(changement);
         SaveGameObjectInPrefab(changement);
         Destroy(GameObject.Find(changement.InstanceID.ToString()));
