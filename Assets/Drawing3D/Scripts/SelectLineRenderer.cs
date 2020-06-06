@@ -54,7 +54,7 @@ public class SelectLineRenderer : MonoBehaviour
         }
         else
         {
-            isSelected = false;
+            //isSelected = false;
         }
     }
 

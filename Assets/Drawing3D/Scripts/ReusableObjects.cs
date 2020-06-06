@@ -28,9 +28,8 @@ public class ReusableObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AddObject();
 
-     
+        AddObject();
 
     }
 
@@ -49,6 +48,7 @@ public class ReusableObjects : MonoBehaviour
         rootGo = new GameObject();
         rootGo.name = CurrentObjectName;
         rootGo.AddComponent<StyleObjects>();
+        rootGo.AddComponent<ShowObjectName>();
 
         if (Directory.Exists(CurrentPath))
         {
@@ -93,22 +93,20 @@ public class ReusableObjects : MonoBehaviour
 
    public void SaveObject()
     {
-       for(int i = 0; i < rootGo.transform.childCount; i++)
+  
+
+        if (!Directory.Exists(CurrentPath))
         {
-            if(!Directory.Exists(CurrentPath))
-            {
-                Directory.CreateDirectory(CurrentPath);
-                UnityEditor.AssetDatabase.Refresh();
-
-            }
-
-
-            PrefabUtility.SaveAsPrefabAsset(rootGo.transform.GetChild(i).gameObject, CurrentPath + "/"+ rootGo.transform.GetChild(i).GetInstanceID()+ ".prefab");
+            Directory.CreateDirectory(CurrentPath);
             UnityEditor.AssetDatabase.Refresh();
 
-
-            
         }
+
+
+        PrefabUtility.SaveAsPrefabAsset(rootGo.gameObject, CurrentPath + "/" + rootGo.GetInstanceID() + ".prefab");
+        UnityEditor.AssetDatabase.Refresh();
+
+
     }
 
     void InitializeDirectory()

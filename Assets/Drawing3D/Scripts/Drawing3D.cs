@@ -99,30 +99,35 @@ public class Drawing3D : MonoBehaviour
                 MeshCollider meshCollider = lineRenderer.gameObject.AddComponent<MeshCollider>();
                 meshCollider.sharedMesh = mesh;
                 lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+                lineRenderer.gameObject. GetComponent<MeshCollider>().convex = true;
 
                 UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
 
             }
         }
+        else
+        {
+
+          //VerifyForMeshes();
+
+        }
 
 
     }
-    private void LateUpdate()
-    {
-        VerifyForMeshes();
-    }
+  
 
     public void VerifyForMeshes()
     {
+
         foreach(GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
         {
             if(go.GetComponent<LineRenderer>())
             {
                 LineRenderer LR = go.GetComponent<LineRenderer>();
-                if(LR.GetComponent<MeshFilter>().mesh != null)
+                if(LR.GetComponent<MeshCollider>() == null )
                 {
                     mesh = new Mesh();
-                    LR.BakeMesh(mesh,false);
+                    LR.BakeMesh(mesh,true);
                     MeshCollider meshCollider = LR.gameObject.AddComponent<MeshCollider>();
                     meshCollider.sharedMesh = mesh;
                     LR.gameObject.GetComponent<MeshFilter>().mesh = mesh;

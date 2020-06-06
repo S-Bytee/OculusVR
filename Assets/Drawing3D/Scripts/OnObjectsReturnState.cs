@@ -21,6 +21,7 @@ public class OnObjectsReturnState : MonoBehaviour
     void Update()
     {
         ReturnToStateAndPlayAnimation();
+        ShowTextIfNoContent();
     }
 
     public void ReturnToStateAndPlayAnimation()
@@ -57,5 +58,18 @@ public class OnObjectsReturnState : MonoBehaviour
 
     }
 
+
+    void ShowTextIfNoContent()
+    {
+        if(transform.GetChild(0).GetChild(0).childCount == 0)
+        {
+            transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(1).gameObject.SetActive(false);
+
+        }
+    }
     
 }

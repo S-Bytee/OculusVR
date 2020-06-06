@@ -31,5 +31,5 @@ public class HorizentalScroll : MonoBehaviour
         gameObject.transform.position = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
 
     }
-
+    
 }

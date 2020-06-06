@@ -48,7 +48,7 @@ public class KeyboardVRManager : MonoBehaviour
                         if (Input.GetMouseButtonDown(0))
                         {
                             Text += laserInstance.hit.collider.name;
-                            Debug.Log(Text);
+                          //  Debug.Log(Text);
                         }
                     }
                     else
@@ -60,7 +60,7 @@ public class KeyboardVRManager : MonoBehaviour
                                     if (Input.GetMouseButtonDown(0))
                                     {
                                         Text += " ";
-                                        Debug.Log(Text);
+                                       // Debug.Log(Text);
 
                                     }
                                     break;
@@ -70,7 +70,7 @@ public class KeyboardVRManager : MonoBehaviour
                                     if (Input.GetMouseButtonDown(0))
                                     {
                                         Text = "";
-                                        Debug.Log(Text);
+                                       // Debug.Log(Text);
 
                                     }
                                     break;
@@ -81,7 +81,7 @@ public class KeyboardVRManager : MonoBehaviour
                                     {
 
                                         Text = Text.Remove(Text.Length - 1, 1);
-                                        Debug.Log(Text);
+                                     //   Debug.Log(Text);
 
                                     }
                                     break;

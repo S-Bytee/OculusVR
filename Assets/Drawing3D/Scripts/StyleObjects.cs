@@ -26,15 +26,28 @@ public class StyleObjects : MonoBehaviour
     public void StyleObject()
     {
 
-        for(int i=0; i<transform.childCount;i++)
+        if (transform.childCount > 0)
+            UpdateOutlineColor();
+
+
+        for (int i=0; i<transform.childCount;i++)
         {
+            
+
             if(transform.GetChild(i).tag == "object")
             {
                 transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.shader = sh1;     
-                transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.SetColor("_OutlineColor",OutlineColor) ;     
-                
+                transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.SetColor("_OutlineColor",OutlineColor) ;
+                transform.GetChild(i).GetChild(0).GetComponent<OnSelectObject>().enabled = false;
+
+
             }
         }
 
+    }
+
+    void UpdateOutlineColor()
+    {
+        OutlineColor = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.GetColor("_Color");
     }
 }
