@@ -3,13 +3,13 @@ using UnityEngine;
 public class ColorSaturationBrightnessPicker : MonoBehaviour {
 
     public Material backgroundMaterial;
-
+    public bool IsDragging ;
     private static ColorSaturationBrightnessPicker _instance;
     public static  ColorSaturationBrightnessPicker Instance { get { return _instance; } }
 
     private void Awake()
     {
-
+        IsDragging = false;
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -31,7 +31,7 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
     
     void OnDrag(Vector3 point)
     {
-        
+
         //transform.parent.BroadcastMessage("SetSaturationBrightness", new Vector2(point.x, point.y));
         GameObject.Find("ColorIndicator").GetComponent<ColorIndicator>().SetSaturationBrightness(new Vector2(point.x, point.y));
 
@@ -49,6 +49,23 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
                 }
             }
             
+        }
+
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
+        {
+
+            if(go.GetComponent<SelectLineRenderer>())
+            {
+
+                if(go.GetComponent<SelectLineRenderer>().isSelected)
+                {
+                
+                    go.GetComponent<Renderer>().material.SetColor("_TintColor", ColorIndicator.Instance.color.ToColor());
+                
+                }
+
+            }
+
         }
 
 

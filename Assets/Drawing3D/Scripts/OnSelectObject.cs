@@ -54,8 +54,8 @@ public class OnSelectObject : MonoBehaviour
                 //Idha laser aaamel collision maa l instance mtaa l objet li fih script hedha
                 if (go == this.gameObject)
                 {
-
-                    isClicked = true;
+                    DisableAllLineRendererSelection();
+                        isClicked = true;
 
                 }
                 else
@@ -163,6 +163,18 @@ public class OnSelectObject : MonoBehaviour
             exceptions.Add(tag);
         }
         
+    }
+
+
+    void DisableAllLineRendererSelection()
+    {
+
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
+        {
+            if (go.GetComponent<SelectLineRenderer>().isSelected == true)
+                go.GetComponent<SelectLineRenderer>().isSelected = false;
+        }
+
     }
 
     

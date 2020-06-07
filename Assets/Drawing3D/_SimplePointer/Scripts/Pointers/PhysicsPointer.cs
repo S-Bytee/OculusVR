@@ -57,7 +57,10 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
         changeLaserLength();
         updateColor();
         if (!onCollison)
+        {
             trailFollow();
+            hit = new RaycastHit();
+        }
 
 
     }
