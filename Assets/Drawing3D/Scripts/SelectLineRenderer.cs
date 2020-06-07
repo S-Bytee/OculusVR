@@ -10,6 +10,7 @@ public class SelectLineRenderer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         isSelected = false;
         laserInstance = PhysicsPointer.Instance;
 
@@ -34,7 +35,8 @@ public class SelectLineRenderer : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                
+                    
+                    DisableAllObjectSelection();
                     isSelected = true;
                         
                 }
@@ -44,7 +46,7 @@ public class SelectLineRenderer : MonoBehaviour
 
         if (laserInstance.hit.collider)
         {
-            if (laserInstance.hit.collider.gameObject != gameObject && laserInstance.hit.collider.gameObject.tag != "artisticTools")
+            if (laserInstance.hit.collider.gameObject != gameObject && laserInstance.hit.collider.gameObject.tag != "artisticTools" && laserInstance.hit.collider.gameObject.tag != "gizmo")
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -55,6 +57,19 @@ public class SelectLineRenderer : MonoBehaviour
         else
         {
             //isSelected = false;
+        }
+    }
+
+    void DisableAllObjectSelection()
+    {
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("object"))
+        {
+            if(go.transform.childCount == 1)
+            {
+                if (go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked == true)
+                    go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked = false;
+
+            }
         }
     }
 

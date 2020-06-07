@@ -12,13 +12,14 @@ public class LoadReusableObjects : MonoBehaviour
 {
     string ReusableObjectsPath;
     Material mat;
-    Material matLine;
+     Material matLine;
 
     public GameObject Object;
 
     // Start is called before the first frame update
     void Start()
     {
+        matLine = Resources.Load("virtualShield-02",typeof(Material)) as Material;
         FetchForObjects();
     }
 
@@ -51,9 +52,9 @@ public class LoadReusableObjects : MonoBehaviour
                             currGo.transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.color = color;
 
                         }
-                        else if (go.tag == "lineRenderer")
+                        else if (currGo.transform.GetChild(i).tag == "lineRenderer")
                         {
-                            Color color = currGo.transform.GetChild(i).GetChild(0).GetComponent<P3dPaintableTexture>().Color;
+                            Color color = currGo.transform.GetChild(i).GetComponent<P3dPaintableTexture>().Color;
                             currGo.transform.GetChild(i).GetComponent<Renderer>().material = matLine;
                             currGo.transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_TintColor", color);
 

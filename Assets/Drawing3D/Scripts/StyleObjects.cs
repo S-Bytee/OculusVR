@@ -36,11 +36,19 @@ public class StyleObjects : MonoBehaviour
 
             if(transform.GetChild(i).tag == "object")
             {
+                
                 transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.shader = sh1;     
                 transform.GetChild(i).GetChild(0).GetComponent<Renderer>().material.SetColor("_OutlineColor",OutlineColor) ;
                 transform.GetChild(i).GetChild(0).GetComponent<OnSelectObject>().enabled = false;
 
+            }
+            else if(transform.GetChild(i).tag == "lineRenderer")
+            {
 
+                /*transform.GetChild(i).GetComponent<Renderer>().material.shader = sh1;
+                transform.GetChild(i).GetComponent<Renderer>().material.SetColor("_OutlineColor", OutlineColor);
+                transform.GetChild(i).GetChild(0).GetComponent<SelectLineRenderer>().enabled = false;
+                */
             }
         }
 
@@ -48,6 +56,16 @@ public class StyleObjects : MonoBehaviour
 
     void UpdateOutlineColor()
     {
-        OutlineColor = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.GetColor("_Color");
+        if(transform.GetChild(0).tag=="object")
+        {
+
+            OutlineColor = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.GetColor("_Color");
+
+        }
+        else if(transform.GetChild(0).tag == "lineRenderer")
+        {
+            OutlineColor = transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_TintColor");
+
+        }
     }
 }

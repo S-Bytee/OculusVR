@@ -202,7 +202,24 @@ public class WheelCanvasNavigator : MonoBehaviour
 
         }
 
-        if(showGZIMO)
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
+        {
+
+
+            if (go.transform.childCount == 0)
+            {
+
+                if (go.transform.GetComponent<SelectLineRenderer>().isSelected)
+                {
+                    showGZIMO = true;
+                }
+
+            }
+
+
+        }
+
+        if (showGZIMO)
         {
         
             hideAllCenterWheelChildren();

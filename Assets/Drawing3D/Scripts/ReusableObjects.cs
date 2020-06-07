@@ -93,7 +93,6 @@ public class ReusableObjects : MonoBehaviour
 
    public void SaveObject()
     {
-  
 
         if (!Directory.Exists(CurrentPath))
         {
@@ -102,10 +101,8 @@ public class ReusableObjects : MonoBehaviour
 
         }
 
-
         PrefabUtility.SaveAsPrefabAsset(rootGo.gameObject, CurrentPath + "/" + rootGo.GetInstanceID() + ".prefab");
         UnityEditor.AssetDatabase.Refresh();
-
 
     }
 

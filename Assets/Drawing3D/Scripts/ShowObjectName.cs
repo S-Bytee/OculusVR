@@ -13,8 +13,42 @@ public class ShowObjectName : MonoBehaviour
 
     void Start()
     {
-        TextGameObject = new GameObject();
+        //Debug.Log("sssss");
+
+
+
+        if(transform.GetChild(0).gameObject.tag =="object" )
+        {
+            if(transform.GetChild(0).childCount==1)
+            {
+                TextGameObject = new GameObject();
+
+            }
+            else
+            {
+                TextGameObject = transform.GetChild(0).GetChild(1).gameObject;
+            }
+
+        }
+        else if(transform.GetChild(0).gameObject.tag == "lineRenderer")
+        {
+            if(transform.GetChild(0).childCount == 0)
+            {
+                TextGameObject = new GameObject();
+
+            }
+            else
+            {
+
+                TextGameObject = transform.GetChild(0).GetChild(0).gameObject;
+
+            }
+
+        }
+
         Offset = new Vector3(0, 5f, 2f);
+        CreateText();
+
     }
 
 
@@ -23,7 +57,6 @@ public class ShowObjectName : MonoBehaviour
     {
         if (transform.childCount > 0)
         {
-            CreateText();
             UpdateTextPosition();
         }
             
@@ -31,7 +64,17 @@ public class ShowObjectName : MonoBehaviour
 
     void UpdateTextPosition()
     {
-        TextGameObject.transform.localPosition = Vector3.zero+Offset;
+
+        if (transform.GetChild(0).tag == "object")
+        {
+            TextGameObject.transform.localPosition = Vector3.zero + Offset;
+
+        }
+        else if(transform.GetChild(0).tag == "lineRenderer")
+        {
+            TextGameObject.transform.localPosition = transform.GetChild(0).GetComponent<LineRenderer>().GetPosition(0) + Offset;
+
+        }
     }
         
 
@@ -46,8 +89,9 @@ public class ShowObjectName : MonoBehaviour
         TextGameObject.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center ;
         TextGameObject.GetComponent<TextMeshPro>().fontSize = 5;
         TextGameObject.transform.parent = FirstObject.transform;
-        string Text = gameObject.name + " " + TextGameObject.transform.parent.parent.childCount.ToString() + " obj";
+        string Text = gameObject.name.Split('_')[0] + " " + TextGameObject.transform.parent.parent.childCount.ToString() + " obj";
         TextGameObject.GetComponent<TextMeshPro>().text = Text;
+
 
     }
 

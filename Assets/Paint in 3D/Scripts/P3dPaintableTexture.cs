@@ -180,7 +180,18 @@ namespace PaintIn3D
 		private void Update()
 		{
 			if(gameObject.tag == "object")
-			this.color = GetComponent<Renderer>().material.GetColor("_Color");
+			{
+
+				this.color = GetComponent<Renderer>().material.GetColor("_Color");
+			
+			}
+			else if (gameObject.tag == "lineRenderer")
+			{
+
+				this.color = GetComponent<Renderer>().material.GetColor("_TintColor");
+
+			}
+
 		}
 
 		/// <summary>This will get the current texture.</summary>

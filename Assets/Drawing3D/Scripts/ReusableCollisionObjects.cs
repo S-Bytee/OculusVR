@@ -99,8 +99,33 @@ public class ReusableCollisionObjects : MonoBehaviour
                                 
                       }
 
+        if (laserInstance.hit.collider)
+        {
+            if (laserInstance.hit.collider.gameObject != gameObject)
+            {
+                if (!IsCollidedWithObject)
+                {
 
-              Debug.Log(gameObject.GetInstanceID() + " / " + IsCollidedWithObject);
+                    transform.parent = null;
+
+                }
+
+            }
+        }
+        else
+        {
+            if (!IsCollidedWithObject)
+            {
+
+                transform.parent = null;
+            
+            }
+
+        }
+
+
+
+        Debug.Log(gameObject.GetInstanceID() + " / " + IsCollidedWithObject);
 
     }
 

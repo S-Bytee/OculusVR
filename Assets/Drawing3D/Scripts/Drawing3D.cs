@@ -100,7 +100,7 @@ public class Drawing3D : MonoBehaviour
                 meshCollider.sharedMesh = mesh;
                 lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
                 lineRenderer.gameObject. GetComponent<MeshCollider>().convex = true;
-
+                
                 UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
 
             }
