@@ -59,7 +59,10 @@ public class Signup : MonoBehaviour
             user.Add(new BsonDocument{{"last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute}});
             user.AddRange(new BsonDocument{{"2D_projects",""}});
             user.AddRange(new BsonDocument{{"3D_projects",""}});
-            user.AddRange(new BsonDocument{{"friends",""}});
+            user.AddRange(new BsonDocument{{"friends",new BsonArray{
+                new BsonDocument{{"email","email"}}
+            }
+            }});
             PlayerPrefs.SetString("email",email);
             PlayerPrefs.SetString("username",username);
             PlayerPrefs.SetString("createdAt",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year);
@@ -100,9 +103,8 @@ public class Signup : MonoBehaviour
 
             
             return true;
-        }
-        openPopup(3);
-        return false;
+        }else{openPopup(3);
+        return false;}
     }
 
     public void changeInput()
