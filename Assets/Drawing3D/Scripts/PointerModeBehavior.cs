@@ -15,6 +15,8 @@ public class PointerModeBehavior : MonoBehaviour
     public int spray_index=2;
     public int spatter_index=3;
     public int erasing_index=4;
+    public int stylizing_index=5;
+    public int reusable_index=6;
     
 
     // Start is called before the first frame update
@@ -97,9 +99,16 @@ public class PointerModeBehavior : MonoBehaviour
     {
 
         disableAll();
-        mode.GetChild(5).gameObject.SetActive(true);
+        mode.GetChild(stylizing_index).gameObject.SetActive(true);
         updateOnHoverBtn();
 
+    }
+
+    public void enableReusableObjects()
+    {
+        disableAll();
+        mode.GetChild(reusable_index).gameObject.SetActive(true);
+        updateOnHoverBtn();
     }
 
 }

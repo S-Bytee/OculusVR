@@ -33,7 +33,7 @@ public class Draggable : MonoBehaviour
     void FixedUpdate()
 	{
 
-		//Debug.Log(dragging);
+
 
 		if (Input.GetMouseButtonDown(0)) {
 			dragging = false;

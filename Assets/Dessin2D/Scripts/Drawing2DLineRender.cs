@@ -138,7 +138,7 @@ public class Drawing2DLineRender : MonoBehaviour
     {
 
 
-        defaultWidth = value / 100;
+        defaultWidth = value / 100 * 0.5f;
 
     }
 

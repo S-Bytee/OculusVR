@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using System.Linq;
 
 public class Drawing3D : MonoBehaviour
 {
@@ -14,78 +15,139 @@ public class Drawing3D : MonoBehaviour
     public GameObject linePrefab = null;
     public GameObject currentLine = null;
     LineRenderer lineRenderer;
-    Vector3 tempFingerPos;
     public List<Vector3> fingerPositions;
     const string MATERIALS_TEMP_PATH = "Assets/Drawing3D/Materials/MaterialsTemp/";
     float defaultWidth=0.5f;
     float middleWidth=0.5f;
     Mesh mesh;
     MeshCollider meshCollider;
+    string[] DrawingExceptions = {"wheels","gizmo","artisticTools"};
     void Start()
     {
+
         laserInstance = PhysicsPointer.Instance;
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-     
-    }
-
+ 
     private void FixedUpdate()
     {
-
-        if (!laserInstance.onCollison)
             drawing();
-
     }
 
     public void drawing()
-    {
-
-        if(Input.GetMouseButtonDown(0))
+    {/*
+        if (Input.GetMouseButtonDown(0))
         {
-            createLine();
-           
-        }
-        
-        if (Input.GetMouseButton(0))
-        {
-            tempFingerPos = laserInstance.CalculateEnd();
-       
-            updateLine(laserInstance.CalculateEnd());
-
-        }
-        
-        if(Input.GetMouseButtonUp(0))
-        {
-
-            if(lineRenderer!=null)
+            if(laserInstance.onCollison)
             {
+                if (!DrawingExceptions.Contains(laserInstance.hit.collider.tag))
+                    createLine();
+            }
+            else
+            {
+                createLine();
+            }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            if (laserInstance.onCollison)
+            {
+                if(!DrawingExceptions.Contains(laserInstance.hit.collider.tag))
+                    updateLine(laserInstance.hit.point);
+            }
+            else
+            {
+                updateLine(laserInstance.DefaultEnd(laserInstance.defaultLength));
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (lineRenderer != null)
+            {
+                mesh = new Mesh();
+                lineRenderer.BakeMesh(mesh,true);
+                MeshCollider meshCollider = lineRenderer.gameObject.AddComponent<MeshCollider>();
+                meshCollider.sharedMesh = mesh;
+                lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
 
+                UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
+
+            }
+        }
+        */
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+                createLine();
+            
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            
+                updateLine(laserInstance.DefaultEnd(laserInstance.defaultLength));
+            
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (lineRenderer != null)
+            {
                 mesh = new Mesh();
                 lineRenderer.BakeMesh(mesh, true);
                 MeshCollider meshCollider = lineRenderer.gameObject.AddComponent<MeshCollider>();
                 meshCollider.sharedMesh = mesh;
                 lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+                lineRenderer.gameObject. GetComponent<MeshCollider>().convex = true;
+                
+                UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
 
             }
+        }
+        else
+        {
+
+          //VerifyForMeshes();
 
         }
 
+
     }
+  
+
+    public void VerifyForMeshes()
+    {
+
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
+        {
+            if(go.GetComponent<LineRenderer>())
+            {
+                LineRenderer LR = go.GetComponent<LineRenderer>();
+                if(LR.GetComponent<MeshCollider>() == null )
+                {
+                    mesh = new Mesh();
+                    LR.BakeMesh(mesh,true);
+                    MeshCollider meshCollider = LR.gameObject.AddComponent<MeshCollider>();
+                    meshCollider.sharedMesh = mesh;
+                    LR.gameObject.GetComponent<MeshFilter>().mesh = mesh;
+
+                }
+
+            }
 
 
+        }
+    }
     public void createLine()
     {
 
-        currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        currentLine = Instantiate(linePrefab);
+        currentLine.name = currentLine.GetInstanceID().ToString();
         lineRenderer = currentLine.GetComponent<LineRenderer>();
-
+        lineRenderer.useWorldSpace = false;
         
         if (lineRenderer) lineRenderer.widthCurve = new AnimationCurve(new Keyframe(0, defaultWidth), new Keyframe(0.5f, middleWidth), new Keyframe(1, defaultWidth));
-
 
         if (ColorIndicator.Instance == null)
         {
@@ -109,24 +171,20 @@ public class Drawing3D : MonoBehaviour
 
     public void updateLine(Vector3 newPosition)
     {
-
-        fingerPositions.Add(newPosition);
-        if(lineRenderer!=null)
+        if(lineRenderer != null)
         {
 
-            
+            fingerPositions.Add(newPosition);           
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, newPosition);
 
         }
-
-
+       
     }
 
 
     public void updateLineWidth(float value)
     {
-
         
         defaultWidth = value / 100;
         

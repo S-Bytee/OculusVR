@@ -27,7 +27,7 @@ public class WheelBehavior : MonoBehaviour
         {
             if(laserPointer.onCollison)
             {
-                Debug.Log("onselecteeeeed");
+              //  Debug.Log("onselecteeeeed");
 
                 if (laserPointer.hit.collider.gameObject == this.gameObject)
                 {

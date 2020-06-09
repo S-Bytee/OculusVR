@@ -33,7 +33,7 @@ public class Grabing2DObject : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
 
-                Debug.Log(laserInstance.hit.collider.gameObject);
+                //Debug.Log(laserInstance.hit.collider.gameObject);
 
                 if (laserInstance.hit.collider.gameObject.transform.parent.tag == "object")
                 {
@@ -43,10 +43,21 @@ public class Grabing2DObject : MonoBehaviour
 
                     objectToGrab.transform.parent = laserInstance.gameObject.transform;
                     objectToGrab.transform.GetChild(0).GetComponent<Renderer>().material.color = c;
+                    
+
+
+
+
 
                 }
+
                
 
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+
+                Destroy(objectToGrab);
 
             }
 
@@ -56,6 +67,7 @@ public class Grabing2DObject : MonoBehaviour
                 objectToGrab.transform.parent = null;
 
             }
+            
 
 
         }
