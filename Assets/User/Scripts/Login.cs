@@ -13,7 +13,9 @@ using MongoDB;
 public class Login : MonoBehaviour
 {
 
-    public GameObject input_email;
+
+    public Component[] hingeJoints;
+    public GameObject popup;    public GameObject input_email;
     public GameObject input_password;
     private string email;
     private string password;
@@ -37,14 +39,13 @@ public class Login : MonoBehaviour
     }
 
     public void singin(){
-        print(email);
+        if(verif()){
         var filter = Builders<BsonDocument>.Filter.Eq("user_email", email);
         var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(filter).ToList();
         foreach(var d in docu )
         {
             if(d.GetValue(d.IndexOfName("user_password")) == password )
             {
-                print("success");
                 PlayerPrefs.SetString("email",email);
                 PlayerPrefs.SetString("username",d.GetValue(d.IndexOfName("user_username")).ToString());
                 PlayerPrefs.SetString("createdAt",d.GetValue(d.IndexOfName("createdAt")).ToString());
@@ -54,10 +55,43 @@ public class Login : MonoBehaviour
                 
             }
             else
-            print("failure");
+            openPopup(4);
+        }
         }
         
     }
+
+    public bool verif()
+    {
+        // Password RegEx & Validation
+        var hasNumber = new Regex(@"[0-9]+");
+        var hasUpperChar = new Regex(@"[A-Z]+");
+        var hasMinimum8Chars = new Regex(@".{8,}");
+        var isValidated = hasNumber.IsMatch(password) && hasUpperChar.IsMatch(password) && hasMinimum8Chars.IsMatch(password);
+        print("passworld is "+isValidated);
+        // Email Regex && Validation
+        var email_regex = new Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+        print("email is"+email_regex.IsMatch(email));
+        if(password!="" && email!=""){
+
+            
+            if(!email_regex.IsMatch(email))
+            {
+                openPopup(2);
+                return false;
+            }
+            if(!isValidated)
+            {
+                openPopup(1);
+                return false;
+            }
+
+            
+            return true;
+        }else{openPopup(3);
+        return false;}
+    }
+
 
     void UpdateLogin()
     {
@@ -71,5 +105,31 @@ public class Login : MonoBehaviour
             if(input_email.GetComponent<InputField>().isFocused){
                 input_password.GetComponent<InputField>().Select();
             }
+    }
+
+    public void openPopup(int i)
+    {
+        String body ="";
+        switch(i)
+        {
+            case 1 : body = "password minimum length must be 8 characters,have at least 1 number and an Uppercase.";
+            break;
+            case 2 : body = "you typed a wrong email, please respect its structure 'test@spatter.com' ";
+            break;
+            case 3 : body = "Please fill the input with your credentials/informations.";
+            break;
+            case 4 : body = "Wrong password, please try again.";
+            break;
+        }
+            hingeJoints = popup.GetComponentsInChildren<Component>();
+            foreach (Component joint in hingeJoints)
+            {
+                if(joint.name.Equals("body_popup"))
+                    joint.GetComponent<Text>().text = body;
+            }
+            popup.SetActive(true);
+    }
+    public void closePopup(){
+        popup.SetActive(false);
     }
 }

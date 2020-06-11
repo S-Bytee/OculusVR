@@ -5,7 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using MongoDB.Bson.Serialization;
 public class users_book : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -16,14 +19,22 @@ public class users_book : MonoBehaviour
     public GameObject text;
     public Component[] hingeJoints;
     List<string> collectionNames = new List<string>();
-        
+    GraphicRaycaster raycaster;
+    String FriendEmail = "";
+    
+    void Awake()
+     {
+         // Get both of the components we need to do this
+         this.raycaster = GetComponent<GraphicRaycaster>();
+     }
+
     private void Start() {
          var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(_ => true).ToList();
         print(docu.Count);
         foreach (var doc in docu)
         {
             var copy = Instantiate(itemTemplate);
-            //print(doc.GetValue(2));
+            print(doc.GetValue(2));
             copy.GetComponentInChildren<Text>().text="Username : "+ doc.GetValue(2);
             hingeJoints = copy.GetComponentsInChildren<Component>();
             foreach (Component joint in hingeJoints)
@@ -40,36 +51,76 @@ public class users_book : MonoBehaviour
     }
 
     private void Update() {
-            if (Input.GetMouseButtonDown (0)) {    
-             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-             RaycastHit hit;
-            print("no");
-             if (Physics.Raycast(ray, out hit,100)) {
-                 // whatever tag you are looking for on your game object
-                 print(hit.transform.name);
-                 if(hit.collider.name == "user_content") {                           
-                    hingeJoints =  hit.collider.GetComponentsInChildren<Component>();
-                     foreach (Component joint in hingeJoints)
-                    {
-                     if(joint.name.Equals("user_username")){
-                         getProjects(joint.GetComponent<Text>().text);
-                         foreach(var u in collectionNames)
-                         {  
-                             print(u);
-                            var copy = Instantiate(project_template);
-                            hingeJoints = copy.GetComponentsInChildren<Component>();
-                            foreach (Component j in hingeJoints)
-                            {
-                                j.GetComponent<Text>().text = u;
+
+            //Check if the left Mouse button is clicked
+         if (Input.GetKeyDown(KeyCode.Mouse0))
+         {
+             //Set up the new Pointer Event
+             PointerEventData pointerData = new PointerEventData(EventSystem.current);
+             List<RaycastResult> results = new List<RaycastResult>();
+ 
+             //Raycast using the Graphics Raycaster and mouse click position
+             pointerData.position = Input.mousePosition;
+             this.raycaster.Raycast(pointerData, results);
+ 
+             //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+             foreach (RaycastResult result in results)
+             {
+
+                 Debug.Log("Hit " + result.gameObject.name);
+                 if(result.gameObject.name=="User_card(Clone)")
+                 {
+                     
+                     hingeJoints = result.gameObject.GetComponentsInChildren<Component>();
+                     foreach (Component joint in hingeJoints){
+
+                        if(joint.name.Equals("user_email")){
+                            FriendEmail = joint.GetComponent<Text>().text.Substring(8,joint.GetComponent<Text>().text.Length-8);
+                        }
+
+                        if(joint.name.Equals("user_username")){
+                             String text = joint.GetComponent<Text>().text.Substring(0,joint.GetComponent<Text>().text.IndexOf("'"));
+                             print(text);
+                             getProjects(text);
+                             var copy = Instantiate(project_template);
+                                /* hingeJoints = copy.GetComponentsInChildren<Component>();
+                                 print(hingeJoints.Length);
+                                foreach (Component j in hingeJoints)
+                                {
+                                    print(j.name);
+                                    if(j.name.Equals("Panel(Clone)"))
+                                    DestroyImmediate(j);
+                                }
+                                copy.transform.parent = project_content.transform;*/
+                             if(collectionNames.Count==0)
+                             {
+                                copy = Instantiate(project_template);
+                                 hingeJoints = copy.GetComponentsInChildren<Component>();
+                                foreach (Component j in hingeJoints)
+                                {
+                                    j.GetComponentInChildren<Text>().text = "No projects available";
+                                }
+                                copy.transform.parent = project_content.transform;
+                             }
+                             else{
+                            foreach(var u in collectionNames)
+                            {  
+                                print(u);
+                                copy = Instantiate(project_template);
+                                print(collectionNames.Count);
+                                hingeJoints = copy.GetComponentsInChildren<Component>();
+                                foreach (Component j in hingeJoints)
+                                {
+                                    print(j.name);
+                                    j.GetComponentInChildren<Text>().text = u;
+                                }
+                                copy.transform.parent=project_content.transform;
                             }
-                            copy.transform.parent=project_content.transform;
+                            }
                          }
                      }
-                        
-                    }            
                  }
-                 
-             }    
+             }
          }
     }
 
@@ -85,7 +136,26 @@ public class users_book : MonoBehaviour
     }
     public void AddButtonClick(){
 
+        var filter = Builders<BsonDocument>.Filter.Eq("user_email", PlayerPrefs.GetString("email"));
         
+        var users = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(filter).ToList();
+        print(users.Count);
+        foreach(var d in users)
+        {
+            BsonArray friendList = d.GetValue(9).AsBsonArray ;
+           /* if(friendList.Count != 0)
+            foreach(BsonDocument t in friendList )
+            {
+                print("hedhi loula " +t.GetValue(t.IndexOfName("email")));
+            }*/
+           // friends.Add(new BsonDocument{{"email",FriendEmail}});
+            friendList.Add(new BsonDocument{{"email",FriendEmail}});
+            BsonDocument data = new BsonDocument() ;
+            data.AddRange(new BsonDocument{{"friends",friendList}});
+            var update = Builders<BsonDocument>.Update.Push("friends",new BsonDocument{{"email",FriendEmail}});
+            Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").UpdateOneAsync(filter,update);
+        }
+            print("email : "+FriendEmail);
     }
 
     public void ReturnButton(){

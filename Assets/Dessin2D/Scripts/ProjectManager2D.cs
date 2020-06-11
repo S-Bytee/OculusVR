@@ -41,6 +41,7 @@ public class ProjectManager2D : MonoBehaviour
     private void Awake()
     {
         PlayerPrefs.SetString("ProjectName", "");
+        
         username = PlayerPrefs.GetString("username");
         PlayerPrefs.Save();
 
@@ -217,8 +218,9 @@ public class ProjectManager2D : MonoBehaviour
     {
 
         var filter = Builders<BsonDocument>.Filter.Eq("type", "LineRenderer");
-        var document = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(filter);
+        var document = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()+"_2D").Find(filter);
         Debug.Log("LoadedLines1");
+        Debug.Log(currentProjectName());
 
         foreach (var doc in document.ToCursor().ToEnumerable())
         {

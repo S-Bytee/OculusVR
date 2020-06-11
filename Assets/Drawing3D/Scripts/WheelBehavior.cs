@@ -22,35 +22,38 @@ public class WheelBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(laserPointer.hit.collider)
+        if(laserPointer)
         {
-            if(laserPointer.onCollison)
+            if (laserPointer.hit.collider)
             {
-              //  Debug.Log("onselecteeeeed");
-
-                if (laserPointer.hit.collider.gameObject == this.gameObject)
+                if (laserPointer.onCollison)
                 {
+                    //  Debug.Log("onselecteeeeed");
 
-                    
-                    GetComponent<Image>().sprite = select_sprite;
+                    if (laserPointer.hit.collider.gameObject == this.gameObject)
+                    {
 
-                    if(Input.GetMouseButtonDown(0)) this.gameObject.GetComponent<Button>().onClick.Invoke();
 
+                        GetComponent<Image>().sprite = select_sprite;
+
+                        if (Input.GetMouseButtonDown(0)) this.gameObject.GetComponent<Button>().onClick.Invoke();
+
+                    }
+                    else
+                    {
+                        GetComponent<Image>().sprite = default_sprite;
+                    }
                 }
                 else
                 {
+
                     GetComponent<Image>().sprite = default_sprite;
+
                 }
-            }
-            else
-            {
-
-                GetComponent<Image>().sprite = default_sprite;
 
             }
-
         }
+
        
 
 
