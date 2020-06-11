@@ -327,16 +327,6 @@ public class ProjectManager2D : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-
-
-
-
     public void createNewProject()
     {
 

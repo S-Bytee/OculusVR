@@ -61,9 +61,6 @@ public class ReusableCollisionObjects : MonoBehaviour
 
                         GetComponent<OnSelectObject>().enabled = true;
 
-                    
-                 
-
                 }
 
             }
