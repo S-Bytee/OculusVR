@@ -50,13 +50,13 @@ public class Signup : MonoBehaviour
         if(verif())
         {
             print("Registration successful");
-            BsonDocument user = new BsonDocument();
-            user.Add(new BsonDocument{{"user_email", email}});
-            user.Add(new BsonDocument{{"user_username", username}});
-            user.Add(new BsonDocument{{"user_phonenumber", phone_number}});
-            user.Add(new BsonDocument{{"user_password", password}});
-            user.Add(new BsonDocument{{"createdAt",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year}});
-            user.Add(new BsonDocument{{"last_login",DateTime.Now.Day+"/"+DateTime.Now.Month+"/"+DateTime.Now.Year+" "+DateTime.Now.Hour+":"+DateTime.Now.Minute}});
+             BsonDocument user = new BsonDocument();
+            user.Add(new BsonDocument { { "user_email", email } });
+            user.Add(new BsonDocument { { "user_username", username } });
+            user.Add(new BsonDocument { { "user_password", password } });
+            user.Add(new BsonDocument { { "createdAt", DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year } });
+            user.Add(new BsonDocument { { "last_login", DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute } });
+
             user.AddRange(new BsonDocument{{"2D_projects",""}});
             user.AddRange(new BsonDocument{{"3D_projects",""}});
             user.AddRange(new BsonDocument{{"friends",new BsonArray{
