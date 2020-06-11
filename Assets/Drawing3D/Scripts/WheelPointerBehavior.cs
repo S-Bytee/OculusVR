@@ -26,38 +26,42 @@ public class WheelPointerBehavior : MonoBehaviour
     {
 
 
-
-        if (laserPointer.hit.collider)
+        if(laserPointer)
         {
-            if(laserPointer.onCollison)
+            if (laserPointer.hit.collider)
             {
-                if (laserPointer.hit.collider.gameObject == this.gameObject)
+                if (laserPointer.onCollison)
                 {
-                    GetComponent<Image>().sprite = select_sprite;
-
-                    if (Input.GetMouseButtonDown(0))
+                    if (laserPointer.hit.collider.gameObject == this.gameObject)
                     {
+                        GetComponent<Image>().sprite = select_sprite;
 
-                       
-                        this.gameObject.GetComponent<Button>().onClick.Invoke();
-                        //default_sprite = select_sprite; 
-                        //GetComponent<Image>().sprite = select_sprite;
-                        onSelect = true;                    
+                        if (Input.GetMouseButtonDown(0))
+                        {
 
+
+                            this.gameObject.GetComponent<Button>().onClick.Invoke();
+                            //default_sprite = select_sprite; 
+                            //GetComponent<Image>().sprite = select_sprite;
+                            onSelect = true;
+
+                        }
+                    }
+                    else
+                    {
+                        GetComponent<Image>().sprite = default_sprite;
                     }
                 }
                 else
                 {
+
                     GetComponent<Image>().sprite = default_sprite;
+
                 }
-            }
-            else
-            {
-                GetComponent<Image>().sprite = default_sprite;
 
             }
-
         }
+        
        
 
 

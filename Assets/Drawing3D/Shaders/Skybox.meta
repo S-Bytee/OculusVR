@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 04830a3911b85457d8f49a4b156f9cc3
+<<<<<<< HEAD:Assets/Laptop.meta
+guid: f7d3d00b84299f34e8d4d02d8f28c832
+=======
+guid: 648cc63d4ef359846a2df098b14ed29b
+>>>>>>> ea1ab502a8dcdf1d1c8df4e15e7f29bd284b48e7:Assets/Drawing3D/Shaders/Skybox.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
