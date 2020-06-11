@@ -10,8 +10,8 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
     public static PhysicsPointer Instance { get { return _instance; } }
 
 
-    [SerializeField] protected float maxLength = 9.0f;
-    [SerializeField] protected float minLength = 2.0f;
+    public float maxLength = 9.0f;
+    public float minLength = 2.0f;
     public float defaultLength = 4.0f;
 
     Color c1 = Color.white;
@@ -37,8 +37,10 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
             _instance = this;
         }
 
+        
         lineRenderer = GetComponent<LineRenderer>();
-        trailRenderer = GameObject.Find("TrailLine").GetComponent<TrailRenderer>();
+        trailRenderer = transform.GetChild(0).GetComponent<TrailRenderer>();
+        
         if (ColorIndicator.Instance== null)
         {
             lineRenderer.startColor = c1;

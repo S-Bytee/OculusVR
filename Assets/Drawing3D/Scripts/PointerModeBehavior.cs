@@ -22,10 +22,12 @@ public class PointerModeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mode = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetChild(0).GetChild(1).GetChild(2);
 
-       // mode.GetChild(2).gameObject.SetActive(true);
-            
+        if(GameObject.FindGameObjectWithTag("Player"))
+        mode = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0);
+
+        // mode.GetChild(2).gameObject.SetActive(true);
+
     }
 
 

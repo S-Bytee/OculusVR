@@ -17,16 +17,19 @@ public class ButtonLaserBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(laserPointer.hit.collider)
+        if(laserPointer)
         {
-            if(laserPointer.hit.collider.gameObject == this.gameObject)
+            if (laserPointer.hit.collider)
             {
-                if(Input.GetMouseButtonDown(0))
-                this.gameObject.GetComponent<Button>().onClick.Invoke();
+                if (laserPointer.hit.collider.gameObject == this.gameObject)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                        this.gameObject.GetComponent<Button>().onClick.Invoke();
 
+                }
             }
         }
+            
 
     }
 }
