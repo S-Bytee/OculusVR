@@ -78,19 +78,19 @@ public class Drawing3D : MonoBehaviour
         }
         */
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             
                 createLine();
             
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
         {
             
                 updateLine(laserInstance.DefaultEnd(laserInstance.defaultLength));
             
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             if (lineRenderer != null)
             {

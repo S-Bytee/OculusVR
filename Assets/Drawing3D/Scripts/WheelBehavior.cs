@@ -35,7 +35,7 @@ public class WheelBehavior : MonoBehaviour
 
                         GetComponent<Image>().sprite = select_sprite;
 
-                        if (Input.GetMouseButtonDown(0)) this.gameObject.GetComponent<Button>().onClick.Invoke();
+                        if (Input.GetMouseButtonDown(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger)) this.gameObject.GetComponent<Button>().onClick.Invoke();
 
                     }
                     else

@@ -28512,8 +28512,8 @@ MonoBehaviour:
     MaxLength: 50
     MinLength: 2
     DefaultLength: 3
-    WidthStartPoint: 0.05
-    WidthEndPoint: 0.05
+    WidthStartPoint: 0.3
+    WidthEndPoint: 0.3
 --- !u!4 &1489433203
 Transform:
   m_ObjectHideFlags: 0
