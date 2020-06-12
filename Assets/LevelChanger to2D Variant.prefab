@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 5514055835356636042, guid: a438f4c5b79aad347944a1d2b8a94e81,
         type: 3}
       propertyPath: m_Name
-      value: LevelChanger to2D
+      value: LevelChanger to2D Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5514055835356636047, guid: a438f4c5b79aad347944a1d2b8a94e81, type: 3}

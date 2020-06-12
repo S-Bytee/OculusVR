@@ -25,8 +25,10 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
     private TrailRenderer trailRenderer;
     private LineRenderer lineRenderer = null;
     public Ray _ray;
-        
-    private void Awake()
+
+
+
+    private void OnEnable()
     {
         if (_instance != null && _instance != this)
         {
@@ -37,7 +39,11 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
             _instance = this;
         }
 
-        
+    }
+    private void Awake()
+    {
+      
+       
         lineRenderer = GetComponent<LineRenderer>();
         trailRenderer = transform.GetChild(0).GetComponent<TrailRenderer>();
         
@@ -171,7 +177,15 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
         if (trailRenderer != null )
         {
             trailRenderer.transform.position = CalculateEnd();
-            trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                if(ColorIndicator.Instance)
+                {
+                    trailRenderer.GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                }
+                else
+                {
+                    trailRenderer.GetComponent<Renderer>().material.color = Color.white;
+                }
+
         }
     }
 

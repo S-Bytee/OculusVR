@@ -49,7 +49,7 @@ public class GizmoDragger : MonoBehaviour
             onDrag = false;
         }
 
-        selectedObject = getSelectedObject();
+        selectedObject = getSelectedObject();   
         if (selectedObject == null)
             selectedObject = getSelectedLineRenderer();
         

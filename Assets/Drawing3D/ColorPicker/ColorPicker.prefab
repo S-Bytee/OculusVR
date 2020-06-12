@@ -124,6 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3a77568665644dabfcbf0832fc5bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color:
+    h: 0
+    s: 0
+    b: 0
+    a: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +362,7 @@ MonoBehaviour:
   fixX: 0
   fixY: 0
   thumb: {fileID: 400004}
+  dragging: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMaterial: {fileID: 2100000, guid: 66f4a11f0a14e4c3ab2f9a3a44450afb, type: 2}
+  IsDragging: 0
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +452,7 @@ MonoBehaviour:
   fixX: 0
   fixY: 1
   thumb: {fileID: 400014}
+  dragging: 0
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0

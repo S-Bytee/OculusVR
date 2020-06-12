@@ -12,7 +12,19 @@ public class WheelPosition : MonoBehaviour
     void Start()
     {
         offset = new Vector3(0, 0.5f, 6);
-        player = GameObject.FindGameObjectWithTag("Player");
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.DESKTOP)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).gameObject;
+
+            }
+            else if (GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.OCULUS)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject;
+
+            }
+        }
 
     }
 

@@ -45,20 +45,31 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
     // 2D declaratives //
 
-    
-    
-    
-
-
-
     void Start()
     {
 
         laserInstance = PhysicsPointer.Instance;
         instanceOffset = new Vector3(0,0,10);
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.DESKTOP)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).gameObject;
+
+            }
+            else if (GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.OCULUS)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).gameObject;
+
+            }
+        }
         setPosition();
         offset = new Vector3(0, 1.5f, 6);
+
+       
+
+
     }
 
     // Update is called once per frame
@@ -119,7 +130,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
         if (Input.GetMouseButtonDown(0))
         {
-
+            print(laserInstance);
             if (laserInstance.hit.collider)
             {
                 if (laserInstance.hit.collider.tag == "exampleCubeObject")
