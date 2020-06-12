@@ -84,7 +84,7 @@ public class ProjectManager2D : MonoBehaviour
             var documentId = new BsonDocument { { "instanceID", go.GetInstanceID() } };
 
             var documentType = new BsonDocument { { "type", "LineRenderer" } };
-            var documentColors = new BsonDocument { { "R", go.GetComponent<Renderer>().material.GetColor("_TintColor").r }, { "G", go.GetComponent<Renderer>().material.GetColor("_TintColor").g }, { "B", go.GetComponent<Renderer>().material.GetColor("_TintColor").b }, { "A", go.GetComponent<Renderer>().material.GetColor("_TintColor").a } };
+            var documentColors = new BsonDocument { { "R", go.GetComponent<Renderer>().material.color.r }, { "G", go.GetComponent<Renderer>().material.color.g }, { "B", go.GetComponent<Renderer>().material.color.b }, { "A", go.GetComponent<Renderer>().material.color.a } };
             var documentPoints = new BsonDocument();
 
 
@@ -226,7 +226,7 @@ public class ProjectManager2D : MonoBehaviour
         {
             GameObject go;
             go = Instantiate(lineRendererLoaded, Vector3.zero, Quaternion.identity);
-            go.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.GetComponent<Renderer>().material.color = new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble));
 
             loadedPoints.Clear();
 
