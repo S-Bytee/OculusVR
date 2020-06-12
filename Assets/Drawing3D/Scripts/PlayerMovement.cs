@@ -30,9 +30,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void FixedUpdate()
     {
         
+        
+
         float x = Input.GetAxis("Horizontal") ;
         float Z = Input.GetAxis("Vertical");
         float y = Input.GetAxis("fly");
+        
         if (y == 1)
         {
             altitude += 0.5f;
