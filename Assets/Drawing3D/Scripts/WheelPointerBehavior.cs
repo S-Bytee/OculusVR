@@ -36,7 +36,7 @@ public class WheelPointerBehavior : MonoBehaviour
                     {
                         GetComponent<Image>().sprite = select_sprite;
 
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButtonDown(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
                         {
 
 

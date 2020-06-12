@@ -90,16 +90,18 @@ public class OculusRiftDetector : MonoBehaviour
         
         if (ORiftDetector())
         {
-            InstaciatePhysicsPointerForOculus();
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(false);
+            InstaciatePhysicsPointerForOculus();
+
             ProjectType = ProjectType.OCULUS;
         }
         else
         {
-            InstaciatePhysicsPointerForDesktop();
             transform.GetChild(1).gameObject.SetActive(true);
             transform.GetChild(0).gameObject.SetActive(false);
+            InstaciatePhysicsPointerForDesktop();
+
             ProjectType = ProjectType.DESKTOP;
         }
 
@@ -155,7 +157,7 @@ public class OculusRiftDetector : MonoBehaviour
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().maxLength = physicsPointerConfigForOculus.MaxLength;
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().defaultLength = physicsPointerConfigForOculus.DefaultLength;
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().minLength = physicsPointerConfigForOculus.MinLength;
-            currPhysicsPointerLaserForDesktop.GetComponent<LineRenderer>().widthCurve = new AnimationCurve(new Keyframe(0, physicsPointerConfigForOculus.WidthStartPoint), new Keyframe(1, physicsPointerConfigForOculus.WidthEndPoint));
+            currPhysicsPointerLaserForOculus.GetComponent<LineRenderer>().widthCurve = new AnimationCurve(new Keyframe(0, physicsPointerConfigForOculus.WidthStartPoint), new Keyframe(1, physicsPointerConfigForOculus.WidthEndPoint));
         
         }
 

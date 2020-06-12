@@ -35,7 +35,7 @@ public class Draggable : MonoBehaviour
 
 
 
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) {
 			dragging = false;
 
             if (GetComponent<Collider>().Raycast(laserInstance.ray, out laserInstance.hit, laserInstance.defaultLength)) {
@@ -45,12 +45,12 @@ public class Draggable : MonoBehaviour
 			}
 
 		}
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             dragging = false;
 
         }
-        if (dragging && Input.GetMouseButton(0)) {
+        if (dragging && (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger)) ) {
 			var point = laserInstance.hit.point;
 			point = GetComponent<Collider>().ClosestPointOnBounds(point);
 			SetThumbPosition(point);
