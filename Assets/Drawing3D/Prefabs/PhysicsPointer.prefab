@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7026781318064740241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -768656878, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EventMask:
@@ -118,6 +118,7 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -209,4 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52735033862e1584facc28d607728630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLength: 9
+  minLength: 2
   defaultLength: 3
+  onCollison: 0

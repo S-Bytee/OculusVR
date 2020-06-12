@@ -24,8 +24,18 @@ public class PointerModeBehavior : MonoBehaviour
     {
 
         if(GameObject.FindGameObjectWithTag("Player"))
-        mode = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0);
+        {
+            if(GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.DESKTOP)
+            {
+                mode = GameObject.FindGameObjectWithTag("Player").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(1).GetChild(0);
+            
+            }else if (GameObject.FindGameObjectWithTag("Player").GetComponent<OculusRiftDetector>().ProjectType == ProjectType.OCULUS)
+            {
+                mode = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(0);
 
+            }
+        }
+        
         // mode.GetChild(2).gameObject.SetActive(true);
 
     }

@@ -18,8 +18,15 @@ YAAAMEL INSTANCE LEL PHYSICS POINTER (DESKTOP O OCULUS ZOUZ MAA BAADHHOM) BEL CO
 */
 
 
+public enum ProjectType
+{
+    DESKTOP,OCULUS
+}
+
 public class OculusRiftDetector : MonoBehaviour
 {
+    [HideInInspector]
+    public ProjectType ProjectType;
 
     [HideInInspector]
     public bool OculusHeadsetIsPresentAndConnected = false;
@@ -29,8 +36,7 @@ public class OculusRiftDetector : MonoBehaviour
     public bool OculusHeadsetIsMountedOnUserHead = false;
 
 
-    public GameObject PhysicsPointerLaserForDesktop;
-    public GameObject PhysicsPointerLaserForOculus;    
+    GameObject PhysicsPointerLaser;
     
     GameObject currPhysicsPointerLaserForDesktop;
     GameObject currPhysicsPointerLaserForOculus;
@@ -44,11 +50,16 @@ public class OculusRiftDetector : MonoBehaviour
     [System.Serializable]
     public class PhysicsPointerForDesktop
     {
+
         public Vector3 PhysicsPointerPosition;
         public Vector3 PhysicsPointerRotation;
         public float MaxLength;
         public float MinLength;
         public float DefaultLength;
+
+        public float WidthStartPoint;
+        public float WidthEndPoint;
+
 
     }
 
@@ -60,38 +71,44 @@ public class OculusRiftDetector : MonoBehaviour
         public float MaxLength;
         public float MinLength;
         public float DefaultLength;
+
+        public float WidthStartPoint;
+        public float WidthEndPoint;
+
     }
 
 
     public PhysicsPointerForDesktop physicsPointerConfigForDesktop;
     public PhysicsPointerForOculus physicsPointerConfigForOculus;
 
-
-
     private void Start()
     {
 
         CenterEyeAnchorForDesktop = transform.GetChild(1).GetChild(0).GetChild(0).GetChild(1).gameObject;
         CenterEyeAnchorForOculus = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(1).gameObject;
+        PhysicsPointerLaser = transform.GetChild(2).gameObject;
         
-       
+        if (ORiftDetector())
+        {
+            InstaciatePhysicsPointerForOculus();
+            transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(1).gameObject.SetActive(false);
+            ProjectType = ProjectType.OCULUS;
+        }
+        else
+        {
+            InstaciatePhysicsPointerForDesktop();
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(0).gameObject.SetActive(false);
+            ProjectType = ProjectType.DESKTOP;
+        }
+
     }
 
     void Update()
     {
 
-        if(ORiftDetector())
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-            transform.GetChild(1).gameObject.SetActive(false);
-           InstaciatePhysicsPointerForOculus();
-        }
-        else
-        {
-            transform.GetChild(1).gameObject.SetActive(true);
-            transform.GetChild(0).gameObject.SetActive(false);
-            InstaciatePhysicsPointerForDesktop();
-        }
+       
 
     }
 
@@ -110,13 +127,16 @@ public class OculusRiftDetector : MonoBehaviour
 
         if(currPhysicsPointerLaserForDesktop == null)
         {
-            currPhysicsPointerLaserForDesktop = Instantiate(PhysicsPointerLaserForDesktop);
+
+            currPhysicsPointerLaserForDesktop = PhysicsPointerLaser;
             currPhysicsPointerLaserForDesktop.transform.parent = CenterEyeAnchorForDesktop.transform;
             currPhysicsPointerLaserForDesktop.transform.localPosition = physicsPointerConfigForDesktop.PhysicsPointerPosition;
             currPhysicsPointerLaserForDesktop.transform.localRotation = Quaternion.Euler(physicsPointerConfigForDesktop.PhysicsPointerRotation);
             currPhysicsPointerLaserForDesktop.GetComponent<PhysicsPointer>().maxLength = physicsPointerConfigForDesktop.MaxLength;
             currPhysicsPointerLaserForDesktop.GetComponent<PhysicsPointer>().defaultLength = physicsPointerConfigForDesktop.DefaultLength;
             currPhysicsPointerLaserForDesktop.GetComponent<PhysicsPointer>().minLength = physicsPointerConfigForDesktop.MinLength;
+            currPhysicsPointerLaserForDesktop.GetComponent<LineRenderer>().widthCurve = new AnimationCurve(new Keyframe(0, physicsPointerConfigForDesktop.WidthStartPoint), new Keyframe(1, physicsPointerConfigForDesktop.WidthEndPoint));
+
 
         }
 
@@ -125,17 +145,19 @@ public class OculusRiftDetector : MonoBehaviour
 
     void InstaciatePhysicsPointerForOculus()
     {
+        if (currPhysicsPointerLaserForOculus == null)
+        {
 
-
-            currPhysicsPointerLaserForOculus = Instantiate(PhysicsPointerLaserForOculus);
+            currPhysicsPointerLaserForOculus = PhysicsPointerLaser;
             currPhysicsPointerLaserForOculus.transform.parent = CenterEyeAnchorForOculus.transform;
             currPhysicsPointerLaserForOculus.transform.localPosition = physicsPointerConfigForOculus.PhysicsPointerPosition;
             currPhysicsPointerLaserForOculus.transform.localRotation = Quaternion.Euler(physicsPointerConfigForOculus.PhysicsPointerRotation);
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().maxLength = physicsPointerConfigForOculus.MaxLength;
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().defaultLength = physicsPointerConfigForOculus.DefaultLength;
             currPhysicsPointerLaserForOculus.GetComponent<PhysicsPointer>().minLength = physicsPointerConfigForOculus.MinLength;
-
+            currPhysicsPointerLaserForDesktop.GetComponent<LineRenderer>().widthCurve = new AnimationCurve(new Keyframe(0, physicsPointerConfigForOculus.WidthStartPoint), new Keyframe(1, physicsPointerConfigForOculus.WidthEndPoint));
         
+        }
 
     }
 

@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
-  gizmo: {fileID: 873592887159292688, guid: 30c448822dbb2ad4494e89fa6a51af50, type: 3}
 --- !u!1 &7009407797433134504
 GameObject:
   m_ObjectHideFlags: 0

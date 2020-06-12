@@ -217,11 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3383c7392248c4b80c04552e294cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhasorScript: {fileID: 938517058}
-  AsteroidPrefab: {fileID: 152752, guid: fcd4893eb61053b4696597e48a7a64bd, type: 3}
-  ExplosionSound: {fileID: 281040991}
-  ExplosionParticleSystem: {fileID: 1650727623}
-  score: 0
 --- !u!1 &163305647
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,28 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3801185db6028de44a3f54f3dcd7c516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinimumDistance: 0
-  SecondsPerLine: 0.2
-  StartColor:
-    r: 0.15862082
-    g: 1
-    b: 0
-    a: 1
-  EndColor:
-    r: 0.862069
-    g: 1
-    b: 0
-    a: 1
-  StartWidth: 0.25
-  EndWidth: 0.2
-  SortLayerName: Default
-  OrderInSortLayer: 2
-  lineRenderer: {fileID: 0}
-  index: -1
-  remainder: 0
-  <StartPoint>k__BackingField: {x: 0, y: 0, z: 0}
-  <EndPoint>k__BackingField: {x: 0, y: 0, z: 0}
-  <Resetting>k__BackingField: 0
 --- !u!120 &642873762
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -670,13 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab77929bae065e4f91d4820b74738cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Source: {fileID: 1512080991}
-  Target: {fileID: 0}
-  FireSound: {fileID: 1909365235}
-  lineRenderer: {fileID: 0}
-  firing: 0
-  endingFiring: 0
-  endFireToken: 0
 --- !u!1 &1096815478
 GameObject:
   m_ObjectHideFlags: 0

@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMaterial: {fileID: 2100000, guid: 66f4a11f0a14e4c3ab2f9a3a44450afb, type: 2}
+  IsDragging: 0
 --- !u!1 &2237879472798958575
 GameObject:
   m_ObjectHideFlags: 0
@@ -7030,13 +7031,18 @@ MonoBehaviour:
   newCube: {fileID: 1571813386394117772, guid: 6ca59fe1167caed448a25191514d9d34, type: 3}
   newSphere: {fileID: 8178406813588104217, guid: 5615403a495787041a10da63e1323e0e,
     type: 3}
-  newQuad: {fileID: 7009407797433134504, guid: c2effe3f3bde5af41b440435a5570cea, type: 3}
   teleportGO: {fileID: 5031269650968845756, guid: a5ab48df05ae46847b63ffa61f70b03a,
     type: 3}
   boxExample: {fileID: 5448898372837827427, guid: 741828aee6654f344885d608b6d44cfd,
     type: 3}
   sphereExample: {fileID: 5448898372837827427, guid: 8ce76662485d310448e19321cf9a0771,
     type: 3}
+  previewMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
+  rectangle: {fileID: 0}
+  circle: {fileID: 0}
+  triangle: {fileID: 0}
+  polygone: {fileID: 0}
 --- !u!65 &6750870760697035701
 BoxCollider:
   m_ObjectHideFlags: 0

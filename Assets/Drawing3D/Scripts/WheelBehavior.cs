@@ -22,8 +22,7 @@ public class WheelBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(laserPointer)
-        {
+            print(laserPointer);
             if (laserPointer.hit.collider)
             {
                 if (laserPointer.onCollison)
@@ -52,7 +51,7 @@ public class WheelBehavior : MonoBehaviour
                 }
 
             }
-        }
+        
 
        
 
