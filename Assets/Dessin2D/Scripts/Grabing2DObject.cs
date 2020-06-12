@@ -18,6 +18,7 @@ public class Grabing2DObject : MonoBehaviour
     void Update()
     {
         grabObject();
+        if(ColorIndicator.Instance)
         c = ColorIndicator.Instance.color.ToColor();
 
 

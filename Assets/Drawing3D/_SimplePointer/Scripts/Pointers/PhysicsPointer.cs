@@ -45,7 +45,7 @@ public class PhysicsPointer : MonoBehaviourPunCallbacks
       
        
         lineRenderer = GetComponent<LineRenderer>();
-        trailRenderer = transform.GetChild(0).GetComponent<TrailRenderer>();
+        //trailRenderer = transform.GetChild(0).GetComponent<TrailRenderer>();
         
         if (ColorIndicator.Instance== null)
         {
