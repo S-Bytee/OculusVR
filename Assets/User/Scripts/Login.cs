@@ -19,26 +19,30 @@ public class Login : MonoBehaviour
     public GameObject input_password;
     private string email;
     private string password;
+    PhysicsPointer laserPointer;
     // Start is called before the first frame update
     void Start()
     {
+        laserPointer = PhysicsPointer.Instance;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
          email = input_email.GetComponent<InputField>().text;
          password = input_password.GetComponent<InputField>().text;
-         if(Input.GetKeyDown(KeyCode.Tab)){changeInput();}
-         if(Input.GetKeyDown(KeyCode.Return)){singin();}
-         
+         //if(Input.GetKeyDown(KeyCode.Tab)){changeInput();}
+         //if(Input.GetKeyDown(KeyCode.Return)){singin();}
+         if(laserPointer.hit.collider && Input.GetMouseButtonDown(0))
+        {
+            if(laserPointer.hit.collider.gameObject == GameObject.Find("login_button")) { singin(); }
+        }
         
     }
 
     public void singin(){
+        print("hey");
         if(verif()){
         var filter = Builders<BsonDocument>.Filter.Eq("user_email", email);
         var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(filter).ToList();
