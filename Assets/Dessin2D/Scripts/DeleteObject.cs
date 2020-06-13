@@ -23,7 +23,7 @@ public class DeleteObject : MonoBehaviour
 
                 if (laserPointer.hit.collider.transform.parent.tag == "object")
                 {
-                    if (Input.GetMouseButtonDown(1))
+                    if (Input.GetMouseButtonDown(1) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
                     {
                         Destroy(laserPointer.hit.collider.gameObject);
                     }
@@ -33,7 +33,7 @@ public class DeleteObject : MonoBehaviour
             {
                 if (laserPointer.hit.collider.gameObject.tag == "lineRenderer")
                 {
-                    if (Input.GetMouseButtonDown(1))
+                    if (Input.GetMouseButtonDown(1) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
                     {
 
                         Destroy(laserPointer.hit.collider.gameObject);
