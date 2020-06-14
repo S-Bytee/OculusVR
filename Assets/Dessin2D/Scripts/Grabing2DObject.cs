@@ -31,7 +31,7 @@ public class Grabing2DObject : MonoBehaviour
         if (laserInstance.hit.collider)
         {
 
-            if (Input.GetButtonDown("Jump") || OVRInput.Get(OVRInput.Button.One))
+            if (Input.GetButtonDown("Jump") || OVRInput.GetDown(OVRInput.Button.One))
             {
 
                 //Debug.Log(laserInstance.hit.collider.gameObject);
@@ -55,14 +55,14 @@ public class Grabing2DObject : MonoBehaviour
                
 
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             {
 
                 Destroy(objectToGrab);
 
             }
 
-            if (Input.GetButtonUp("Jump") || OVRInput.Get(OVRInput.Button.One))
+            if (Input.GetButtonUp("Jump") || OVRInput.GetDown(OVRInput.Button.One))
             {
 
                 objectToGrab.transform.parent = null;

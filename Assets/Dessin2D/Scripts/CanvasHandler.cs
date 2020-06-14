@@ -37,7 +37,7 @@ public class CanvasHandler : MonoBehaviour
                 laserPointer.hit.collider.gameObject.transform.localScale =  new Vector2( 0.7f,  0.3f);
 
 
-                if (Input.GetMouseButtonDown(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {                                      
 
                     laserPointer.hit.collider.gameObject.GetComponent<Button>().onClick.Invoke();
