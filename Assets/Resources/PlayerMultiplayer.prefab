@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 85612839587327196}
   - component: {fileID: 85612839587327197}
+  - component: {fileID: 6800825835646352151}
   m_Layer: 0
   m_Name: PlayerMultiplayer
   m_TagString: Player
@@ -127,9 +128,41 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85612839587327198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab84bf690741e0a49ad105de5890f4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectType: 0
+  OculusHeadsetIsPresentAndConnected: 0
+  OculusSensorIsPresentAndConnected: 0
+  OculusHeadsetIsMountedOnUserHead: 0
+  physicsPointerConfigForDesktop:
+    PhysicsPointerPosition: {x: 0.96, y: -0.4300001, z: 0}
+    PhysicsPointerRotation: {x: 0, y: 0, z: 0}
+    MaxLength: 50
+    MinLength: 2
+    DefaultLength: 3
+    WidthStartPoint: 1
+    WidthEndPoint: 0.5
+  physicsPointerConfigForOculus:
+    PhysicsPointerPosition: {x: 0, y: 0, z: 0}
+    PhysicsPointerRotation: {x: 8.863, y: 0, z: -87.38}
+    MaxLength: 50
+    MinLength: 2
+    DefaultLength: 3
+    WidthStartPoint: 0.3
+    WidthEndPoint: 0.3
+--- !u!114 &6800825835646352151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85612839587327198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd7713fe41259e4dadf3ed08c5f6453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectType: 0
