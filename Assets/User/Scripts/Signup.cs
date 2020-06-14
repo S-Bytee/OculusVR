@@ -44,7 +44,7 @@ public class Signup : MonoBehaviour
         email = input_email.GetComponent<InputField>().text;
         password = input_password.GetComponent<InputField>().text;
         phone_number = input_phonenumber.GetComponent<InputField>().text;
-        if (laserPointer.hit.collider && Input.GetMouseButtonDown(0))
+        if (laserPointer.hit.collider && ( Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) ))
         {
             if (laserPointer.hit.collider.gameObject == GameObject.Find("register_button")) { Register(); }
         }

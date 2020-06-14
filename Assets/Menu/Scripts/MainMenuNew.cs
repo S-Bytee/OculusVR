@@ -84,7 +84,45 @@ public class MainMenuNew : MonoBehaviour {
 
 	}
 
-	public void  PlayCampaign (){
+    private void Update()
+    {
+        if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
+        {
+			if (laserPointer.hit.collider)
+			{
+				switch (laserPointer.hit.collider.name)
+				{
+					case "Btn_PlayCampaign":
+						PlayCampaign();
+						break;
+					case "Btn_Settings":
+						break;
+					case "Btn_Exit":
+						AreYouSure();
+						break;
+					case "Btn_Yes":
+						Yes();
+						break;
+					case "Btn_No":
+						break;
+					case "Btn_NewGame":
+						MoveTo2DScene();
+						break;
+					case "Btn_LoadGame":
+						MoveToMuseum();
+						break;
+					case "Btn_Continue":
+						MoveTo3DScene();
+						break;
+					case "":
+						break;
+
+				}
+			}
+        }
+    }
+
+    public void  PlayCampaign (){
 		exitMenu.gameObject.SetActive(false);
 		playMenu.gameObject.SetActive(true);
 	}
@@ -110,7 +148,6 @@ public class MainMenuNew : MonoBehaviour {
 	}
 
 	public void  DisablePlayCampaign (){
-
 		playMenu.gameObject.SetActive(false);
 	
 	}
