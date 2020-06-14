@@ -101,7 +101,7 @@ public class Drawing3D : MonoBehaviour
                 lineRenderer.gameObject.GetComponent<MeshFilter>().mesh = mesh;
                 lineRenderer.gameObject. GetComponent<MeshCollider>().convex = true;
 
-                UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
+                UndoRedo.Instance.AddChangementToUndo(new Changement(currentLine.GetInstanceID(), currentLine, currentLine.GetComponent<Renderer>().material.GetColor("_Color"), ChangementType.INSTANCIATE_LINERENDERER));
 
             }
         }
@@ -152,13 +152,13 @@ public class Drawing3D : MonoBehaviour
         if (ColorIndicator.Instance == null)
         {
         
-            currentLine.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(250, 65, 204));
+            currentLine.GetComponent<Renderer>().material.SetColor("_Color", new Color(250, 65, 204));
         
         }
         else
         {
         
-            currentLine.GetComponent<Renderer>().material.SetColor("_TintColor",ColorIndicator.Instance.color.ToColor());
+            currentLine.GetComponent<Renderer>().material.SetColor("_Color", ColorIndicator.Instance.color.ToColor());
         
         }
 

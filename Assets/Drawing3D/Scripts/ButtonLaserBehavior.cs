@@ -23,7 +23,7 @@ public class ButtonLaserBehavior : MonoBehaviour
             {
                 if (laserPointer.hit.collider.gameObject == this.gameObject)
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                         this.gameObject.GetComponent<Button>().onClick.Invoke();
 
                 }

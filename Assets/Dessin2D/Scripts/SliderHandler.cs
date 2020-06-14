@@ -30,14 +30,14 @@ public class SliderHandler : MonoBehaviour
             {
          
                 //Awel matenzel bel souris aal slider besh tkhabi l postion mtaa nazla
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
 
                     firstPosition = laserPointer.hit.point;    
                            
                 }
                 //Tant que enty nezeel aal slider besh tkhabi l position mtaa nazla
-                if(Input.GetMouseButton(0))
+                if(Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
                 {
 
                     updatedPosition = laserPointer.hit.point;

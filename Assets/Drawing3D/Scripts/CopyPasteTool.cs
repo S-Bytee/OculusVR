@@ -33,7 +33,7 @@ public class CopyPasteTool : MonoBehaviour
         {
             currgo.transform.position = laserPointer.CalculateEnd();
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
             
                 currgo.transform.GetChild(0).GetComponent<Renderer>().material.color = new Color(currgo.transform.GetChild(0).GetComponent<Renderer>().material.color.r, currgo.transform.GetChild(0).GetComponent<Renderer>().material.color.g, currgo.transform.GetChild(0).GetComponent<Renderer>().material.color.b, currgo.transform.GetChild(0).GetComponent<Renderer>().material.color.a*2); ;
@@ -48,10 +48,10 @@ public class CopyPasteTool : MonoBehaviour
         {
             currgo.transform.position = laserPointer.CalculateEnd();
            // currgo.GetComponent<LineRenderer>().transform.parent = laserPointer.transform;
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
         
-                currgo.transform.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").r, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").g, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").b, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").a * 2));
+                currgo.transform.GetComponent<Renderer>().material.SetColor("_Color", new Color(currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").r, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").g, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").b, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").a * 2));
                 IsDragging = false;
                 currgo.transform.parent = null;
                 //SelectedObjectOrLine = null;
@@ -119,7 +119,7 @@ public class CopyPasteTool : MonoBehaviour
            
             currgo = Instantiate(SelectedObjectOrLine.transform.gameObject, SelectedObjectOrLine.transform.position, SelectedObjectOrLine.transform.rotation);
             IsDragging = true;
-            currgo.transform.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").r, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").g, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").b, currgo.transform.GetComponent<Renderer>().material.GetColor("_TintColor").a * 2));
+            currgo.transform.GetComponent<Renderer>().material.SetColor("_Color", new Color(currgo.transform.GetComponent<Renderer>().material.GetColor("_Color").r, currgo.transform.GetComponent<Renderer>().material.GetColor("_Color").g, currgo.transform.GetComponent<Renderer>().material.GetColor("_Color").b, currgo.transform.GetComponent<Renderer>().material.GetColor("_Color").a * 2));
 
         }
 

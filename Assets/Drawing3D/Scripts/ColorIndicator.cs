@@ -22,10 +22,6 @@ public class ColorIndicator : MonoBehaviour {
         //GameObject.Find("ColorPicker").transform.BroadcastMessage("SetColor", color);
         if (ColorSaturationBrightnessPicker.Instance != null)
             ColorSaturationBrightnessPicker.Instance.SetColor(color);
-
-
-
-
     }
 
     void ApplyColor ()

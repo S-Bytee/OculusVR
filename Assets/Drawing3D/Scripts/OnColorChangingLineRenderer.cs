@@ -28,7 +28,7 @@ public class OnColorChangingLineRenderer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currColor = GetComponent<Renderer>().material.GetColor("_TintColor"); // currentColor
+        currColor = GetComponent<Renderer>().material.GetColor("_Color"); // currentColor
 
             
             if(!GetComponent<SelectLineRenderer>().isSelected)
@@ -44,13 +44,13 @@ public class OnColorChangingLineRenderer : MonoBehaviour
             }
 
             if (currColor != prevColor && GetComponent<SelectLineRenderer>().isSelected) // if couleur mtaa taoua different aal couleur li kablou (li houa njibou fih mel LateUpdate)
-            {    
-                
+            {
+            Debug.Log("sssss");
                 if(Colors.Count == 0) // Idha list fergha hot awel couleur howa ekher couleur kbal mayebda fel changement 
                 Colors.Add(prevColor);
                 
-                if(!Colors.Contains(GetComponent<Renderer>().material.GetColor("_TintColor"))) 
-                Colors.Add(GetComponent<Renderer>().material.GetColor("_TintColor"));// tant que fama changement yaani drag aal color picker donc aabi list b les couleurs
+                if(!Colors.Contains(GetComponent<Renderer>().material.GetColor("_Color"))) 
+                Colors.Add(GetComponent<Renderer>().material.GetColor("_Color"));// tant que fama changement yaani drag aal color picker donc aabi list b les couleurs
 
 
 
@@ -63,7 +63,7 @@ public class OnColorChangingLineRenderer : MonoBehaviour
 
     private void LateUpdate()
     {
-        prevColor = GetComponent<Renderer>().material.GetColor("_TintColor");
+        prevColor = GetComponent<Renderer>().material.GetColor("_Color");
     }
  
     public void SetOldColor()

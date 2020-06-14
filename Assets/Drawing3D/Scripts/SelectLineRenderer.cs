@@ -33,10 +33,11 @@ public class SelectLineRenderer : MonoBehaviour
         {
             if (laserInstance.hit.collider.gameObject == gameObject)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     
                     DisableAllObjectSelection();
+                    DeselectAllReusableOjects();
                     isSelected = true;
                         
                 }
@@ -48,7 +49,7 @@ public class SelectLineRenderer : MonoBehaviour
         {
             if (laserInstance.hit.collider.gameObject != gameObject && laserInstance.hit.collider.gameObject.tag != "artisticTools" && laserInstance.hit.collider.gameObject.tag != "gizmo")
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     isSelected = false;
                 }
@@ -70,6 +71,15 @@ public class SelectLineRenderer : MonoBehaviour
                     go.transform.GetChild(0).GetComponent<OnSelectObject>().isClicked = false;
 
             }
+        }
+    }
+
+
+    void DeselectAllReusableOjects()
+    {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("reusableObject"))
+        {
+            go.GetComponent<ReusableObjectSelection>().IsSelected = false;
         }
     }
 

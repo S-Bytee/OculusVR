@@ -188,7 +188,7 @@ namespace PaintIn3D
 			else if (gameObject.tag == "lineRenderer")
 			{
 
-				this.color = GetComponent<Renderer>().material.GetColor("_TintColor");
+				this.color = GetComponent<Renderer>().material.GetColor("_Color");
 
 			}
 

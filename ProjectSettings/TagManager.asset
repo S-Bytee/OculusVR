@@ -23,6 +23,12 @@ TagManager:
   - BG_002
   - BG_001
   - ButtonCanvas
+  - Collectable
+  - Action
+  - examplePyramidObject
+  - exampleDonutObject
+  - exampleConeObject
+  - exampleTubeObject
   layers:
   - Default
   - TransparentFX

@@ -52,22 +52,32 @@ public class GizmoDragger : MonoBehaviour
         selectedObject = getSelectedObject();   
         if (selectedObject == null)
             selectedObject = getSelectedLineRenderer();
-        
+        if (selectedObject == null)
+            selectedObject = getSelectedReusableObject();
 
-        if (gizmoMode== GizmoMode.Scaling)
+
+        if(selectedObject != null)
         {
-            if(selectedObject.gameObject.tag == "object")
-            scaleObject();
-        }
+            if (gizmoMode == GizmoMode.Scaling)
+            {
+                if (selectedObject.gameObject.tag == "object")
+                    scaleObject();
+            }
 
-        if (gizmoMode == GizmoMode.Rotating)
-        {
-            if(selectedObject.gameObject.tag=="object")
-                RotateObject();
+            if (gizmoMode == GizmoMode.Rotating)
+            {
+                if (selectedObject.gameObject.tag == "object" )
+                    RotateObject();
 
-            if (selectedObject.gameObject.tag == "lineRenderer")
-                RotateLineRenderer();
+                if (selectedObject.gameObject.tag == "lineRenderer")
+                    RotateLineRenderer();
+
+                if (selectedObject.gameObject.tag == "reusableObject")
+                    RotateReusableObject();
+
+            }
         }
+       
 
     }
 
@@ -83,7 +93,6 @@ public class GizmoDragger : MonoBehaviour
         {
             MiddleIndex = (selectedObject.GetComponent<LineRenderer>().positionCount + 1) / 2;
         }
-
 
         return selectedObject.GetComponent<LineRenderer>().GetPosition(MiddleIndex);
     }
@@ -212,8 +221,6 @@ public class GizmoDragger : MonoBehaviour
     private void RotateObject()
     {
 
-    
-
         if (lasetInstance.hit.collider)
         {
 
@@ -337,6 +344,135 @@ public class GizmoDragger : MonoBehaviour
 
 
     }
+
+
+    private void RotateReusableObject()
+    {
+
+        if (lasetInstance.hit.collider)
+        {
+
+            if (lasetInstance.hit.collider.gameObject == this.gameObject)
+            {
+                switch (gizmoDirection)
+                {
+                    case GzimoDirection.XPos:
+                        {
+                            if (onDrag)
+                            {
+                                //Debug.Log("ssss");
+
+                                x += 5f * Time.deltaTime;
+
+                                //selectedObject.transform.rotation *= Quaternion.AngleAxis(x, Vector3.right);
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, Vector3.right, x);                               
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+
+                            break;
+                        }
+
+                    case GzimoDirection.XNeg:
+                        {
+                            if (onDrag)
+                            {
+
+                                x += 5f * Time.deltaTime;
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, -Vector3.right, x);
+
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+
+                            break;
+                        }
+
+
+                    case GzimoDirection.YPos:
+                        {
+                            if (onDrag)
+                            {
+
+                                x += 5f * Time.deltaTime;
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, Vector3.up, x);
+
+
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+
+                            break;
+
+                        }
+
+                    case GzimoDirection.YNeg:
+                        {
+                            if (onDrag)
+                            {
+
+                                x += 5f * Time.deltaTime;
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, -Vector3.up, x);
+
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+
+                            break;
+
+                        }
+                    case GzimoDirection.ZPos:
+                        {
+                            if (onDrag)
+                            {
+
+                                x += 5f * Time.deltaTime;
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, Vector3.forward, x);
+
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+                            break;
+                        }
+
+                    case GzimoDirection.ZNeg:
+                        {
+                            if (onDrag)
+                            {
+
+                                x += 5f * Time.deltaTime;
+                                selectedObject.transform.RotateAround(selectedObject.transform.GetChild(0).position, -Vector3.forward, x);
+
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+
+                            break;
+                        }
+
+                }
+
+                //Ken kaaad nezeeel aal souris o houaa fel fleche l gris mtaa -X 
+            }
+
+
+        }
+
+
+    }
+
 
     public void scaleObject()
     {
@@ -510,5 +646,29 @@ public class GizmoDragger : MonoBehaviour
         return selectedObject;
 
     }
+
+    public GameObject getSelectedReusableObject()
+    {
+
+        GameObject selectedObject = null;
+
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("reusableObject"))
+        {
+            if (go.GetComponent<ReusableObjectSelection>())
+            {
+                if (go.GetComponent<ReusableObjectSelection>().IsSelected)
+                {
+
+                    selectedObject = go.gameObject;
+
+                }
+            }
+
+        }
+
+        return selectedObject;
+
+    }
+
 
 }

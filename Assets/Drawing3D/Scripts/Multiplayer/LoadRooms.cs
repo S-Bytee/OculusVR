@@ -14,7 +14,7 @@ public class LoadRooms : MonoBehaviourPunCallbacks
     void Start()
     {
 
-        Debug.Log("CountRooms====> "+MultiplayerControl.Instance.rooms.Count);
+        //Debug.Log("CountRooms====> "+MultiplayerControl.Instance.rooms.Count);
     
 
         foreach(var room in MultiplayerControl.Instance.rooms)

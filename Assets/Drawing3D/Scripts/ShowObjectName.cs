@@ -15,12 +15,11 @@ public class ShowObjectName : MonoBehaviour
     {
         //Debug.Log("sssss");
 
-
-
-        if(transform.GetChild(0).gameObject.tag =="object" )
+        if (transform.GetChild(0).gameObject.tag == "object")
         {
-            if(transform.GetChild(0).childCount==1)
+            if (transform.GetChild(0).childCount == 1)
             {
+
                 TextGameObject = new GameObject();
 
             }
@@ -30,9 +29,9 @@ public class ShowObjectName : MonoBehaviour
             }
 
         }
-        else if(transform.GetChild(0).gameObject.tag == "lineRenderer")
+        else if (transform.GetChild(0).gameObject.tag == "lineRenderer")
         {
-            if(transform.GetChild(0).childCount == 0)
+            if (transform.GetChild(0).childCount == 0)
             {
                 TextGameObject = new GameObject();
 
@@ -47,19 +46,19 @@ public class ShowObjectName : MonoBehaviour
         }
 
         Offset = new Vector3(0, 5f, 2f);
-        CreateText();
+   
 
     }
-
+   
 
 
     private void FixedUpdate()
     {
+        CreateText();
         if (transform.childCount > 0)
         {
             UpdateTextPosition();
         }
-            
     }
 
     void UpdateTextPosition()
@@ -83,7 +82,7 @@ public class ShowObjectName : MonoBehaviour
 
 
         FirstObject = transform.GetChild(0).gameObject;
-        if(!GetComponent<TextMeshPro>())
+        if(GetComponent<TextMeshPro>()==null)
         TextGameObject.AddComponent<TextMeshPro>();
         TextGameObject.GetComponent<TextMeshPro>().enableAutoSizing = true;
         TextGameObject.GetComponent<TextMeshPro>().alignment = TextAlignmentOptions.Center ;

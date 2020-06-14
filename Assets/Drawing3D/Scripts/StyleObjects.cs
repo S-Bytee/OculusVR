@@ -27,7 +27,15 @@ public class StyleObjects : MonoBehaviour
     {
 
         if (transform.childCount > 0)
+        {
+            GetComponent<ShowObjectName>().enabled = true;
             UpdateOutlineColor();
+        }
+        else
+        {
+            GetComponent<ShowObjectName>().enabled = false;
+
+        }
 
 
         for (int i=0; i<transform.childCount;i++)
@@ -64,7 +72,7 @@ public class StyleObjects : MonoBehaviour
         }
         else if(transform.GetChild(0).tag == "lineRenderer")
         {
-            OutlineColor = transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_TintColor");
+            OutlineColor = transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color");
 
         }
     }
