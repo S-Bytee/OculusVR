@@ -22,7 +22,7 @@ public class InputFieldKeyBoard : MonoBehaviour
        
         if (laserPointer.hit.collider)
         {
-            if (Input.GetMouseButtonDown(0) && laserPointer.hit.collider.gameObject == this.gameObject )
+            if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)) && laserPointer.hit.collider.gameObject == this.gameObject )
                 {
                 KeyboardVR.GetComponent<KeyboardVRManager>().Text = "";
                 PlayerPrefs.SetString("key",this.gameObject.name);
