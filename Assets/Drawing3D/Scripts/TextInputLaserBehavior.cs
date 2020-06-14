@@ -24,7 +24,7 @@ public class TextInputLaserBehavior : MonoBehaviour
             if (laserPointer.hit.collider.gameObject == this.gameObject)
             {
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     KeyboardVR.SetActive(true);
                 }

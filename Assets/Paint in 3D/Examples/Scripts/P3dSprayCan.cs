@@ -45,7 +45,7 @@ namespace PaintIn3D
 			{
 				var mousePosition = (Vector2)Input.mousePosition;
 
-				if (Input.GetMouseButton(0) == true && P3dInputManager.PointOverGui(mousePosition) == false)
+				if ((Input.GetMouseButton(0) == true || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger)) && P3dInputManager.PointOverGui(mousePosition) == false)
 				{
 					if (storeStates == true && particles.isPlaying == false)
 					{

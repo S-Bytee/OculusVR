@@ -18,7 +18,7 @@ public class ErasingDeleting : MonoBehaviour
      
             if (laserPointer.hit.collider)
             {
-                if(laserPointer.hit.collider.gameObject.transform.childCount>0)
+                if(laserPointer.hit.collider.gameObject.transform.parent)
                 {
                     Debug.Log(laserPointer.hit.collider.transform.parent.tag);
 
@@ -38,7 +38,7 @@ public class ErasingDeleting : MonoBehaviour
                         {
                         GameObject go = laserPointer.hit.collider.gameObject;
 
-                        UndoRedo.Instance.AddChangementToUndo(new Changement(go.GetInstanceID(), go,go.GetComponent<Renderer>().material.GetColor("_TintColor"),ChangementType.DESTROYED_LINERENDERER));
+                        UndoRedo.Instance.AddChangementToUndo(new Changement(go.GetInstanceID(), go,go.GetComponent<Renderer>().material.GetColor("_Color"),ChangementType.DESTROYED_LINERENDERER));
 
                             Destroy(laserPointer.hit.collider.gameObject);
                       

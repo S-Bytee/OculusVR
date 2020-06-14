@@ -29,6 +29,8 @@ TagManager:
   - exampleDonutObject
   - exampleConeObject
   - exampleTubeObject
+  - exampleHemisphereObject
+  - reusableObject
   layers:
   - Default
   - TransparentFX
