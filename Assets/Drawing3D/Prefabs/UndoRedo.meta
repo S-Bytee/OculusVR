@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/Drawing3D/Prefabs/UndoRedo.meta
 guid: ddd0c6f0b4e84f94188fc8fb632cad28
-=======
-guid: 2cf5d3251561ea9408d1b1c93fea6160
->>>>>>> 46b434c9086ac2f0521df3140662fec6ecf74000:Assets/Plugins/Android/Assets.meta
-=======
-guid: ddd0c6f0b4e84f94188fc8fb632cad28
->>>>>>> 46b434c9086ac2f0521df3140662fec6ecf74000
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
