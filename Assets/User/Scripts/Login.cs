@@ -34,7 +34,7 @@ public class Login : MonoBehaviour
          password = input_password.GetComponent<InputField>().text;
          //if(Input.GetKeyDown(KeyCode.Tab)){changeInput();}
          //if(Input.GetKeyDown(KeyCode.Return)){singin();}
-         if(laserPointer.hit.collider && Input.GetMouseButtonDown(0))
+         if(laserPointer.hit.collider && (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)))
         {
             if(laserPointer.hit.collider.gameObject == GameObject.Find("login_button")) { singin(); }
         }

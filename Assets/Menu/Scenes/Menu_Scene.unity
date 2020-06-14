@@ -6331,7 +6331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &997012192
 Transform:
   m_ObjectHideFlags: 0
@@ -13700,6 +13700,7 @@ GameObject:
   - component: {fileID: 222196440499904872}
   - component: {fileID: 114963274695899708}
   - component: {fileID: 114259745418465880}
+  - component: {fileID: 1041555717083183}
   m_Layer: 5
   m_Name: HardDif_Btn
   m_TagString: Untagged
@@ -13707,6 +13708,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1041555717083183
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041555717083182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 215.5, y: 67, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1055235437039636
 GameObject:
   m_ObjectHideFlags: 0
@@ -13856,6 +13870,7 @@ GameObject:
   - component: {fileID: 114866047006179302}
   - component: {fileID: 114904469531650706}
   - component: {fileID: 95441501751225256}
+  - component: {fileID: 1075682311338465}
   m_Layer: 5
   m_Name: Btn_NewGame
   m_TagString: Untagged
@@ -13863,6 +13878,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1075682311338465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075682311338464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 522, y: 82, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1075888615820054
 GameObject:
   m_ObjectHideFlags: 0
@@ -13952,6 +13980,7 @@ GameObject:
   - component: {fileID: 114251442766318000}
   - component: {fileID: 114239513896202930}
   - component: {fileID: 114624283384094102}
+  - component: {fileID: 1111892697473529}
   m_Layer: 5
   m_Name: Btn_Exit
   m_TagString: Untagged
@@ -13959,6 +13988,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1111892697473529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111892697473528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 457, y: 91, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1113636550351710
 GameObject:
   m_ObjectHideFlags: 0
@@ -14007,6 +14049,7 @@ GameObject:
   - component: {fileID: 222210531003991678}
   - component: {fileID: 114003312932547270}
   - component: {fileID: 114077281391346362}
+  - component: {fileID: 1117593715030201}
   m_Layer: 5
   m_Name: ToolTip_Btn
   m_TagString: Untagged
@@ -14014,6 +14057,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1117593715030201
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117593715030200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 401, y: 67, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1123870258101340
 GameObject:
   m_ObjectHideFlags: 0
@@ -14881,6 +14937,7 @@ GameObject:
   - component: {fileID: 222384794950895428}
   - component: {fileID: 114684195149165402}
   - component: {fileID: 114290480217668598}
+  - component: {fileID: 1328377259822857}
   m_Layer: 5
   m_Name: NormDif_Btn
   m_TagString: Untagged
@@ -14888,6 +14945,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1328377259822857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328377259822856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 175, y: 67, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1339257501532552
 GameObject:
   m_ObjectHideFlags: 0
@@ -15147,6 +15217,7 @@ GameObject:
   - component: {fileID: 114978978524622952}
   - component: {fileID: 114368209417368374}
   - component: {fileID: 95116324192660756}
+  - component: {fileID: 1414451796842501}
   m_Layer: 5
   m_Name: Btn_LoadGame
   m_TagString: Untagged
@@ -15154,6 +15225,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1414451796842501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414451796842500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 522, y: 82, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1415234379314402
 GameObject:
   m_ObjectHideFlags: 0
@@ -15789,6 +15873,7 @@ GameObject:
   - component: {fileID: 222823589186534104}
   - component: {fileID: 114859669191902740}
   - component: {fileID: 114232520921796710}
+  - component: {fileID: 1516010272448313}
   m_Layer: 5
   m_Name: ShowHud_Btn
   m_TagString: Untagged
@@ -15796,6 +15881,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1516010272448313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516010272448312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 401, y: 67, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1517242295111150
 GameObject:
   m_ObjectHideFlags: 0
@@ -16218,6 +16316,7 @@ GameObject:
   - component: {fileID: 114533873752386832}
   - component: {fileID: 114043297278965680}
   - component: {fileID: 114354677868911724}
+  - component: {fileID: 1608148500947791}
   m_Layer: 5
   m_Name: Btn_Yes
   m_TagString: Untagged
@@ -16225,6 +16324,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1608148500947791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608148500947790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 233, y: 104, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1608748184491994
 GameObject:
   m_ObjectHideFlags: 0
@@ -16765,6 +16877,7 @@ GameObject:
   - component: {fileID: 114883063807861872}
   - component: {fileID: 114859190641593570}
   - component: {fileID: 114949655539380950}
+  - component: {fileID: 1730283707752477}
   m_Layer: 5
   m_Name: Btn_PlayCampaign
   m_TagString: Untagged
@@ -16772,6 +16885,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1730283707752477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730283707752476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 457, y: 91, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1731957048486056
 GameObject:
   m_ObjectHideFlags: 0
@@ -16785,6 +16911,7 @@ GameObject:
   - component: {fileID: 114161792526919526}
   - component: {fileID: 114067687637392462}
   - component: {fileID: 114618090216957860}
+  - component: {fileID: 1731957048486057}
   m_Layer: 5
   m_Name: Btn_No
   m_TagString: Untagged
@@ -16792,6 +16919,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1731957048486057
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731957048486056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 233, y: 104, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1736474399010054
 GameObject:
   m_ObjectHideFlags: 0
@@ -17205,6 +17345,7 @@ GameObject:
   - component: {fileID: 114545048818526170}
   - component: {fileID: 114821353620098942}
   - component: {fileID: 114253414492381434}
+  - component: {fileID: 1791931502536567}
   m_Layer: 5
   m_Name: Btn_Settings
   m_TagString: Untagged
@@ -17212,6 +17353,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1791931502536567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791931502536566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 457, y: 91, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1798889178724900
 GameObject:
   m_ObjectHideFlags: 0
@@ -17760,6 +17914,7 @@ GameObject:
   - component: {fileID: 114787251487022582}
   - component: {fileID: 114662530067144800}
   - component: {fileID: 114309376619292964}
+  - component: {fileID: 1925084177038933}
   m_Layer: 5
   m_Name: Btn_Continue
   m_TagString: Untagged
@@ -17767,6 +17922,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &1925084177038933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925084177038932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 522, y: 82, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1926859735371170
 GameObject:
   m_ObjectHideFlags: 0
@@ -37423,28 +37591,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114173851846772814}
-        m_MethodName: Position2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114173851846772814}
-        m_MethodName: No
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114173851846772814}
         m_MethodName: PlaySwoosh
         m_Mode: 1

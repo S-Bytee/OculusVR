@@ -18,34 +18,41 @@ public class users_book : MonoBehaviour
     public GameObject user_content;
     public GameObject text;
     public Component[] hingeJoints;
+    PhysicsPointer laserPointer;
     List<string> collectionNames = new List<string>();
     GraphicRaycaster raycaster;
     String FriendEmail = "";
+    float MaxSizeUsers, MaxProjectsSize;
     
     void Awake()
      {
-         // Get both of the components we need to do this
-         this.raycaster = GetComponent<GraphicRaycaster>();
+        // Get both of the components we need to do this
+        laserPointer = PhysicsPointer.Instance;
+        this.raycaster = GetComponent<GraphicRaycaster>();
      }
 
     private void Start() {
          var docu = Mongo.getConnection().GetDatabase("SpatterDB").GetCollection<BsonDocument>("users").Find(_ => true).ToList();
         print(docu.Count);
+        //MaxSizeUsers = docu.Count * 320 ;
         foreach (var doc in docu)
         {
-            var copy = Instantiate(itemTemplate);
+            var copy = Instantiate(itemTemplate,Vector3.zero,Quaternion.identity);
             print(doc.GetValue(2));
             copy.GetComponentInChildren<Text>().text="Username : "+ doc.GetValue(2);
             hingeJoints = copy.GetComponentsInChildren<Component>();
             foreach (Component joint in hingeJoints)
             {
+
                 if(joint.name.Equals("user_username") && !doc.GetValue(2).Equals(""))
                     joint.GetComponent<Text>().text = doc.GetValue(2)+"'s artist card";
                 if(joint.name.Equals("user_email") && !doc.GetValue(1).Equals(""))
                     joint.GetComponent<Text>().text = "email : "+ doc.GetValue(1);  
                 if(joint.name.Equals("last_login") && !doc.GetValue(6).Equals(""))
                     joint.GetComponent<Text>().text = "Last Login : "+ doc.GetValue(6);  
+            
             }
+            //copy.transform.SetParent(user_content.GetComponent<VerticalLayoutGroup>().transform, false);
             copy.transform.parent=user_content.transform;
         }
     }
@@ -53,25 +60,13 @@ public class users_book : MonoBehaviour
     private void Update() {
 
             //Check if the left Mouse button is clicked
-         if (Input.GetKeyDown(KeyCode.Mouse0))
+         if (laserPointer.hit.collider && Input.GetKeyDown(KeyCode.Mouse0))
          {
-             //Set up the new Pointer Event
-             PointerEventData pointerData = new PointerEventData(EventSystem.current);
-             List<RaycastResult> results = new List<RaycastResult>();
- 
-             //Raycast using the Graphics Raycaster and mouse click position
-             pointerData.position = Input.mousePosition;
-             this.raycaster.Raycast(pointerData, results);
- 
-             //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-             foreach (RaycastResult result in results)
-             {
-
-                 Debug.Log("Hit " + result.gameObject.name);
-                 if(result.gameObject.name=="User_card(Clone)")
-                 {
+             if(laserPointer.hit.collider.name == "User_card(Clone)")
+             
+                {
                      
-                     hingeJoints = result.gameObject.GetComponentsInChildren<Component>();
+                     hingeJoints = laserPointer.hit.collider.gameObject.GetComponentsInChildren<Component>();
                      foreach (Component joint in hingeJoints){
 
                         if(joint.name.Equals("user_email")){
@@ -117,7 +112,7 @@ public class users_book : MonoBehaviour
                                 copy.transform.parent=project_content.transform;
                             }
                             }
-                         }
+                         
                      }
                  }
              }
@@ -127,12 +122,14 @@ public class users_book : MonoBehaviour
 
     public void getProjects(String username)
     {
-
+        //MaxProjectsSize = 0;
         foreach (var item in Mongo.getConnection().GetDatabase(username).ListCollectionsAsync().Result.ToListAsync<BsonDocument>().Result)
         {
+            //MaxProjectsSize++;
             if(!item["name"].ToString().Equals("Default"))
             collectionNames.Add(item["name"].ToString());
         }
+        //MaxProjectsSize = MaxProjectsSize * 120;
     }
     public void AddButtonClick(){
 
@@ -162,4 +159,16 @@ public class users_book : MonoBehaviour
         PlayerPrefs.SetString("scene","room_user");
         SceneManager.LoadScene("loading_screen");
     }
+
+    /*public void UpUserScroll()
+    {
+        if (GetComponent<RectTransform>().localPosition.y < MaxSizeUsers)
+            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+    }
+
+    public void DownUserScroll()
+    {
+        if (GetComponent<RectTransform>().localPosition.y > -MaxSizeUsers)
+            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+    }*/
 }
