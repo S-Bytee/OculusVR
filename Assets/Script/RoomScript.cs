@@ -19,7 +19,7 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (laserPointer.hit.collider && Input.GetMouseButtonDown(0)) {
+        if (laserPointer.hit.collider && (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))) {
 
             if(laserPointer.hit.collider.name == "book4")
             {

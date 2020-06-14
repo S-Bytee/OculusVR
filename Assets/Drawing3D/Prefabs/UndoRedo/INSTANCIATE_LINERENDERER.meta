@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Drawing3D/Prefabs/UndoRedo/INSTANCIATE_LINERENDERER.meta
 guid: 8b6dab855cc49c346871082aa024b864
+=======
+guid: 91ddb7aed91991c4eb28f777e7a5bb0a
+>>>>>>> 58f854b8f022677357c727aa8d4b13e61ed4d900:Assets/Drawing3D/AssetBundles.meta
+=======
+guid: 8b6dab855cc49c346871082aa024b864
+>>>>>>> 58f854b8f022677357c727aa8d4b13e61ed4d900
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
