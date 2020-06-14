@@ -12,7 +12,6 @@ public class KeyboardVRManager : MonoBehaviour
     string[] Exceptions = { "Shift","Space", "Backspace", "Clear", "Enter", "Cancel","Key" };
     string[] SpecialChar = { "!",":", ";", ",", "*", "$","=",")","<" };
     int x = 0;
-    public GameObject WheelCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +44,7 @@ public class KeyboardVRManager : MonoBehaviour
                 {
                     if (!Exceptions.Contains(laserInstance.hit.collider.name))
                     {
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                         {
                             Text += laserInstance.hit.collider.name;
                           //  Debug.Log(Text);
@@ -57,7 +56,7 @@ public class KeyboardVRManager : MonoBehaviour
                         {
                             case "Space":
                                 {
-                                    if (Input.GetMouseButtonDown(0))
+                                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                                     {
                                         Text += " ";
                                        // Debug.Log(Text);
@@ -67,7 +66,7 @@ public class KeyboardVRManager : MonoBehaviour
                                 }
                             case "Clear":
                                 {
-                                    if (Input.GetMouseButtonDown(0))
+                                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                                     {
                                         Text = "";
                                        // Debug.Log(Text);
@@ -77,7 +76,7 @@ public class KeyboardVRManager : MonoBehaviour
                                 }
                             case "Backspace":
                                 {
-                                    if (Input.GetMouseButtonDown(0))
+                                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                                     {
 
                                         Text = Text.Remove(Text.Length - 1, 1);
@@ -88,7 +87,7 @@ public class KeyboardVRManager : MonoBehaviour
                                 }
                             case "Shift":
                                 {
-                                    if (Input.GetMouseButtonDown(0))
+                                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                                     {
                                         x++;
 
@@ -109,7 +108,7 @@ public class KeyboardVRManager : MonoBehaviour
                                 }
                             case "Cancel":
                                 {
-                                    if (Input.GetMouseButtonDown(0))
+                                    if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                                     {
 
                                         //WheelCanvas.GetComponent<Animator>().SetBool("active", false);

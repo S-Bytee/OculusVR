@@ -82,7 +82,6 @@ public class UndoRedo : MonoBehaviour
     
     static Stack<Changement> UndoStack;
     static Stack<Changement> RedoStack;
-    public GameObject RedoLineRenderer;
 
 
     public Material MatLine;
@@ -122,7 +121,6 @@ public class UndoRedo : MonoBehaviour
     //Changement inajem ikoun instance jdida tzedet ouala size tbadel ouala couleur jdid ...
     public void AddChangementToUndo(Changement changement)
     {
-    
         switch(changement.Changementtype)
         {
             case ChangementType.DESTROYED_LINERENDERER:
@@ -139,7 +137,7 @@ public class UndoRedo : MonoBehaviour
                     if (!ChangementColorExist(changement))
                     {
                         //Pour eviter le cas ouin ki taamel undo aala couleur iaawed izid changement aal couleur lekdim o hakeka on boucle fel feragh 
-                        if (changement.PreviousColor != GetInstanceById(changement.InstanceID).GetComponent<Renderer>().material.GetColor("_TintColor"))
+                        if (changement.PreviousColor != GetInstanceById(changement.InstanceID).GetComponent<Renderer>().material.GetColor("_Color"))
                         {
                      
                             UndoStack.Push(changement);
@@ -154,6 +152,7 @@ public class UndoRedo : MonoBehaviour
             default: {
 
                     UndoStack.Push(changement);
+                    Debug.Log(UndoRedoPath);
 
                     break;
                 }
@@ -274,7 +273,7 @@ public class UndoRedo : MonoBehaviour
 
         go = GameObject.Find(changement.InstanceID.ToString());
 
-        go.GetComponent<Renderer>().material.SetColor("_TintColor", changement.PreviousColor);   
+        go.GetComponent<Renderer>().material.SetColor("_Color", changement.PreviousColor);   
 
     }
 
@@ -288,7 +287,7 @@ public class UndoRedo : MonoBehaviour
         go = GameObject.Find(changement.InstanceID.ToString());
 
 
-        go.GetComponent<Renderer>().material.SetColor("_TintColor", changement.NewColor);
+        go.GetComponent<Renderer>().material.SetColor("_Color", changement.NewColor);
        
     }
 
@@ -360,7 +359,7 @@ public class UndoRedo : MonoBehaviour
 
         // benesba lel cas mtaa nzelt undo o baad redo lazem ki taawed tenzel undo mara okhra  
         // l gameobject iwaaed isirlou undo (donc yetkhaba fel dossier "redo" mara okhra)
-        AddChangementToRedo(new Changement(changement.InstanceID, currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.DESTROYED_LINERENDERER));
+        AddChangementToRedo(new Changement(changement.InstanceID, currGo.GetComponent<Renderer>().material.GetColor("_Color"), ChangementType.DESTROYED_LINERENDERER));
         //nfaskhou l prefab lekdim
         File.Delete(GetUndoRedoPathFor(ChangementType.INSTANCIATE_LINERENDERER) + changement.InstanceID + ".prefab");
 
@@ -382,13 +381,13 @@ public class UndoRedo : MonoBehaviour
     {
 
         go.GetComponent<Renderer>().material = MatLine;
-        go.GetComponent<Renderer>().material.SetColor("_TintColor", color);
+        go.GetComponent<Renderer>().material.SetColor("_Color", color);
     }
 
      void ResaveToUndo(GameObject currGo)
     {
         // LINE RENDERER L NAME MTEOU KHABINA FIH ID ORIGINALE MTEEEOU (KHATER KI NAAAMLOU DESTROY O MBAAD INSTANCIATE L ID BESH YETBADEL DONC AWEL ID NKHALIWEEH FEL NAME)
-        AddChangementToUndo(new Changement(long.Parse(currGo.name), currGo, currGo.GetComponent<Renderer>().material.GetColor("_TintColor"), ChangementType.INSTANCIATE_LINERENDERER));
+        AddChangementToUndo(new Changement(long.Parse(currGo.name), currGo, currGo.GetComponent<Renderer>().material.GetColor("_Color"), ChangementType.INSTANCIATE_LINERENDERER));
 
         SaveGameObjectInPrefab(new Changement(long.Parse(currGo.name), ChangementType.INSTANCIATE_LINERENDERER));
 

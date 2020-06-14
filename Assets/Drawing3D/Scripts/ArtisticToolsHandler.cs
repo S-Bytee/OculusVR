@@ -13,14 +13,20 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     PhysicsPointer laserInstance;
     GameObject selectedButton = null;
 
+    
     public GameObject newCube;
     public GameObject newSphere;
+    public GameObject newPyramid;
+    public GameObject newDonut;
+    public GameObject newCone;
+    public GameObject newTube;
+    public GameObject newHemisphere;
+
+
     Vector3 instanceOffset;
     GameObject player;
     Vector3 offset;
-    GameObject currCubeInstance;
-    GameObject currSphereInstance;
-    GameObject currQuadInstance;
+    GameObject currInstance;
     public GameObject teleportGO;
 
     
@@ -34,11 +40,38 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     //l position mtaa l box l example une fois yenzel aal clique
     Vector3 cubeInstancePos;
 
-
     public GameObject sphereExample;
     GameObject currShpereExample;
     bool sphereExampleFollow = false;
     Vector3 sphereInstancePos;
+    
+    public GameObject pyramidExample;
+    GameObject currPyramidExample;
+    bool pyramidExampleFollow = false;
+    Vector3 pyramidInstancePos;
+
+
+    public GameObject donutExample;
+    GameObject currDonutExample;
+    bool donutExampleFollow = false;
+    Vector3 donutInstancePos;
+
+    public GameObject coneExample;
+    GameObject currConeExample;
+    bool coneExampleFollow = false;
+    Vector3 coneInstancePos;
+
+
+
+    public GameObject tubeExample;
+    GameObject currTubeExample;
+    bool tubeExampleFollow = false;
+    Vector3 tubeInstancePos;
+
+    public GameObject hemisphereExample;
+    GameObject currHemisphereExample;
+    bool hemisphereExampleFollow = false;
+    Vector3 hemisphereInstancePos;
 
     public Material previewMaterial;
     public Material defaultMaterial;
@@ -67,9 +100,6 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         setPosition();
         offset = new Vector3(0, 1.5f, 6);
 
-       
-
-
     }
 
     // Update is called once per frame
@@ -77,12 +107,28 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
        
         setPosition();
-     
+   
+
         onBoxExampleFollow();
         instanciateCube();
 
         onSphereExampleFollow();
         instanciateSphere();
+
+        onPyramidExampleFollow();
+        instanciatePyramid();
+
+        onDonutExampleFollow();
+        instanciateDonut();
+
+        onConeExampleFollow();
+        instanciateCone();
+
+        onTubeExampleFollow();
+        instanciateTube();
+
+        onHemisphereExampleFollow();
+        instanciateHemisphere();
 
 
         onRectanglePreviewFollow();
@@ -91,13 +137,262 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         onPolygonePreviewFollow();
 
 
+    }
 
 
+    void onPyramidExampleFollow()
+    {
+        if (pyramidExampleFollow)
+        {
+            currPyramidExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            pyramidInstancePos = currPyramidExample.transform.position;
+        }
+        else
+        {
+            Destroy(currPyramidExample);
+
+        }
+    }
+
+    void instanciatePyramid()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "examplePyramidObject")
+                {
+
+                    currInstance = Instantiate(newPyramid, pyramidInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    pyramidExampleFollow = false;
+                }
+
+            }
+
+
+        }
+    }
+
+    public void createPyramid()
+    {
+
+
+        if (!pyramidExampleFollow)
+        {
+
+            currPyramidExample = Instantiate(pyramidExample, Vector3.zero, Quaternion.identity);
+
+            pyramidExampleFollow = true;
 
         }
 
 
+    }
 
+
+
+    void onDonutExampleFollow()
+    {
+        if (donutExampleFollow)
+        {
+            currDonutExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            donutInstancePos = currDonutExample.transform.position;
+        }
+        else
+        {
+            Destroy(currDonutExample);
+
+        }
+    }
+
+    void instanciateDonut()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleDonutObject")
+                {
+
+                    currInstance = Instantiate(newDonut, donutInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    donutExampleFollow = false;
+                }
+
+            }
+
+
+        }
+    }
+
+    public void createDonut()
+    {
+
+
+        if (!donutExampleFollow)
+        {
+
+            currDonutExample = Instantiate(donutExample, Vector3.zero, Quaternion.identity);
+
+            donutExampleFollow = true;
+
+        }
+
+
+    }
+
+
+
+
+    void onConeExampleFollow()
+    {
+        if (coneExampleFollow)
+        {
+            currConeExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            coneInstancePos = currConeExample.transform.position;
+        }
+        else
+        {
+            Destroy(currConeExample);
+
+        }
+    }
+
+    void instanciateCone()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleConeObject")
+                {
+
+                    currInstance = Instantiate(newCone, coneInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    coneExampleFollow = false;
+                }
+
+            }
+
+
+        }
+    }
+
+    public void createCone()
+    {
+
+        if (!coneExampleFollow)
+        {
+
+            currConeExample = Instantiate(coneExample, Vector3.zero, Quaternion.identity);
+            coneExampleFollow = true;
+
+        }
+
+    }
+
+
+    void onTubeExampleFollow()
+    {
+        if (tubeExampleFollow)
+        {
+            currTubeExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            tubeInstancePos = currTubeExample.transform.position;
+        }
+        else
+        {
+            Destroy(currTubeExample);
+
+        }
+    }
+
+    void instanciateTube()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleTubeObject")
+                {
+
+                    currInstance = Instantiate(newTube, tubeInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    tubeExampleFollow = false;
+                }
+
+            }
+
+
+        }
+    }
+
+    public void createTube()
+    {
+
+        if (!tubeExampleFollow)
+        {
+
+            currTubeExample = Instantiate(tubeExample, Vector3.zero, Quaternion.identity);
+            tubeExampleFollow = true;
+
+        }
+
+    }
+
+
+
+    void onHemisphereExampleFollow()
+    {
+        if (hemisphereExampleFollow)
+        {
+            currHemisphereExample.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
+            hemisphereInstancePos = currHemisphereExample.transform.position;
+        }
+        else
+        {
+            Destroy(currHemisphereExample);
+
+        }
+    }
+
+    void instanciateHemisphere()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+
+            if (laserInstance.hit.collider)
+            {
+                if (laserInstance.hit.collider.tag == "exampleHemisphereObject")
+                {
+
+                    currInstance = Instantiate(newHemisphere, hemisphereInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    hemisphereExampleFollow = false;
+                }
+
+            }
+
+
+        }
+    }
+
+    public void createHemisphere()
+    {
+
+        if (!hemisphereExampleFollow)
+        {
+
+            currHemisphereExample = Instantiate(hemisphereExample, Vector3.zero, Quaternion.identity);
+            hemisphereExampleFollow = true;
+
+        }
+
+    }
 
     public void backToDefaultColor()
     {
@@ -128,15 +423,14 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            print(laserInstance);
             if (laserInstance.hit.collider)
             {
                 if (laserInstance.hit.collider.tag == "exampleCubeObject")
                 {
-                    currCubeInstance = Instantiate(newCube, cubeInstancePos, Quaternion.identity);
-                    currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    currInstance = Instantiate(newCube, cubeInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
                     boxExampleFollow = false;
                 }
 
@@ -150,15 +444,15 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
     {
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
 
             if (laserInstance.hit.collider)
             {
                 if (laserInstance.hit.collider.tag == "exampleSphereObject")
                 {
-                    currCubeInstance = Instantiate(newSphere, sphereInstancePos, Quaternion.identity);
-                    currCubeInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
+                    currInstance = Instantiate(newSphere, sphereInstancePos, Quaternion.identity);
+                    currInstance.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
                     sphereExampleFollow = false;
                 }
 
@@ -237,7 +531,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
 
         transform.GetChild(indexChild).gameObject.SetActive(false);
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("onBackClick");
-        Debug.Log(transform.GetChild(0).name);
+
     }
 
 
@@ -265,7 +559,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
             currRectangle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
             currRectangle.transform.GetChild(0).GetComponent<Renderer>().material = previewMaterial;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 currRectangle.transform.GetChild(0).GetComponent<Renderer>().material = defaultMaterial;
                 currRectangle.transform.GetChild(0).GetComponent<Renderer>().material.color = ColorIndicator.Instance.color.ToColor();
@@ -296,7 +590,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         {
             currCircle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
            
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 currCircle.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
                 
@@ -326,7 +620,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         {
             currTriangle.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 currTriangle.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
 
@@ -355,7 +649,7 @@ public class ArtisticToolsHandler : MonoBehaviourPunCallbacks
         {
             currPolygone.transform.position = laserInstance.DefaultEnd(laserInstance.defaultLength);
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 currPolygone.transform.GetChild(0).GetComponent<Shape>().settings.fillColor = ColorIndicator.Instance.color.ToColor();
 

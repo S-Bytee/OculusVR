@@ -30,7 +30,7 @@ public class OnObjectsReturnState : MonoBehaviour
         {
             if(laserInstance.hit.collider.gameObject == this.gameObject)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
 
                     GetComponent<Animator>().SetBool("active", false);

@@ -60,7 +60,7 @@ public class ColorSaturationBrightnessPicker : MonoBehaviour {
                 if(go.GetComponent<SelectLineRenderer>().isSelected)
                 {
                 
-                    go.GetComponent<Renderer>().material.SetColor("_TintColor", ColorIndicator.Instance.color.ToColor());
+                    go.GetComponent<Renderer>().material.SetColor("_Color", ColorIndicator.Instance.color.ToColor());
                 
                 }
 

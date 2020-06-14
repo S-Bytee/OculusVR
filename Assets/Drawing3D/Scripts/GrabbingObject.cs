@@ -25,30 +25,79 @@ public class GrabbingObject : MonoBehaviour
         if (laserInstance.hit.collider)
         {
            
-            if(Input.GetButtonDown("Jump"))
+            if(Input.GetButtonDown("Jump") || OVRInput.GetDown(OVRInput.Touch.Two))
+
             {
+            
 
                 if (laserInstance.hit.collider.gameObject.tag == "lineRenderer")
                 {
-             
-                    objectToGrab = laserInstance.hit.collider.transform.gameObject;
+                    if (laserInstance.hit.collider.gameObject.transform.parent)
+                    {
+                        if (laserInstance.hit.collider.gameObject.transform.parent.tag == "reusableObject")
+                        {
+                            objectToGrab = laserInstance.hit.collider.gameObject.transform.parent.gameObject;
 
-                    objectToGrab.transform.parent = laserInstance.gameObject.transform;
+                            objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        objectToGrab = laserInstance.hit.collider.transform.gameObject;
+
+                        objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                    }
+
+
+
+
 
                 }
 
-                if (laserInstance.hit.collider.gameObject.transform.parent.tag=="object")
+
+
+                if (laserInstance.hit.collider.gameObject.transform.parent.tag == "object")
                 {
 
-                    objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
 
-                    objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                    if (laserInstance.hit.collider.gameObject.transform.parent.parent)
+                    {
+                        if (laserInstance.hit.collider.gameObject.transform.parent.parent.tag == "reusableObject")
+                        {
+                            objectToGrab = laserInstance.hit.collider.gameObject.transform.parent.parent.gameObject;
+
+                            objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        objectToGrab = laserInstance.hit.collider.transform.parent.gameObject;
+
+                        objectToGrab.transform.parent = laserInstance.gameObject.transform;
+
+                    }
+
 
                 }
+
+
+
 
             }
 
-            if (Input.GetButtonUp("Jump"))
+            if (Input.GetButtonUp("Jump") || OVRInput.GetUp(OVRInput.Touch.Two))
             {
 
                 objectToGrab.transform.parent = null;

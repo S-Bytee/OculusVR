@@ -22,21 +22,18 @@ public class InputFieldKeyBoard : MonoBehaviour
        
         if (laserPointer.hit.collider)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && laserPointer.hit.collider.gameObject == this.gameObject )
                 {
+                KeyboardVR.GetComponent<KeyboardVRManager>().Text = "";
+                PlayerPrefs.SetString("key",this.gameObject.name);
                      EventSystem.current.SetSelectedGameObject(gameObject, null);
                     GetComponent<InputField>().OnPointerClick(new PointerEventData(EventSystem.current));
                     KeyboardVR.SetActive(true);
                 }
-            if (laserPointer.hit.collider.gameObject == this.gameObject)
-            {
-
-                
-            }
 
         }
 
-        if (KeyboardVR.activeSelf)
+        if (KeyboardVR.activeSelf && PlayerPrefs.GetString("key").Equals(this.gameObject.name))
             GetComponent<InputField>().text = KeyboardVR.GetComponent<KeyboardVRManager>().Text;
     }
 }

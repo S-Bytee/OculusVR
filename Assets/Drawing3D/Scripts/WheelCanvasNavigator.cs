@@ -219,6 +219,16 @@ public class WheelCanvasNavigator : MonoBehaviour
 
         }
 
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("reusableObject"))
+        {
+
+                if (go.transform.GetComponent<ReusableObjectSelection>().IsSelected)
+                {
+                    showGZIMO = true;
+                }
+
+        }
+
         if (showGZIMO)
         {
         

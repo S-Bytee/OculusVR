@@ -55,6 +55,7 @@ public class OnSelectObject : MonoBehaviour
                 if (go == this.gameObject)
                 {
                     DisableAllLineRendererSelection();
+                    DeselectAllReusableOjects();
                         isClicked = true;
 
                 }
@@ -175,6 +176,14 @@ public class OnSelectObject : MonoBehaviour
                 go.GetComponent<SelectLineRenderer>().isSelected = false;
         }
 
+    }
+
+    void DeselectAllReusableOjects()
+    {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("reusableObject"))
+        {
+                go.GetComponent<ReusableObjectSelection>().IsSelected = false;
+        }
     }
 
     

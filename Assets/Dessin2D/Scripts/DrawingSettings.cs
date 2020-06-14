@@ -147,7 +147,7 @@ namespace FreeDraw
             releaseX();
             releaseY();
             releaseZ();
-            
+            if(ColorIndicator.Instance)
             c = ColorIndicator.Instance.color.ToColor();
             SetMarkerColour(c);
         }

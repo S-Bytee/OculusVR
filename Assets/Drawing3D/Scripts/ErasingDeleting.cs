@@ -24,7 +24,7 @@ public class ErasingDeleting : MonoBehaviour
 
                     if (laserPointer.hit.collider.transform.parent.tag == "object")
                     {
-                        if (Input.GetMouseButtonDown(0)) 
+                        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) 
                         {
                             Destroy(laserPointer.hit.collider.gameObject);
                         }
@@ -34,7 +34,7 @@ public class ErasingDeleting : MonoBehaviour
                 {
                     if (laserPointer.hit.collider.gameObject.tag== "lineRenderer")
                     {
-                        if (Input.GetMouseButtonDown(0))
+                        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                         {
                         GameObject go = laserPointer.hit.collider.gameObject;
 

@@ -36,13 +36,10 @@ public class MultiplayerDrawingNavigator : MonoBehaviour
         }
     }
 
-
     public void enableCenterImage(bool enable)
     {
         multiplayer_center_wheel.GetComponent<TextMeshProUGUI>().enabled = enable;
     }
-
-    
 
     public void showCreateRoom()
     {

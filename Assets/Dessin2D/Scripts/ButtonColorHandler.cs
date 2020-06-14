@@ -39,7 +39,7 @@ public class ButtonColorHandler : MonoBehaviour
                 this.gameObject.transform.localScale = newScaleWhenSelected;
 
                 //Idhaa nzelna aala bouton
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     //Aaamel invoke lel bouton yaani rod l bouton tnezleet
                     this.gameObject.GetComponent<Button>().onClick.Invoke();
