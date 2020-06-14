@@ -3,16 +3,15 @@ using UnityEditor;
 using Photon.Pun;
 public class PhysicsPointerMultiplayer : MonoBehaviourPunCallbacks
 {
-
-
-     private static PhysicsPointerMultiplayer _instance;
+ 
+    private static PhysicsPointerMultiplayer _instance;
 
     public static PhysicsPointerMultiplayer Instance { get { return _instance; } }
 
 
-    [SerializeField] protected float maxLength = 9.0f;
-    [SerializeField] protected float minLength = 2.0f;
-    public float defaultLength = 4.0f;
+    [SerializeField] public float maxLength = 9.0f;
+    [SerializeField] public float minLength = 2.0f;
+    [SerializeField] public float defaultLength = 4.0f;
 
     Color c1 = Color.white;
     Color c2 = Color.red;

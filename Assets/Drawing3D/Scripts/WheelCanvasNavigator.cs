@@ -205,7 +205,6 @@ public class WheelCanvasNavigator : MonoBehaviour
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("lineRenderer"))
         {
 
-
             if (go.transform.childCount == 0)
             {
 

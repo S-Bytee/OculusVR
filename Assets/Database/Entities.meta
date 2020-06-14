@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<< HEAD:Assets/_SimplePointer/Scripts.meta
 guid: 0073423f00efe094fa2ce17045f3ac67
 =======
 guid: 9a41bcf381fdd7542aeaabbb7c9f109d
 >>>>>>> 3587f2a46a345368f639d5dce227066bb03083fa:Assets/Database/Entities.meta
-=======
-<<<<<<< HEAD
-guid: d41474e04eb574c4d91c1422ff981cd3
-=======
-guid: 9c60ee3fabdfb7d4a87d6abda6c29014
->>>>>>> 1ec78478f8e4581b9c110a290a51116a76472c25
->>>>>>> 3587f2a46a345368f639d5dce227066bb03083fa
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

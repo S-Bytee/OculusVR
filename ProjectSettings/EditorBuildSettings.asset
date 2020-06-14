@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Menu/Scenes/Menu_Scene.unity
     guid: 53e0db7c579d54f4da5d360b96be0985
+  - enabled: 1
+    path: Assets/Drawing3D/Drawing_3D.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/MultiplayerDrawing/MultiplayerDrawing.unity
+    guid: a2e78a5e5a01cd24bb49314b06cdc8ba
   m_configObjects: {}

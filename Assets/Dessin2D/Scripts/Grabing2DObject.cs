@@ -62,7 +62,7 @@ public class Grabing2DObject : MonoBehaviour
 
             }
 
-            if (Input.GetButtonUp("Jump") || OVRInput.GetDown(OVRInput.Button.One))
+            if (Input.GetButtonUp("Jump") || OVRInput.GetUp(OVRInput.Button.One))
             {
 
                 objectToGrab.transform.parent = null;
