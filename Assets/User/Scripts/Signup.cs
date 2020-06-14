@@ -26,12 +26,13 @@ public class Signup : MonoBehaviour
     private string form;
     private bool ValidEmail = false ;
     private string phone_number;
+    PhysicsPointer laserPointer;
 
-    
     // Start is called before the first frame update
     void Start()
     {
-       // GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
+        laserPointer = PhysicsPointer.Instance;
+        // GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     // Update is called once per frame
@@ -43,6 +44,10 @@ public class Signup : MonoBehaviour
         email = input_email.GetComponent<InputField>().text;
         password = input_password.GetComponent<InputField>().text;
         phone_number = input_phonenumber.GetComponent<InputField>().text;
+        if (laserPointer.hit.collider && Input.GetMouseButtonDown(0))
+        {
+            if (laserPointer.hit.collider.gameObject == GameObject.Find("register_button")) { Register(); }
+        }
     }
 
     public void Register()

@@ -54,13 +54,13 @@ public class Drawing2DLineRender : MonoBehaviour
     public void drawing()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             createLine();
 
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
         {
             tempFingerPos = laserInstance.CalculateEnd();
 
@@ -68,7 +68,7 @@ public class Drawing2DLineRender : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
 
             if (lineRenderer != null)

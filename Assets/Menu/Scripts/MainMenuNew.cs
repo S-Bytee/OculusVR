@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuNew : MonoBehaviour {
 
 	Animator CameraObject;
+	PhysicsPointer laserPointer;
 	[SerializeField]
 	string museum_scene_name = "";
 
@@ -78,7 +79,7 @@ public class MainMenuNew : MonoBehaviour {
 	void Start(){
 		CameraObject = transform.GetComponent<Animator>();
 		user_header.GetComponent<Text>().text = "Welcome to Spatter dear , "+PlayerPrefs.GetString("username");
-
+		laserPointer = PhysicsPointer.Instance;
 		Cursor.lockState = CursorLockMode.None;
 
 	}
