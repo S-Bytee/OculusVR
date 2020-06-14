@@ -86,7 +86,7 @@ namespace PaintIn3D
 			// Use mouse hover preview?
 			if (showPreview == true)
 			{
-				if (Input.touchCount == 0 && P3dInputManager.AnyMouseButtonSet == false && P3dInputManager.PointOverGui(Input.mousePosition) == false)
+				if ( (Input.touchCount == 0 || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && (P3dInputManager.AnyMouseButtonSet == false || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && P3dInputManager.PointOverGui(Input.mousePosition) == false)
 				{
 					PaintAt(Input.mousePosition, true, 1.0f);
 				}

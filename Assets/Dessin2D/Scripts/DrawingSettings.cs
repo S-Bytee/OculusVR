@@ -259,7 +259,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollow)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollow)
                 { currNewQuad.transform.parent = null; onfollow = false; }
                 
             }
@@ -287,7 +287,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowT)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowT)
                 { currNewTriangle.transform.parent = null; onfollowT = false; }
 
             }
@@ -313,7 +313,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowC)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowC)
                 { currNewCercle.transform.parent = null; onfollowC = false; }
 
             }
@@ -367,7 +367,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowA)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowA)
                 { currNewA.transform.parent = null; onfollowA = false; }
 
             }
@@ -393,7 +393,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowB)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowB)
                 { currNewB.transform.parent = null; onfollowB = false; }
 
             }
@@ -419,7 +419,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowCC)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowCC)
                 { currNewC.transform.parent = null; onfollowCC = false; }
 
             }
@@ -446,7 +446,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowD)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowD)
                 { currNewD.transform.parent = null; onfollowD = false; }
 
             }
@@ -472,7 +472,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowE)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowE)
                 { currNewE.transform.parent = null; onfollowE = false; }
 
             }
@@ -498,7 +498,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowF)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowF)
                 { currNewF.transform.parent = null; onfollowF = false; }
 
             }
@@ -523,7 +523,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowG)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowG)
                 { currNewG.transform.parent = null; onfollowG = false; }
 
             }
@@ -548,7 +548,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowH)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowH)
                 { currNewH.transform.parent = null; onfollowH = false; }
 
             }
@@ -573,7 +573,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowI)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowI)
                 { currNewI.transform.parent = null; onfollowI = false; }
 
             }
@@ -603,7 +603,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowJ)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowJ)
                 { currNewJ.transform.parent = null; onfollowJ = false; }
 
             }
@@ -628,7 +628,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowK)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowK)
                 { currNewK.transform.parent = null; onfollowK = false; }
 
             }
@@ -653,7 +653,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowL)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowL)
                 { currNewL.transform.parent = null; onfollowL = false; }
 
             }
@@ -678,7 +678,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowM)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowM)
                 { currNewM.transform.parent = null; onfollowM = false; }
 
             }
@@ -703,7 +703,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowN)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowN)
                 { currNewN.transform.parent = null; onfollowN = false; }
 
             }
@@ -728,7 +728,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowO)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowO)
                 { currNewO.transform.parent = null; onfollowO = false; }
 
             }
@@ -753,7 +753,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowP)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowP)
                 { currNewP.transform.parent = null; onfollowP = false; }
 
             }
@@ -778,7 +778,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowQ)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowQ)
                 { currNewQ.transform.parent = null; onfollowQ = false; }
 
             }
@@ -803,7 +803,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowR)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowR)
                 { currNewR.transform.parent = null; onfollowR = false; }
 
             }
@@ -828,7 +828,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowS)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowS)
                 { currNewS.transform.parent = null; onfollowS = false; }
 
             }
@@ -853,7 +853,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowTT)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowTT)
                 { currNewT.transform.parent = null; onfollowTT = false; }
 
             }
@@ -878,7 +878,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowU)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowU)
                 { currNewU.transform.parent = null; onfollowU = false; }
 
             }
@@ -903,7 +903,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowV)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowV)
                 { currNewV.transform.parent = null; onfollowV = false; }
 
             }
@@ -928,7 +928,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowW)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowW)
                 { currNewW.transform.parent = null; onfollowW = false; }
 
             }
@@ -953,7 +953,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowX)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowX)
                 { currNewX.transform.parent = null; onfollowX = false; }
 
             }
@@ -978,7 +978,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowY)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowY)
                 { currNewY.transform.parent = null; onfollowY = false; }
 
             }
@@ -1003,7 +1003,7 @@ namespace FreeDraw
             if (PhysicsPointer.Instance.hit.collider)
             {
                 //ken c bn nzeel aal souris o l quad lesaaak fel laser donc saybou ouin howaa 
-                if (Input.GetMouseButtonDown(0) && onfollowZ)
+                if ((Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger)) && onfollowZ)
                 { currNewZ.transform.parent = null; onfollowZ = false; }
 
             }

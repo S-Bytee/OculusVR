@@ -45,7 +45,7 @@ public class OnSelectObject : MonoBehaviour
     
 
         //Ki yenzel aala bouton souris
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
 
             //Idha l laser aamel collision maa haja
@@ -128,7 +128,7 @@ public class OnSelectObject : MonoBehaviour
             else
             {
             
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
                 {
 
                 if (!this.gameObject.GetComponent<Shape>())

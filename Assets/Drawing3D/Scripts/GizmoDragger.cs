@@ -40,11 +40,11 @@ public class GizmoDragger : MonoBehaviour
     {
 
         //Ken kaaaad nezeel aal souris
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
         {
             onDrag = true;
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             onDrag = false;
         }
