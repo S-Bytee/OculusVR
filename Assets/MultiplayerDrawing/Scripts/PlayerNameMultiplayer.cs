@@ -10,7 +10,6 @@ public class PlayerNameMultiplayer : MonoBehaviourPunCallbacks,IPunObservable
 
     string playerName;
 
-   
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +32,5 @@ public class PlayerNameMultiplayer : MonoBehaviourPunCallbacks,IPunObservable
             transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = (string)stream.ReceiveNext();
         }
     
-
     }
 }
