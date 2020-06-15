@@ -12,6 +12,7 @@ public class JoinRoom : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+
         laserPointer = PhysicsPointer.Instance;
 
     }
@@ -20,7 +21,7 @@ public class JoinRoom : MonoBehaviourPunCallbacks
 
         if (laserPointer.hit.collider.gameObject == this.gameObject)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 PlayerPrefs.SetString("RoomName", GetComponent<Button>().name);
                 PlayerPrefs.Save();
