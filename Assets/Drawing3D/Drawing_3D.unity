@@ -16646,7 +16646,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -1.114e-42, y: 6e-45, z: 2.4e-44, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 3.5391e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -21062,6 +21062,16 @@ MonoBehaviour:
   circleLoaded: {fileID: 2946902608308100920, guid: 3ba5a88d9ad6c6e4daa899ca8157a348,
     type: 3}
   polygoneLoaded: {fileID: 913095645390057684, guid: 7515bd7868753cd4aa08701bdf6c518d,
+    type: 3}
+  pyramidLoaded: {fileID: 1571813386394117772, guid: de5203f5921e8bd44b3b4c58f0d44dd9,
+    type: 3}
+  donutLoaded: {fileID: 1571813386394117772, guid: 470b62dc0e9df1848af06f691812a083,
+    type: 3}
+  coneLoaded: {fileID: 1571813386394117772, guid: 79750d167720c9045b5600dac1a8afed,
+    type: 3}
+  hemisphereLoaded: {fileID: 1571813386394117772, guid: 87eca6e0368c0b741a2d4a1c0a7de0c1,
+    type: 3}
+  tubeLoaded: {fileID: 1571813386394117772, guid: a3e635ed00231004fb00794eb34b9712,
     type: 3}
   player: {fileID: 0}
   WheelCanvas: {fileID: 0}
