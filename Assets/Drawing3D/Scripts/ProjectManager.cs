@@ -20,8 +20,11 @@ public class ProjectManager : MonoBehaviour
     public GameObject triangleLoaded;
     public GameObject circleLoaded;
     public GameObject polygoneLoaded;
-
-
+    public GameObject pyramidLoaded;
+    public GameObject donutLoaded;
+    public GameObject coneLoaded;
+    public GameObject hemisphereLoaded;
+    public GameObject tubeLoaded;
 
     public GameObject player;
     public GameObject WheelCanvas;
@@ -154,6 +157,112 @@ public class ProjectManager : MonoBehaviour
                             documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
                             documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
                             
+                            docs.Add(documentGlobal);
+
+                            break;
+                        }
+                    case "pyramid":
+                        {
+                            documentGlobal = new BsonDocument();
+                            var documentId = new BsonDocument { { "InstanceID", go.GetInstanceID() } };
+                            var documentType = new BsonDocument { { "type", "Pyramid" } };
+
+                            var documentColors = new BsonDocument { { "R", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").r }, { "G", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").g }, { "B", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").b }, { "A", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").a } };
+
+                            var documentPosition = new BsonDocument { { "x", go.transform.GetChild(0).position.x }, { "y", go.transform.GetChild(0).position.y }, { "z", go.transform.GetChild(0).position.z } };
+                            var documentRotation = new BsonDocument { { "x", go.transform.GetChild(0).rotation.x }, { "y", go.transform.GetChild(0).rotation.y }, { "z", go.transform.GetChild(0).rotation.z } };
+                            var documentScale = new BsonDocument { { "x", go.transform.GetChild(0).localScale.x }, { "y", go.transform.GetChild(0).localScale.y }, { "z", go.transform.GetChild(0).localScale.z } };
+
+                            documentGlobal.Add(documentId);
+                            documentGlobal.Add(documentType);
+                            documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
+                            documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
+
+                            docs.Add(documentGlobal);
+
+                            break;
+                        }
+                    case "cone":
+                        {
+                            documentGlobal = new BsonDocument();
+                            var documentId = new BsonDocument { { "InstanceID", go.GetInstanceID() } };
+                            var documentType = new BsonDocument { { "type", "Cone" } };
+
+                            var documentColors = new BsonDocument { { "R", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").r }, { "G", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").g }, { "B", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").b }, { "A", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").a } };
+
+                            var documentPosition = new BsonDocument { { "x", go.transform.GetChild(0).position.x }, { "y", go.transform.GetChild(0).position.y }, { "z", go.transform.GetChild(0).position.z } };
+                            var documentRotation = new BsonDocument { { "x", go.transform.GetChild(0).rotation.x }, { "y", go.transform.GetChild(0).rotation.y }, { "z", go.transform.GetChild(0).rotation.z } };
+                            var documentScale = new BsonDocument { { "x", go.transform.GetChild(0).localScale.x }, { "y", go.transform.GetChild(0).localScale.y }, { "z", go.transform.GetChild(0).localScale.z } };
+
+                            documentGlobal.Add(documentId);
+                            documentGlobal.Add(documentType);
+                            documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
+                            documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
+
+                            docs.Add(documentGlobal);
+
+                            break;
+                        }
+                    case "donut":
+                        {
+                            documentGlobal = new BsonDocument();
+                            var documentId = new BsonDocument { { "InstanceID", go.GetInstanceID() } };
+                            var documentType = new BsonDocument { { "type", "Donut" } };
+
+                            var documentColors = new BsonDocument { { "R", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").r }, { "G", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").g }, { "B", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").b }, { "A", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").a } };
+
+                            var documentPosition = new BsonDocument { { "x", go.transform.GetChild(0).position.x }, { "y", go.transform.GetChild(0).position.y }, { "z", go.transform.GetChild(0).position.z } };
+                            var documentRotation = new BsonDocument { { "x", go.transform.GetChild(0).rotation.x }, { "y", go.transform.GetChild(0).rotation.y }, { "z", go.transform.GetChild(0).rotation.z } };
+                            var documentScale = new BsonDocument { { "x", go.transform.GetChild(0).localScale.x }, { "y", go.transform.GetChild(0).localScale.y }, { "z", go.transform.GetChild(0).localScale.z } };
+
+                            documentGlobal.Add(documentId);
+                            documentGlobal.Add(documentType);
+                            documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
+                            documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
+
+                            docs.Add(documentGlobal);
+
+                            break;
+                        }
+                    case "tube":
+                        {
+                            documentGlobal = new BsonDocument();
+                            var documentId = new BsonDocument { { "InstanceID", go.GetInstanceID() } };
+                            var documentType = new BsonDocument { { "type", "Tube" } };
+
+                            var documentColors = new BsonDocument { { "R", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").r }, { "G", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").g }, { "B", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").b }, { "A", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").a } };
+
+                            var documentPosition = new BsonDocument { { "x", go.transform.GetChild(0).position.x }, { "y", go.transform.GetChild(0).position.y }, { "z", go.transform.GetChild(0).position.z } };
+                            var documentRotation = new BsonDocument { { "x", go.transform.GetChild(0).rotation.x }, { "y", go.transform.GetChild(0).rotation.y }, { "z", go.transform.GetChild(0).rotation.z } };
+                            var documentScale = new BsonDocument { { "x", go.transform.GetChild(0).localScale.x }, { "y", go.transform.GetChild(0).localScale.y }, { "z", go.transform.GetChild(0).localScale.z } };
+
+                            documentGlobal.Add(documentId);
+                            documentGlobal.Add(documentType);
+                            documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
+                            documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
+
+                            docs.Add(documentGlobal);
+
+                            break;
+                        }
+                    case "hemisphere":
+                        {
+
+                            documentGlobal = new BsonDocument();
+                            var documentId = new BsonDocument { { "InstanceID", go.GetInstanceID() } };
+                            var documentType = new BsonDocument { { "type", "Hemisphere" } };
+
+                            var documentColors = new BsonDocument { { "R", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").r }, { "G", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").g }, { "B", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").b }, { "A", go.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_Color").a } };
+
+                            var documentPosition = new BsonDocument { { "x", go.transform.GetChild(0).position.x }, { "y", go.transform.GetChild(0).position.y }, { "z", go.transform.GetChild(0).position.z } };
+                            var documentRotation = new BsonDocument { { "x", go.transform.GetChild(0).rotation.x }, { "y", go.transform.GetChild(0).rotation.y }, { "z", go.transform.GetChild(0).rotation.z } };
+                            var documentScale = new BsonDocument { { "x", go.transform.GetChild(0).localScale.x }, { "y", go.transform.GetChild(0).localScale.y }, { "z", go.transform.GetChild(0).localScale.z } };
+
+                            documentGlobal.Add(documentId);
+                            documentGlobal.Add(documentType);
+                            documentGlobal.Add(new BsonDocument() { { "Color", documentColors } });
+                            documentGlobal.Add(new BsonDocument() { { "Position", documentPosition }, { "Rotation", documentRotation }, { "Scale", documentScale } });
+
                             docs.Add(documentGlobal);
 
                             break;
@@ -326,13 +435,12 @@ public class ProjectManager : MonoBehaviour
 
             go = Instantiate(cubeLoaded, position, Quaternion.identity);
             go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
-            go.transform.rotation = Quaternion.Euler(rotation);
-            go.transform.localScale = scale;
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
 
         }
 
         //Loading shperes
-
         var shpereFilter = Builders<BsonDocument>.Filter.Eq("type", "Sphere");
         var shpereDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(shpereFilter);
         foreach (var doc in shpereDocuments.ToCursor().ToEnumerable())
@@ -344,12 +452,96 @@ public class ProjectManager : MonoBehaviour
 
             go = Instantiate(sphereLoaded, position, Quaternion.identity);
             go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
-            go.transform.rotation = Quaternion.Euler(rotation);
-            go.transform.localScale = scale;
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
 
         }
 
+        //Loading pyramid
+        var pyramidFilter = Builders<BsonDocument>.Filter.Eq("type", "Pyramid");
+        var pyramidDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(pyramidFilter);
+        foreach (var doc in pyramidDocuments.ToCursor().ToEnumerable())
+        {
+            GameObject go;
+            Vector3 position = new Vector3(Convert.ToSingle(doc["Position"]["x"]), Convert.ToSingle(doc["Position"]["y"]), Convert.ToSingle(doc["Position"]["z"]));
+            Vector3 rotation = new Vector3(Convert.ToSingle(doc["Rotation"]["x"]), Convert.ToSingle(doc["Rotation"]["y"]), Convert.ToSingle(doc["Rotation"]["z"]));
+            Vector3 scale = new Vector3(Convert.ToSingle(doc["Scale"]["x"]), Convert.ToSingle(doc["Scale"]["y"]), Convert.ToSingle(doc["Scale"]["z"]));
+            print(pyramidLoaded);
+            go = Instantiate(pyramidLoaded, position, Quaternion.identity);
+            go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
 
+        }
+
+        //Loading donut
+        var donutFilter = Builders<BsonDocument>.Filter.Eq("type", "Donut")
+            ;
+        var donutDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(donutFilter);
+        foreach (var doc in donutDocuments.ToCursor().ToEnumerable())
+        {
+            GameObject go;
+            Vector3 position = new Vector3(Convert.ToSingle(doc["Position"]["x"]), Convert.ToSingle(doc["Position"]["y"]), Convert.ToSingle(doc["Position"]["z"]));
+            Vector3 rotation = new Vector3(Convert.ToSingle(doc["Rotation"]["x"]), Convert.ToSingle(doc["Rotation"]["y"]), Convert.ToSingle(doc["Rotation"]["z"]));
+            Vector3 scale = new Vector3(Convert.ToSingle(doc["Scale"]["x"]), Convert.ToSingle(doc["Scale"]["y"]), Convert.ToSingle(doc["Scale"]["z"]));
+
+            go = Instantiate(donutLoaded, position, Quaternion.identity);
+            go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
+
+        }
+
+        //Loading cone
+        var coneFilter = Builders<BsonDocument>.Filter.Eq("type", "Cone");
+        var coneDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(coneFilter);
+        foreach (var doc in coneDocuments.ToCursor().ToEnumerable())
+        {
+            GameObject go;
+            Vector3 position = new Vector3(Convert.ToSingle(doc["Position"]["x"]), Convert.ToSingle(doc["Position"]["y"]), Convert.ToSingle(doc["Position"]["z"]));
+            Vector3 rotation = new Vector3(Convert.ToSingle(doc["Rotation"]["x"]), Convert.ToSingle(doc["Rotation"]["y"]), Convert.ToSingle(doc["Rotation"]["z"]));
+            Vector3 scale = new Vector3(Convert.ToSingle(doc["Scale"]["x"]), Convert.ToSingle(doc["Scale"]["y"]), Convert.ToSingle(doc["Scale"]["z"]));
+
+            go = Instantiate(coneLoaded, position, Quaternion.identity);
+            go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
+
+        }
+
+        //Loading tube
+        var tubeFilter = Builders<BsonDocument>.Filter.Eq("type", "Tube");
+        var tubeDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(tubeFilter);
+        foreach (var doc in tubeDocuments.ToCursor().ToEnumerable())
+        {
+            GameObject go;
+            Vector3 position = new Vector3(Convert.ToSingle(doc["Position"]["x"]), Convert.ToSingle(doc["Position"]["y"]), Convert.ToSingle(doc["Position"]["z"]));
+            Vector3 rotation = new Vector3(Convert.ToSingle(doc["Rotation"]["x"]), Convert.ToSingle(doc["Rotation"]["y"]), Convert.ToSingle(doc["Rotation"]["z"]));
+            Vector3 scale = new Vector3(Convert.ToSingle(doc["Scale"]["x"]), Convert.ToSingle(doc["Scale"]["y"]), Convert.ToSingle(doc["Scale"]["z"]));
+
+            go = Instantiate(tubeLoaded, position, Quaternion.identity);
+            go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
+
+        }
+
+        //Loading hemisphere
+        var hemisphereFilter = Builders<BsonDocument>.Filter.Eq("type", "Hemisphere");
+        var hemisphereDocuments = Mongo.getConnection().GetDatabase(username).GetCollection<BsonDocument>(currentProjectName()).Find(hemisphereFilter);
+        foreach (var doc in hemisphereDocuments.ToCursor().ToEnumerable())
+        {
+            GameObject go;
+            Vector3 position = new Vector3(Convert.ToSingle(doc["Position"]["x"]), Convert.ToSingle(doc["Position"]["y"]), Convert.ToSingle(doc["Position"]["z"]));
+            Vector3 rotation = new Vector3(Convert.ToSingle(doc["Rotation"]["x"]), Convert.ToSingle(doc["Rotation"]["y"]), Convert.ToSingle(doc["Rotation"]["z"]));
+            Vector3 scale = new Vector3(Convert.ToSingle(doc["Scale"]["x"]), Convert.ToSingle(doc["Scale"]["y"]), Convert.ToSingle(doc["Scale"]["z"]));
+
+            go = Instantiate(hemisphereLoaded, position, Quaternion.identity);
+            go.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", new Color(Convert.ToSingle(doc["Color"]["R"].AsDouble), Convert.ToSingle(doc["Color"]["G"].AsDouble), Convert.ToSingle(doc["Color"]["B"].AsDouble), Convert.ToSingle(doc["Color"]["A"].AsDouble)));
+            go.transform.GetChild(0).rotation = Quaternion.Euler(rotation);
+            go.transform.GetChild(0).localScale = scale;
+
+        }
 
         //Loading rectangles
 
@@ -481,7 +673,7 @@ public class ProjectManager : MonoBehaviour
 
     public String currentProjectName()
     {
-        return PlayerPrefs.GetString("ProjectName");
+        return PlayerPrefs.GetString("ProjectName")+"_3D";
     }
 
 
