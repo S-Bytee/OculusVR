@@ -12,94 +12,191 @@ public class Mat_Load : MonoBehaviour
     Animator parentAnimator;
     public GameObject Sol;
     public Button red, blue, yellow, purple, pink, white, black, green, save;
-    public GameObject colorChanger;
+    
 
 
     private void Start()
     {
-/*
         laserPointer = PhysicsPointer.Instance;
+        /*
+                laserPointer = PhysicsPointer.Instance;
+                if (laserPointer.hit.collider)
+                {
+                    if (laserPointer.hit.collider.isTrigger == this.gameObject)
+                    {
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            ChangeImg();
+
+                        }
+
+                    }
+
+                }
+                //btn.onClick.AddListener(delegate { ChangeImg(); });*/
+    }
+    public void Update()
+    {
         if (laserPointer.hit.collider)
         {
-            if (laserPointer.hit.collider.isTrigger == this.gameObject)
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
             {
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    ChangeImg();
+
+                   rouge();
+
+
+
+                    
+
 
                 }
 
             }
-
         }
-        //btn.onClick.AddListener(delegate { ChangeImg(); });*/
-    }
-    public void Update()
-    {
-        
-        red.onClick.AddListener(delegate {
 
-            rouge();
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
 
+                if (Input.GetMouseButtonDown(0))
+                {
 
-        });
-
-        blue.onClick.AddListener(delegate {
-
-            bleu();
+                    bleu();
 
 
-        });
-
-        green.onClick.AddListener(delegate {
-
-            vert();
 
 
-        });
-
-        yellow.onClick.AddListener(delegate {
-
-            jaune();
 
 
-        });
+                }
 
-        pink.onClick.AddListener(delegate {
-
-            rose();
-
-
-        });
-
-        purple.onClick.AddListener(delegate {
-
-            violet();
+            }
+        }
 
 
-        });
-
-        black.onClick.AddListener(delegate {
-
-            noir();
 
 
-        });
-
-        white.onClick.AddListener(delegate {
-
-            blanc();
 
 
-        });
 
-        save.onClick.AddListener(delegate {
+
+
+
+
+
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    vert();
+
+
+
+
+
+
+                }
+
+            }
+        }
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    jaune();
+
+
+
+
+
+
+                }
+
+            }
+        }
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    rose();
+
+
+
+
+
+
+                }
+
+            }
+        }
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    violet();
+
+                }
+
+            }
+        }
+
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    blanc();
+
+                }
+
+            }
+        }
+
+        if (laserPointer.hit.collider)
+        {
+            if (laserPointer.hit.collider.gameObject == this.gameObject)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    noir();
+
+                }
+
+            }
+        }
+
+        /*save.onClick.AddListener(delegate {
 
             colorChanger.SetActive(false);
 
 
-        });
+        }); */
     }
 
     
@@ -154,4 +251,5 @@ public class Mat_Load : MonoBehaviour
 
 
 }
+    
 

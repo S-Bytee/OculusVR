@@ -31,6 +31,8 @@ TagManager:
   - exampleTubeObject
   - exampleHemisphereObject
   - reusableObject
+  - Plan
+  - InstanciatedProject
   layers:
   - Default
   - TransparentFX

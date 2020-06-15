@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +30,6 @@ public class TextInputLaserBehavior : MonoBehaviour
                     KeyboardVR.SetActive(true);
                 }
             }
-
         }
 
         if (KeyboardVR.activeSelf)
